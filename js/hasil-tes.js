@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
         categoryScoresHTML += `
         <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
             <h4 class="text-xl font-bold text-center md:text-left mb-4 text-gray-800 dark:text-gray-200">Rincian Skor</h4>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
         `;
 
@@ -70,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const colSpanClass = index === 0 ? 'col-span-2 sm:col-span-1' : 'col-span-1';
 
             categoryScoresHTML += `
-                <div class="bg-${catClass}-50 dark:bg-${catClass}-900/30 p-4 rounded-xl border border-${catClass}-200 dark:border-${catClass}-800/50 text-center shadow-sm">
                 <div class="${colSpanClass} bg-${catClass}-50 dark:bg-${catClass}-900/30 p-4 rounded-xl border border-${catClass}-200 dark:border-${catClass}-800/50 text-center shadow-sm">
                     <p class="text-sm font-bold text-${catClass}-800 dark:text-${catClass}-300">${category}</p>
                     <p class="text-4xl font-bold text-${catClass}-600 dark:text-${catClass}-400 my-1">${data.score}</p>
@@ -104,8 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ${isPassed ? 'Luar Biasa, Anda Lulus!' : 'Tetap Semangat, Coba Lagi!'}
           </h3>
           <p class="text-gray-500 dark:text-gray-400 mt-1">Skor Anda adalah ${score} dari 100.</p>
-          <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-            <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg">
           <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
             <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg col-span-2 sm:col-span-1">
               <p class="text-sm text-blue-800 dark:text-blue-300 font-semibold">Total Soal</p>

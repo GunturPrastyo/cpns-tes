@@ -107,7 +107,7 @@
 <!-- ================= MAIN CONTENT ================= -->
 <div id="main-content" class="pt-16 min-h-screen transition-all duration-300 md:ml-64">
   <main class="p-4 md:p-6">
-    <div class="max-w-4xl mx-auto">
+    <div class="w-full mx-auto">
         
         <!-- Breadcrumb -->
         <nav class="flex mb-6" aria-label="Breadcrumb">
@@ -133,11 +133,25 @@
         </nav>
 
         <!-- Result Card -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 border border-gray-200 dark:border-gray-700">
-            <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Hasil Simulasi CAT</h2>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Berikut adalah ringkasan performa Anda pada tes ini.</p>
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+            
+            <!-- Header inside card -->
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 md:p-8 text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+                <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-24 h-24 bg-black/10 rounded-full blur-xl"></div>
+                
+                <div class="relative z-10 flex items-center gap-5">
+                    <div class="p-3.5 bg-white/20 text-white rounded-xl shrink-0 backdrop-blur-md shadow-inner border border-white/10">
+                        <i data-lucide="award" class="w-8 h-8"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white leading-tight tracking-tight">Hasil Simulasi CAT</h1>
+                        <p class="text-blue-100 mt-1 text-sm font-medium">Ringkasan performa dan skor tes Anda</p>
+                    </div>
+                </div>
             </div>
+            
+            <div class="p-6 md:p-8">
             
             <!-- Loading State -->
             <div id="result-loading" class="flex flex-col items-center justify-center py-12">
@@ -153,7 +167,7 @@
             <div id="review-content" class="hidden"></div>
 
             <!-- Action Buttons -->
-            <div class="mt-10 pt-6 border-t border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row justify-center gap-4">
+            <div class="mt-10 pt-6 border-t border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row justify-between gap-4">
                 <a href="paket-test.html" class="flex items-center justify-center gap-2 px-6 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-medium dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 w-full sm:w-auto">
                     <i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali ke Paket
                 </a>
@@ -161,18 +175,10 @@
                     <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Ulangi Tes
                 </a>
             </div>
+            </div>
         </div>
 
-        <!-- Banner Promo (Optional) -->
-        <div class="mt-8 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl p-6 text-white shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>
-                <h3 class="font-bold text-lg">Ingin pembahasan lebih detail?</h3>
-                <p class="text-purple-100 text-sm mt-1">Upgrade ke akun Premium untuk akses pembahasan lengkap dan video materi.</p>
-            </div>
-            <button class="px-5 py-2 bg-white text-purple-600 font-bold rounded-lg hover:bg-purple-50 transition-colors shadow-sm whitespace-nowrap text-sm">
-                Upgrade Sekarang
-            </button>
-        </div>
+    
 
     </div>
   </main>
@@ -186,6 +192,34 @@
 <script src="js/layout.js"></script>
 <script src="js/hasil-tes.js"></script>
 <script>
+    // Script untuk menyeragamkan warna hasil tes (Override JS injection)
+    const resultContainer = document.getElementById('result-container');
+    if (resultContainer) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.addedNodes.length) {
+                    const elements = resultContainer.querySelectorAll('*');
+                    elements.forEach(el => {
+                        const classes = Array.from(el.classList);
+                        classes.forEach(cls => {
+                            // Ubah text color menjadi biru/neutral
+                            if (cls.match(/text-(red|green|yellow|purple|pink|emerald|sky|indigo|cyan|teal|amber|orange)-[0-9]+/)) {
+                                el.classList.remove(cls);
+                                el.classList.add('text-blue-600', 'dark:text-blue-400');
+                            }
+                            // Ubah bg color menjadi biru muda
+                            if (cls.match(/bg-(red|green|yellow|purple|pink|emerald|sky|indigo|cyan|teal|amber|orange)-[0-9]+/)) {
+                                el.classList.remove(cls);
+                                el.classList.add('bg-blue-50', 'dark:bg-blue-900/20');
+                            }
+                        });
+                    });
+                }
+            });
+        });
+        observer.observe(resultContainer, { childList: true, subtree: true });
+    }
+
     // Initialize Lucide icons
     lucide.createIcons();
 </script>
