@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id" class="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulasi CAT - CPNS Learning</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+      @keyframes progress-bar-stripes {
+          from { background-position: 40px 0; }
+          to { background-position: 0 0; }
+      }
+  </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 overflow-x-hidden font-sans">
+
+<!-- ================= SIDEBAR & NAVBAR PLACEHOLDERS ================= -->
+<!-- Sidebar Fixed Full Height -->
+<aside id="sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen bg-white dark:bg-gray-800 shadow-xl transition-all duration-300 transform -translate-x-full md:translate-x-0 border-r border-gray-200 dark:border-gray-700 overflow-hidden">
+  
+  <!-- Logo Area di Sidebar -->
+  <div class="h-16 flex items-center px-6 border-b border-gray-200 dark:border-gray-700 whitespace-nowrap">
+     <h1 class="font-bold text-xl text-blue-600 dark:text-blue-400 flex items-center gap-2">
+        <i data-lucide="graduation-cap" class="w-6 h-6 flex-shrink-0"></i>
+        <span class="sidebar-text transition-opacity duration-300">CPNS Learning</span>
+     </h1>
+  </div>
+
+  <nav class="p-4 space-y-2 text-sm overflow-y-auto h-[calc(100vh-4rem)]">
+    <p class="sidebar-text text-xs font-semibold text-gray-400 mb-2 px-3 uppercase tracking-wider transition-opacity duration-300 whitespace-nowrap">Menu Utama</p>
+    
+    <a href="dashboard.html" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 group" data-page="dashboard">
+      <i data-lucide="layout-dashboard" class="w-5 h-5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0"></i>
+      <span class="font-medium sidebar-text transition-opacity duration-300 whitespace-nowrap">Dashboard</span>
+    </a>
+    <a href="paket-test.html" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 group" data-page="paket-soal">
+      <i data-lucide="book-open" class="w-5 h-5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0"></i>
+      <span class="font-medium sidebar-text transition-opacity duration-300 whitespace-nowrap">Paket Soal</span>
+    </a>
+    <a href="#" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 group" data-page="riwayat">
+      <i data-lucide="history" class="w-5 h-5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0"></i>
+      <span class="font-medium sidebar-text transition-opacity duration-300 whitespace-nowrap">Riwayat Tryout</span>
+    </a>
+  </nav>
+</aside>
+
+<header id="navbar" class="fixed top-0 right-0 z-30 bg-white dark:bg-gray-800 shadow-sm transition-all duration-300 left-0 md:left-64 h-16 border-b border-gray-200 dark:border-gray-700">
+  <div class="flex items-center justify-between px-4 md:px-6 h-full">
+    <div class="flex items-center gap-3">
+      <!-- Toggle Button -->
+      <button id="sidebar-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+      
+      <!-- Logo Navbar: Default Hidden di Desktop -->
+      <h1 id="navbar-logo" class="font-bold text-lg text-blue-600 dark:text-blue-400 block md:hidden transition-opacity duration-300">
+        CPNS Learning
+      </h1>
+    </div>
+
+    <div class="flex items-center gap-4">
+      
+      <!-- Notification Dropdown -->
+      <div class="relative">
+        <button id="notif-toggle" class="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors focus:outline-none">
+          <i data-lucide="bell" class="w-5 h-5"></i>
+          <span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] text-white border-2 border-white dark:border-gray-800">
+            4
+          </span>
+        </button>
+
+        <!-- Dropdown Menu Notifikasi -->
+        <div id="notif-dropdown" class="hidden absolute right-0 mt-3 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 py-2 z-50 transform origin-top-right transition-all">
+          <div class="px-4 py-2 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
+            <h3 class="font-semibold text-sm text-gray-800 dark:text-gray-200">Notifikasi</h3>
+            <span class="text-[10px] bg-blue-100 text-blue-600 py-0.5 px-2 rounded-full font-medium">4 Baru</span>
+          </div>
+          <div class="max-h-[300px] overflow-y-auto">
+            <!-- Item 1: Success -->
+            <div class="relative group border-b border-gray-50 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+              <a href="#" class="block px-4 py-3 pr-8">
+                <div class="flex gap-3">
+                  <div class="mt-1 p-2 bg-green-100 text-green-600 rounded-full h-8 w-8 flex items-center justify-center shrink-0">
+                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-800 dark:text-gray-200">Pembayaran Berhasil</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Paket "Platinum SKD CPNS 2024" telah aktif. Selamat belajar!</p>
+                    <p class="text-[10px] text-gray-400 mt-1">2 menit yang lalu</p>
+                  </div>
+                </div>
+              </a>
+              <button class="absolute top-2 right-2 p-1 text-gray-400 hover:text-red-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 opacity-0 group-hover:opacity-100">
+                <i data-lucide="x" class="w-3 h-3"></i>
+              </button>
+            </div>
+
+            <!-- Item 2: Info/Result -->
+            <div class="relative group border-b border-gray-50 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+              <a href="#" class="block px-4 py-3 pr-8">
+                <div class="flex gap-3">
+                  <div class="mt-1 p-2 bg-blue-100 text-blue-600 rounded-full h-8 w-8 flex items-center justify-center shrink-0">
+                    <i data-lucide="award" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-800 dark:text-gray-200">Hasil Tryout Keluar</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Nilai TO SKD Nasional #12 sudah rilis. Cek peringkatmu!</p>
+                    <p class="text-[10px] text-gray-400 mt-1">1 jam yang lalu</p>
+                  </div>
+                </div>
+              </a>
+              <button class="absolute top-2 right-2 p-1 text-gray-400 hover:text-red-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 opacity-0 group-hover:opacity-100">
+                <i data-lucide="x" class="w-3 h-3"></i>
+              </button>
+            </div>
+
+            <!-- Item 3: Warning -->
+            <div class="relative group border-b border-gray-50 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+              <a href="#" class="block px-4 py-3 pr-8">
+                <div class="flex gap-3">
+                  <div class="mt-1 p-2 bg-yellow-100 text-yellow-600 rounded-full h-8 w-8 flex items-center justify-center shrink-0">
+                    <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-800 dark:text-gray-200">Maintenance Server</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Sistem akan update nanti malam pukul 23:00 WIB.</p>
+                    <p class="text-[10px] text-gray-400 mt-1">5 jam yang lalu</p>
+                  </div>
+                </div>
+              </a>
+              <button class="absolute top-2 right-2 p-1 text-gray-400 hover:text-red-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 opacity-0 group-hover:opacity-100">
+                <i data-lucide="x" class="w-3 h-3"></i>
+              </button>
+            </div>
+
+            <!-- Item 4: Error/Failed -->
+            <div class="relative group hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+              <a href="#" class="block px-4 py-3 pr-8">
+                <div class="flex gap-3">
+                  <div class="mt-1 p-2 bg-red-100 text-red-600 rounded-full h-8 w-8 flex items-center justify-center shrink-0">
+                    <i data-lucide="x-circle" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-800 dark:text-gray-200">Pembayaran Gagal</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Transaksi #INV-2024001 gagal diproses. Coba lagi.</p>
+                    <p class="text-[10px] text-gray-400 mt-1">1 hari yang lalu</p>
+                  </div>
+                </div>
+              </a>
+              <button class="absolute top-2 right-2 p-1 text-gray-400 hover:text-red-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 opacity-0 group-hover:opacity-100">
+                <i data-lucide="x" class="w-3 h-3"></i>
+              </button>
+            </div>
+          </div>
+          <div class="px-4 py-2 border-t border-gray-100 dark:border-gray-700 text-center">
+            <a href="#" class="text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400">Lihat Semua Notifikasi</a>
+          </div>
+        </div>
+      </div>
+
+      <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors">
+        <span id="theme-toggle-dark-icon">
+          <i data-lucide="moon" class="w-5 h-5"></i>
+        </span>
+        <span id="theme-toggle-light-icon" class="hidden">
+          <i data-lucide="sun" class="w-5 h-5"></i>
+        </span>
+      </button>
+
+      <!-- User Dropdown -->
+      <div class="relative">
+        <button id="user-menu-toggle" class="flex items-center gap-2 focus:outline-none p-1 pr-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+          <img src="https://i.pravatar.cc/150?img=11" class="w-8 h-8 rounded-full border border-gray-200 dark:border-gray-600 object-cover" />
+          <span class="text-sm font-medium hidden sm:block text-gray-700 dark:text-gray-200">Budi Santoso</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500"></i>
+        </button>
+
+        <!-- Dropdown Menu User -->
+        <div id="user-dropdown" class="hidden absolute right-0 mt-3 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 py-2 z-50 transform origin-top-right transition-all">
+          <div class="px-4 py-3 border-b border-gray-100 dark:border-gray-700 mb-1">
+            <p class="text-sm font-semibold text-gray-800 dark:text-gray-200">Budi Santoso</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400 truncate">budi.santoso@email.com</p>
+          </div>
+          
+          <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+            <i data-lucide="user" class="w-4 h-4"></i> Profil Saya
+          </a>
+          <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+            <i data-lucide="package" class="w-4 h-4"></i> Paket Saya
+          </a>
+          <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+            <i data-lucide="file-text" class="w-4 h-4"></i> Hasil Tryout
+          </a>
+          
+          <div class="border-t border-gray-100 dark:border-gray-700 my-1"></div>
+          
+          <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+            <i data-lucide="settings" class="w-4 h-4"></i> Pengaturan
+          </a>
+          <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+            <i data-lucide="log-out" class="w-4 h-4"></i> Keluar
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div id="main-content" class="pt-16 min-h-screen transition-all duration-300 md:ml-64">
+  <main class="p-4 md:p-6">
+    <div class="max-w-full mx-auto p-2 font-sans mt-0 px-0">
+        
+        <!-- Breadcrumb -->
+        <nav class="flex mb-6" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse text-slate-700 dark:text-slate-300">
+                <li class="inline-flex items-center">
+                    <a href="dashboard.html" class="inline-flex items-center text-sm font-medium hover:text-blue-600 dark:hover:text-blue-400">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mx-1"></i>
+                        <span class="ms-1 text-sm font-medium text-gray-800 dark:text-gray-200 md:ms-2">Simulasi CAT</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Simplified Header -->
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-5 sm:p-6 mb-6 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4 text-white">
+            <div class="flex items-center gap-4 w-full sm:w-auto">
+                <div class="p-3 bg-white/20 text-white rounded-lg shrink-0 backdrop-blur-sm">
+                    <i data-lucide="monitor-play" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-white leading-tight">Simulasi CAT SKD</h1>
+                    <p class="text-xs text-blue-100 mt-0.5">Tes Wawasan Kebangsaan, Intelegensia Umum, & Karakteristik Pribadi</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end bg-white/10 p-2 rounded-lg sm:bg-transparent sm:p-0">
+                <span class="text-sm font-medium text-blue-100 sm:hidden">Sisa Waktu:</span>
+                <div class="flex items-center gap-2 px-3 py-1.5 bg-white/20 text-white rounded-md font-mono font-bold text-lg border border-white/20 shadow-sm backdrop-blur-sm">
+                    <i data-lucide="clock" class="w-4 h-4 text-white"></i>
+                    <span id="timer">00:00:00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
+                
+            <!-- Area Soal (Kiri di Desktop) -->
+            <div class="w-full lg:w-2/3 order-2 lg:order-1">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-slate-200 dark:border-gray-700 overflow-hidden relative">
+
+                    <!-- Top Bar -->
+                    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 lg:px-8 lg:py-5 border-b border-blue-500 flex justify-between items-center sticky top-0 z-10">
+                        <h2 class="text-base font-semibold text-white">
+                            Soal Nomor <span id="header-no" class="text-base text-white ml-1">1</span>
+                        </h2>
+                        <span id="cat-kategori" class="px-3 py-1 rounded-md bg-white/20 text-white text-xs font-medium border border-white/30 backdrop-blur-sm">TWK</span>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-5 sm:p-6">
+                        <div id="q-text" class="prose dark:prose-invert max-w-none mb-6 text-slate-800 dark:text-slate-200 text-base sm:text-lg leading-relaxed font-medium">
+                            <!-- Question Text Will Be Injected Here -->
+                        </div>
+                        <div id="q-options" class="space-y-3">
+                            <!-- Options Will Be Injected Here -->
+                        </div>
+                    </div>
+
+                    <!-- Footer Actions -->
+                    <div class="bg-slate-50 dark:bg-gray-900/30 px-4 sm:px-6 py-4 border-t border-slate-100 dark:border-gray-700">
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 h-2.5 rounded-full mb-4">
+                            <div id="progressBar" class="bg-gradient-to-r from-blue-500 to-indigo-600 h-2.5 rounded-full transition-all duration-500 ease-out shadow-[0_0_10px_rgba(59,130,246,0.5)] relative" style="width: 0%"></div>
+                        </div>
+
+                        <div class="flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
+                            
+                            <!-- Left Side: Simpan & Ragu -->
+                            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
+                                <button id="saveBtn" class="flex items-center gap-2 px-4 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 rounded-lg hover:bg-amber-200 dark:hover:bg-amber-900/50 transition-all shadow-sm text-sm font-semibold">
+                                    <i data-lucide="save" class="w-4 h-4"></i>
+                                    <span>Simpan</span>
+                                </button>
+
+                                <label class="flex items-center gap-2 cursor-pointer select-none px-3 py-2 rounded-lg hover:bg-white dark:hover:bg-gray-800 transition-colors border border-transparent hover:border-slate-200 dark:hover:border-gray-700">
+                                    <input type="checkbox" id="doubtCheck" class="w-4 h-4 text-yellow-500 rounded border-gray-300 focus:ring-yellow-500">
+                                    <span class="text-sm font-medium text-slate-600 dark:text-slate-400">Ragu-ragu</span>
+                                </label>
+                            </div>
+
+                            <!-- Right Side: Nav Buttons -->
+                            <div class="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
+                                <button id="prevBtn" class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-600 text-slate-700 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm">
+                                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                    <span class="">Sebelumnya</span>
+                                </button>
+                                
+                                <button id="nextBtn" class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2 rounded-lg bg-blue-600 text-white font-medium text-sm hover:bg-blue-700 transition-all shadow-md disabled:opacity-50">
+                                    <span class="hidden sm:inline">Berikutnya</span>
+                                    <span class="sm:hidden">Berikutnya</span>
+                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </button>
+
+                                <button id="submitBtn" class="hidden flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2 rounded-lg bg-green-600 text-white font-medium text-sm hover:bg-green-700 transition-all shadow-md">
+                                    Selesai <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigasi Soal (Kanan di Desktop) -->
+            <div class="w-full lg:w-1/3 flex-shrink-0 order-1 lg:order-2">
+                <div class="mb-0 p-5 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-slate-200 dark:border-gray-700 sticky top-24">
+                        <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+                            <h3 class="text-sm font-bold text-gray-700 dark:text-gray-300 flex items-center gap-2">
+                                <i data-lucide="grid" class="w-4 h-4"></i> Nomor Soal
+                            </h3>
+                        </div>
+                        <div id="navGrid" class="grid grid-cols-5 sm:grid-cols-10 gap-2">
+                            <!-- Nav Buttons Will Be Injected Here -->
+                        </div>
+                        
+                        <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 grid grid-cols-2 gap-2 text-[10px] text-gray-600 dark:text-gray-400">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3 h-3 rounded bg-green-500"></span> Sudah Dijawab
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3 h-3 rounded bg-yellow-400"></span> Ragu-ragu
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3 h-3 rounded bg-white border border-gray-300 dark:bg-gray-800 dark:border-gray-600"></span> Belum Dijawab
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3 h-3 rounded border-2 border-blue-500"></span> Posisi Saat Ini
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <footer class="bg-white dark:bg-gray-800 p-4 text-center text-gray-600 dark:text-gray-400 text-sm mt-8 shadow-inner font-poppins rounded-xl">
+            <p>&copy; 2025 CPNS Learning. All rights reserved.</p>
+        </footer>
+    </div>
+  </main>
+</div>
+
+    <script src="js/layout.js"></script>
+    <script src="js/tes.js"></script>
+</body>
+</html>
