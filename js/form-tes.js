@@ -497,6 +497,11 @@ document.addEventListener('DOMContentLoaded', () => {
   renderQuestion();
   renderNav();
   
+  // Initialize layout (Sidebar, Navbar, Dark Mode, etc.)
+  if (typeof loadLayout === 'function') {
+    loadLayout('tes');
+  }
+
   // Initialize Lucide icons if needed
   if (window.lucide) {
     lucide.createIcons();

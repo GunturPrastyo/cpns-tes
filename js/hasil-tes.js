@@ -181,6 +181,79 @@ document.addEventListener('DOMContentLoaded', () => {
       ${categoryScoresHTML}
     `;
 
+    // --- Review Logic ---
+    const toggleReviewBtn = document.getElementById('toggle-review-btn');
+    
+    function renderReview() {
+        if (!reviewContainer || reviewContainer.innerHTML.trim() !== '') return;
+
+        let html = '<div class="space-y-6 mt-8">';
+        questions.forEach((q, index) => {
+            const userAnswer = answers[q.id];
+            const isCorrect = userAnswer === q.correctAnswer;
+            const isSkipped = !userAnswer;
+            
+            let statusClass = isCorrect ? 'bg-green-50 border-green-200 dark:bg-green-900/20 dark:border-green-800' : 
+                              (isSkipped ? 'bg-gray-50 border-gray-200 dark:bg-gray-800 dark:border-gray-700' : 'bg-red-50 border-red-200 dark:bg-red-900/20 dark:border-red-800');
+            
+            let statusText = isCorrect ? '<span class="text-green-600 font-bold">Benar</span>' : 
+                             (isSkipped ? '<span class="text-gray-500 font-bold">Tidak Dijawab</span>' : '<span class="text-red-600 font-bold">Salah</span>');
+
+            html += `
+                <div class="p-4 rounded-xl border ${statusClass}">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-bold text-gray-700 dark:text-gray-300">Soal ${index + 1} <span class="text-xs font-normal text-gray-500 ml-2">(${q.category})</span></span>
+                        ${statusText}
+                    </div>
+                    <p class="text-gray-800 dark:text-gray-200 mb-4 text-sm md:text-base">${q.text}</p>
+                    <div class="space-y-2">
+            `;
+
+            q.options.forEach(opt => {
+                let optionClass = 'p-3 rounded-lg border border-gray-200 dark:border-gray-700 flex items-center';
+                let icon = '';
+                
+                if (opt.key === q.correctAnswer) {
+                    optionClass = 'p-3 rounded-lg border border-green-500 bg-green-50 dark:bg-green-900/20 dark:border-green-500 flex items-center';
+                    icon = '<i data-lucide="check" class="w-4 h-4 text-green-600 ml-auto"></i>';
+                } else if (opt.key === userAnswer && userAnswer !== q.correctAnswer) {
+                    optionClass = 'p-3 rounded-lg border border-red-500 bg-red-50 dark:bg-red-900/20 dark:border-red-500 flex items-center';
+                    icon = '<i data-lucide="x" class="w-4 h-4 text-red-600 ml-auto"></i>';
+                }
+
+                html += `
+                    <div class="${optionClass}">
+                        <span class="w-6 h-6 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-xs font-bold mr-3 ${opt.key === q.correctAnswer ? 'text-green-600 border-green-500' : (opt.key === userAnswer ? 'text-red-600 border-red-500' : 'text-gray-500')}">${opt.key}</span>
+                        <span class="text-sm text-gray-700 dark:text-gray-300 flex-1">${opt.text}</span>
+                        ${icon}
+                    </div>
+                `;
+            });
+
+            html += `</div></div>`;
+        });
+        html += '</div>';
+        reviewContainer.innerHTML = html;
+        if (window.lucide) window.lucide.createIcons();
+    }
+
+    if (toggleReviewBtn) {
+        toggleReviewBtn.addEventListener('click', () => {
+            if (reviewContainer.style.display === 'none') {
+                renderReview();
+                reviewContainer.style.display = 'block';
+                if (reviewTitle) reviewTitle.style.display = 'block';
+                toggleReviewBtn.innerHTML = '<i data-lucide="book-open" class="w-4 h-4"></i> Tutup Pembahasan';
+                reviewTitle.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                reviewContainer.style.display = 'none';
+                if (reviewTitle) reviewTitle.style.display = 'none';
+                toggleReviewBtn.innerHTML = '<i data-lucide="book-open" class="w-4 h-4"></i> Pembahasan';
+            }
+            if (window.lucide) window.lucide.createIcons();
+        });
+    }
+
     // Animate circle after rendering
     setTimeout(() => {
         const circle = document.getElementById('score-circle');
