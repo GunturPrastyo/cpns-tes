@@ -20,7 +20,7 @@ window.loadLayout = function(activePage) {
       <i data-lucide="book-open" class="w-5 h-5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0 ${activePage === 'paket-soal' ? 'text-blue-600 dark:text-blue-400' : ''}"></i>
       <span class="font-medium sidebar-text transition-opacity duration-300 whitespace-nowrap">Paket Soal</span>
     </a>
-    <a href="#" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 group ${activePage === 'riwayat' ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400' : ''}" data-page="riwayat">
+    <a href="riwayat-tes.html" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 group ${activePage === 'riwayat' ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400' : ''}" data-page="riwayat">
       <i data-lucide="history" class="w-5 h-5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0 ${activePage === 'riwayat' ? 'text-blue-600 dark:text-blue-400' : ''}"></i>
       <span class="font-medium sidebar-text transition-opacity duration-300 whitespace-nowrap">Riwayat Tryout</span>
     </a>
