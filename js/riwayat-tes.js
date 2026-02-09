@@ -42,6 +42,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 date: new Date(Date.now() - 345600000).toISOString(), // 4 hari lalu
                 score: 145,
                 duration: '25 Menit'
+            },
+            {
+                id: 6,
+                title: 'Tryout SKD Premium - Batch 1',
+                category: 'SKD Lengkap',
+                date: new Date(Date.now() - 432000000).toISOString(), // 5 hari lalu
+                score: 395,
+                duration: '95 Menit'
+            },
+            {
+                id: 7,
+                title: 'Latihan Soal TIU - Silogisme',
+                category: 'TIU',
+                date: new Date(Date.now() - 518400000).toISOString(), // 6 hari lalu
+                score: 125,
+                duration: '35 Menit'
+            },
+            {
+                id: 8,
+                title: 'Latihan Soal TWK - Sejarah',
+                category: 'TWK',
+                date: new Date(Date.now() - 604800000).toISOString(), // 7 hari lalu
+                score: 85,
+                duration: '25 Menit'
+            },
+            {
+                id: 9,
+                title: 'Simulasi Mini SKD',
+                category: 'SKD Lengkap',
+                date: new Date(Date.now() - 691200000).toISOString(), // 8 hari lalu
+                score: 250,
+                duration: '50 Menit'
+            },
+            {
+                id: 10,
+                title: 'Latihan TKP - Jejaring Kerja',
+                category: 'TKP',
+                date: new Date(Date.now() - 777600000).toISOString(), // 9 hari lalu
+                score: 155,
+                duration: '30 Menit'
             }
         ];
         
@@ -87,8 +127,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const endRowEl = document.getElementById('endRow');
     const totalRowsEl = document.getElementById('totalRows');
     const paginationControls = document.getElementById('paginationControls');
-    const totalTestsCountEl = document.getElementById('total-tests-count');
-    const avgScoreCountEl = document.getElementById('avg-score-count');
+    const avgLengkapEl = document.getElementById('avg-lengkap');
+    const avgTiuEl = document.getElementById('avg-tiu');
+    const avgTwkEl = document.getElementById('avg-twk');
+    const avgTkpEl = document.getElementById('avg-tkp');
 
     // --- 4. Core Functions ---
 
@@ -139,11 +181,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update Summary Stats
     const updateStats = () => {
-        totalTestsCountEl.textContent = allData.length;
-        const avg = allData.length > 0 
-            ? Math.round(allData.reduce((acc, curr) => acc + curr.score, 0) / allData.length) 
-            : 0;
-        avgScoreCountEl.textContent = avg;
+        const stats = {
+            'Lengkap': { total: 0, count: 0 },
+            'TIU': { total: 0, count: 0 },
+            'TWK': { total: 0, count: 0 },
+            'TKP': { total: 0, count: 0 }
+        };
+
+        allData.forEach(item => {
+            let cat = item.category || 'Lengkap';
+            if (cat.toLowerCase().includes('lengkap') || cat.toLowerCase().includes('skd')) cat = 'Lengkap';
+            else if (cat.toLowerCase().includes('tiu')) cat = 'TIU';
+            else if (cat.toLowerCase().includes('twk')) cat = 'TWK';
+            else if (cat.toLowerCase().includes('tkp')) cat = 'TKP';
+            else cat = 'Lengkap';
+
+            if (stats[cat]) {
+                stats[cat].total += (item.score || 0);
+                stats[cat].count++;
+            }
+        });
+
+        if (avgLengkapEl) avgLengkapEl.textContent = stats['Lengkap'].count ? Math.round(stats['Lengkap'].total / stats['Lengkap'].count) : 0;
+        if (avgTiuEl) avgTiuEl.textContent = stats['TIU'].count ? Math.round(stats['TIU'].total / stats['TIU'].count) : 0;
+        if (avgTwkEl) avgTwkEl.textContent = stats['TWK'].count ? Math.round(stats['TWK'].total / stats['TWK'].count) : 0;
+        if (avgTkpEl) avgTkpEl.textContent = stats['TKP'].count ? Math.round(stats['TKP'].total / stats['TKP'].count) : 0;
     };
 
     // Render Timeline
@@ -171,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         paginatedData.forEach((item, index) => {
             const itemEl = document.createElement('div');
-            itemEl.className = "relative pl-8 sm:pl-10 py-2 group";
+            itemEl.className = "relative pl-8 py-1 group";
             
             // Determine colors based on score
             let scoreColor = 'text-red-600 dark:text-red-400';
@@ -199,12 +261,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="absolute left-3 top-0 w-0.5 bg-gray-200 dark:bg-gray-700 ${index === 0 ? 'top-1/2' : ''} ${isLast ? 'h-1/2' : 'h-full'} -z-10"></div>
                 
                 <!-- Timeline Dot -->
-                <div class="absolute left-[0.3rem] top-1/2 -translate-y-1/2 w-6 h-6 rounded-full ${dotColor} border-2 flex items-center justify-center shadow-sm z-10 bg-white dark:bg-gray-800">
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full ${dotColor} border-2 flex items-center justify-center shadow-sm z-10 bg-white dark:bg-gray-800">
                     <i data-lucide="${statusIcon}" class="w-3 h-3"></i>
                 </div>
                 
                 <!-- Content Box -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border ${borderColor} shadow-sm hover:shadow-md transition-all duration-200 flex flex-col sm:flex-row gap-3 sm:items-center justify-between">
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-3 border ${borderColor} shadow-sm hover:shadow-md transition-all duration-200 flex flex-col sm:flex-row gap-2 sm:items-center justify-between">
                     
                     <!-- Left Info -->
                     <div class="flex-1 min-w-0">
@@ -340,6 +402,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 6. Init ---
+    if (typeof loadLayout === 'function') {
+        loadLayout('riwayat');
+    }
     updateStats();
     filterData(); // Initial render
 });
