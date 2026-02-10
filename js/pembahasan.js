@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-2">Data Tidak Ditemukan</h3>
                 <p class="text-gray-500 dark:text-gray-400 mb-6">Silakan kerjakan tryout terlebih dahulu untuk melihat pembahasan.</p>
-                <a href="paket-test.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                <a href="paket-soal.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
                     Ke Paket Soal
                 </a>
             </div>

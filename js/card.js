@@ -1,27 +1,27 @@
 const paketSoal = [
   {
-    title: "Paket CPNS 1",
+    title: "Paket SKD 1",
     overview: "Simulasi CPNS lengkap sesuai standar BKN (TWK, TIU, TKP).",
-    category: "lengkap",
+    category: "SKD",
     types: ["TWK", "TIU", "TKP"],
     price: 25000,
     progress: 40,
     purchased: true,
     questionCount: 110,
     duration: 100,
-    image: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=800&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1557683311-eac922347aa1?w=800&auto=format&fit=crop&q=60",
   },
   {
-    title: "Paket CPNS 2",
+    title: "Paket SKD 2",
     overview: "Latihan lanjutan dengan tingkat kesulitan menengah.",
-    category: "lengkap",
+    category: "SKD",
     types: ["TWK", "TIU", "TKP"],
     price: 30000,
     progress: 0,
     purchased: false,
     questionCount: 110,
     duration: 100,
-    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=800&auto=format&fit=crop&q=60",
   },
   {
     title: "Paket TKP",
@@ -33,7 +33,7 @@ const paketSoal = [
     purchased: true,
     questionCount: 45,
     duration: 40,
-    image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?w=800&auto=format&fit=crop&q=60",
   },
   {
     title: "Paket TIU",
@@ -45,7 +45,7 @@ const paketSoal = [
     purchased: false,
     questionCount: 35,
     duration: 30,
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1557683304-673a23048d34?w=800&auto=format&fit=crop&q=60",
   },
   {
     title: "Paket TWK",
@@ -57,7 +57,7 @@ const paketSoal = [
     purchased: true,
     questionCount: 30,
     duration: 30,
-    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1557682260-96773eb01377?w=800&auto=format&fit=crop&q=60",
   }
 ];
 
@@ -94,7 +94,7 @@ function render() {
   container.innerHTML = "";
 
   paketSoal.filter(p => {
-    const matchesFilter = !selectedFilter || (selectedFilter === "lengkap" ? p.types.length === 3 : p.types.includes(selectedFilter));
+    const matchesFilter = !selectedFilter || (selectedFilter === "SKD" ? p.types.length === 3 : p.types.includes(selectedFilter));
     const matchesSearch = p.title.toLowerCase().includes(searchQuery) || p.overview.toLowerCase().includes(searchQuery);
     return matchesFilter && matchesSearch;
   }).forEach(p => {
@@ -108,7 +108,7 @@ function render() {
           <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
           <div class="absolute bottom-3 left-4 right-4 flex items-center gap-3">
               <div class="w-10 h-10 rounded-lg bg-white/90 backdrop-blur-sm p-1.5 shadow-lg flex items-center justify-center shrink-0">
-                  <i data-lucide="book-open" class="w-6 h-6 text-blue-600 dark:text-blue-400"></i>
+                  <img src="img/exam.webp" alt="Icon" class="w-8 h-8">
               </div>
               <div class="text-white overflow-hidden">
                   <p class="text-[10px] font-bold opacity-80 uppercase tracking-wider mb-0.5">PAKET SOAL</p>
