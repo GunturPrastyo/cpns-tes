@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id" class="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - CPNS Learning</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <!-- Chart.js untuk Grafik -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 overflow-x-hidden font-sans">
+
+<!-- ================= MAIN CONTENT WRAPPER ================= -->
+<div id="main-content" class="pt-16 min-h-screen transition-all duration-300 md:ml-64">
+  <main class="p-4 md:p-6">
+
+    <!-- ================= WELCOME BANNER ================= -->
+    <div class="relative bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-6 md:p-10 mb-8 shadow-lg overflow-hidden text-white">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-40 h-40 bg-black/10 rounded-full blur-2xl -ml-10 -mb-10 pointer-events-none"></div>
+        
+        <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold mb-2">Halo, Pejuang NIP! 👋</h1>
+                <p class="text-blue-100 max-w-xl text-sm md:text-base leading-relaxed">
+                    Target SKD tahun ini adalah <span class="font-bold text-white">450+</span>. Progres belajarmu sudah mencapai <span class="font-bold text-white">65%</span>. Yuk, gaspol latihan soal lagi hari ini!
+                </p>
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <a href="paket-soal.html" class="px-5 py-2.5 bg-white text-blue-700 font-semibold rounded-lg shadow-md hover:bg-blue-50 transition-colors text-sm flex items-center gap-2">
+                        <i data-lucide="play-circle" class="w-4 h-4"></i> Mulai Tryout
+                    </a>
+                    <a href="riwayat-tes.html" class="px-5 py-2.5 bg-blue-800/40 text-white font-semibold rounded-lg hover:bg-blue-800/60 transition-colors text-sm flex items-center gap-2 border border-blue-400/30">
+                        <i data-lucide="history" class="w-4 h-4"></i> Lihat Riwayat
+                    </a>
+                </div>
+            </div>
+            <div class="hidden md:block">
+                <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="Study" class="w-40 h-40 object-contain drop-shadow-lg opacity-90">
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= STATS CARDS ================= -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+        <!-- Card 1 -->
+        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
+            <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 dark:bg-blue-900/30 dark:text-blue-400">
+                <i data-lucide="file-check" class="w-6 h-6"></i>
+            </div>
+            <div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">Total Tryout</p>
+                <h3 class="text-2xl font-bold text-gray-800 dark:text-white">12</h3>
+                <p class="text-xs text-green-500 flex items-center gap-1 mt-0.5"><i data-lucide="trending-up" class="w-3 h-3"></i> +2 minggu ini</p>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
+            <div class="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center shrink-0 dark:bg-green-900/30 dark:text-green-400">
+                <i data-lucide="target" class="w-6 h-6"></i>
+            </div>
+            <div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">Rata-rata Skor</p>
+                <h3 class="text-2xl font-bold text-gray-800 dark:text-white">385</h3>
+                <p class="text-xs text-gray-500 mt-0.5">Target: 450</p>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
+            <div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center shrink-0 dark:bg-purple-900/30 dark:text-purple-400">
+                <i data-lucide="award" class="w-6 h-6"></i>
+            </div>
+            <div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">Peringkat Nasional</p>
+                <h3 class="text-2xl font-bold text-gray-800 dark:text-white">#142</h3>
+                <p class="text-xs text-gray-500 mt-0.5">Dari 1,250 peserta</p>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
+            <div class="w-12 h-12 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center shrink-0 dark:bg-orange-900/30 dark:text-orange-400">
+                <i data-lucide="clock" class="w-6 h-6"></i>
+            </div>
+            <div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">Jam Belajar</p>
+                <h3 class="text-2xl font-bold text-gray-800 dark:text-white">24h</h3>
+                <p class="text-xs text-green-500 flex items-center gap-1 mt-0.5"><i data-lucide="trending-up" class="w-3 h-3"></i> Konsisten!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= CHARTS SECTION ================= -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        
+        <!-- Main Chart (Line) -->
+        <div class="lg:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-lg font-bold text-gray-800 dark:text-white flex items-center gap-2">
+                    <i data-lucide="bar-chart-2" class="w-5 h-5 text-blue-500"></i> Statistik Perkembangan Nilai
+                </h3>
+                <select class="text-xs border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 p-2 focus:ring-blue-500 focus:border-blue-500">
+                    <option>7 Tryout Terakhir</option>
+                    <option>Bulan Ini</option>
+                </select>
+            </div>
+            <div class="relative h-72 w-full">
+                <canvas id="scoreChart"></canvas>
+            </div>
+            
+            <!-- Stats Summary -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-gray-100 dark:border-gray-700">
+                <div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Skor Tertinggi</p>
+                    <p class="text-lg font-bold text-gray-800 dark:text-white">405</p>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Skor Terendah</p>
+                    <p class="text-lg font-bold text-gray-800 dark:text-white">310</p>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Rata-rata</p>
+                    <p class="text-lg font-bold text-gray-800 dark:text-white">355</p>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Tren</p>
+                    <p class="text-lg font-bold text-green-500 flex items-center gap-1"><i data-lucide="trending-up" class="w-4 h-4"></i> +5.2%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Chart (Radar/Doughnut) -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col">
+            <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-2 flex items-center gap-2">
+                <i data-lucide="pie-chart" class="w-5 h-5 text-purple-500"></i> Analisis Kategori
+            </h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-6">Peta kekuatan vs Passing Grade (PG).</p>
+            
+            <div class="relative h-64 w-full flex items-center justify-center mb-2">
+                <canvas id="categoryChart"></canvas>
+            </div>
+
+            <div class="mt-4 space-y-4">
+                <!-- TWK -->
+                <div>
+                    <div class="flex justify-between items-end mb-1">
+                        <span class="text-xs font-semibold text-gray-600 dark:text-gray-300 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-blue-500"></span> TWK</span>
+                        <span class="text-xs font-bold text-gray-800 dark:text-white">85 <span class="text-gray-400 font-normal text-[10px]">/ 65 (PG)</span></span>
+                    </div>
+                    <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
+                        <div class="bg-blue-500 h-1.5 rounded-full" style="width: 65%"></div>
+                    </div>
+                </div>
+                <!-- TIU -->
+                <div>
+                    <div class="flex justify-between items-end mb-1">
+                        <span class="text-xs font-semibold text-gray-600 dark:text-gray-300 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-sky-500"></span> TIU</span>
+                        <span class="text-xs font-bold text-gray-800 dark:text-white">110 <span class="text-gray-400 font-normal text-[10px]">/ 80 (PG)</span></span>
+                    </div>
+                    <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
+                        <div class="bg-sky-500 h-1.5 rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
+                <!-- TKP -->
+                <div>
+                    <div class="flex justify-between items-end mb-1">
+                        <span class="text-xs font-semibold text-gray-600 dark:text-gray-300 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-green-500"></span> TKP</span>
+                        <span class="text-xs font-bold text-gray-800 dark:text-white">190 <span class="text-gray-400 font-normal text-[10px]">/ 166 (PG)</span></span>
+                    </div>
+                    <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
+                        <div class="bg-green-500 h-1.5 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= RECENT ACTIVITY & INFO ================= -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <!-- Recent History -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
+                <h3 class="text-lg font-bold text-gray-800 dark:text-white">Riwayat Tryout Terakhir</h3>
+                <a href="riwayat-tes.html" class="text-sm text-blue-600 hover:text-blue-700 font-medium">Lihat Semua</a>
+            </div>
+            <div class="p-0">
+                <div id="recentActivityList" class="divide-y divide-gray-100 dark:divide-gray-700">
+                    <!-- Item injected by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest Info / News -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
+            <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
+                <h3 class="text-lg font-bold text-gray-800 dark:text-white flex items-center gap-2">
+                    <i data-lucide="newspaper" class="w-5 h-5 text-orange-500"></i> Info CPNS Terkini
+                </h3>
+                <a href="#" class="text-sm text-blue-600 hover:text-blue-700 font-medium">Selengkapnya</a>
+            </div>
+            <div class="p-0 flex-1">
+                <div id="infoList" class="divide-y divide-gray-100 dark:divide-gray-700">
+                    <!-- Item injected by JS -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+  </main>
+</div>
+
+<!-- ================= SCRIPT ================= -->
+<!-- Layout Script (Sidebar/Navbar Toggle) -->
+<script src="js/layout.js"></script>
+<!-- Dashboard Logic -->
+<script src="js/dashboard.js"></script>
+<script>
+    // Initialize Layout
+    if (typeof loadLayout === 'function') {
+        loadLayout('dashboard');
+    }
+</script>
+</body>
+</html>
