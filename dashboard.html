@@ -36,9 +36,9 @@
         
         <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-                <h1 class="text-2xl md:text-3xl font-bold mb-2">Halo, Pejuang NIP! 👋</h1>
+                <h1 class="text-lg md:text-3xl font-bold mb-2 text-blue-50">Halo, <span class="text-yellow-300 font-extrabold text-xl md:text-4xl tracking-wide drop-shadow-md">Budi Santoso</span> <span class="text-white">Pejuang NIP!</span></h1>
                 <p class="text-blue-100 max-w-xl text-sm md:text-base leading-relaxed">
-                    Target SKD tahun ini adalah <span class="font-bold text-white">450+</span>. Progres belajarmu sudah mencapai <span class="font-bold text-white">65%</span>. Yuk, gaspol latihan soal lagi hari ini!
+                    Target SKD tahun ini adalah <span class="font-bold text-white">450+</span>. Yuk, gaspol latihan soal lagi hari ini!
                 </p>
                 <div class="mt-6 flex flex-wrap gap-3">
                     <a href="paket-soal.html" class="px-5 py-2.5 bg-white text-blue-700 font-semibold rounded-lg shadow-md hover:bg-blue-50 transition-colors text-sm flex items-center gap-2">
@@ -56,52 +56,56 @@
     </div>
 
     <!-- ================= STATS CARDS ================= -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-8">
         <!-- Card 1 -->
-        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
-            <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 dark:bg-blue-900/30 dark:text-blue-400">
-                <i data-lucide="file-check" class="w-6 h-6"></i>
+        <div class="relative group bg-white dark:bg-gray-800 p-4 md:p-5 rounded-2xl shadow-sm border border-gray-200 border-t-8 border-t-blue-300 dark:border-gray-700 dark:border-t-blue-400 flex flex-col sm:flex-row items-start sm:items-center gap-3 md:gap-4 hover:shadow-md transition-all duration-300 overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-blue-50 dark:bg-blue-900/20 rounded-bl-full -mr-2 -mt-2 transition-transform group-hover:scale-110"></div>
+            <div class="relative z-10 w-10 h-10 md:w-12 md:h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 dark:bg-blue-900/30 dark:text-blue-400">
+                <i data-lucide="file-check" class="w-5 h-5 md:w-6 md:h-6"></i>
             </div>
-            <div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">Total Tryout</p>
-                <h3 class="text-2xl font-bold text-gray-800 dark:text-white">12</h3>
-                <p class="text-xs text-green-500 flex items-center gap-1 mt-0.5"><i data-lucide="trending-up" class="w-3 h-3"></i> +2 minggu ini</p>
+            <div class="relative z-10">
+                <p class="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider">Total Tryout</p>
+                <h3 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white mt-0.5">12</h3>
+                <p class="text-[10px] md:text-xs text-green-500 flex items-center gap-0.5 mt-0.5 font-medium"><i data-lucide="trending-up" class="w-3 h-3"></i> +2 minggu ini</p>
             </div>
         </div>
 
         <!-- Card 2 -->
-        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
-            <div class="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center shrink-0 dark:bg-green-900/30 dark:text-green-400">
-                <i data-lucide="target" class="w-6 h-6"></i>
+        <div class="relative group bg-white dark:bg-gray-800 p-4 md:p-5 rounded-2xl shadow-sm border border-gray-200 border-t-8 border-t-green-300 dark:border-gray-700 dark:border-t-green-400 flex flex-col sm:flex-row items-start sm:items-center gap-3 md:gap-4 hover:shadow-md transition-all duration-300 overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-green-50 dark:bg-green-900/20 rounded-bl-full -mr-2 -mt-2 transition-transform group-hover:scale-110"></div>
+            <div class="relative z-10 w-10 h-10 md:w-12 md:h-12 rounded-xl bg-green-50 text-green-600 flex items-center justify-center shrink-0 dark:bg-green-900/30 dark:text-green-400">
+                <i data-lucide="target" class="w-5 h-5 md:w-6 md:h-6"></i>
             </div>
-            <div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">Rata-rata Skor</p>
-                <h3 class="text-2xl font-bold text-gray-800 dark:text-white">385</h3>
-                <p class="text-xs text-gray-500 mt-0.5">Target: 450</p>
+            <div class="relative z-10">
+                <p class="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider">Rata-rata</p>
+                <h3 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white mt-0.5">385</h3>
+                <p class="text-[10px] md:text-xs text-gray-500 mt-0.5 font-medium">Target: 450</p>
             </div>
         </div>
 
         <!-- Card 3 -->
-        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
-            <div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center shrink-0 dark:bg-purple-900/30 dark:text-purple-400">
-                <i data-lucide="award" class="w-6 h-6"></i>
+        <div class="relative group bg-white dark:bg-gray-800 p-4 md:p-5 rounded-2xl shadow-sm border border-gray-200 border-t-8 border-t-purple-300 dark:border-gray-700 dark:border-t-purple-400 flex flex-col sm:flex-row items-start sm:items-center gap-3 md:gap-4 hover:shadow-md transition-all duration-300 overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-purple-50 dark:bg-purple-900/20 rounded-bl-full -mr-2 -mt-2 transition-transform group-hover:scale-110"></div>
+            <div class="relative z-10 w-10 h-10 md:w-12 md:h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 dark:bg-purple-900/30 dark:text-purple-400">
+                <i data-lucide="award" class="w-5 h-5 md:w-6 md:h-6"></i>
             </div>
-            <div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">Peringkat Nasional</p>
-                <h3 class="text-2xl font-bold text-gray-800 dark:text-white">#142</h3>
-                <p class="text-xs text-gray-500 mt-0.5">Dari 1,250 peserta</p>
+            <div class="relative z-10">
+                <p class="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider">Peringkat</p>
+                <h3 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white mt-0.5">#142</h3>
+                <p class="text-[10px] md:text-xs text-gray-500 mt-0.5 font-medium">Dari 1,250</p>
             </div>
         </div>
 
         <!-- Card 4 -->
-        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
-            <div class="w-12 h-12 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center shrink-0 dark:bg-orange-900/30 dark:text-orange-400">
-                <i data-lucide="clock" class="w-6 h-6"></i>
+        <div class="relative group bg-white dark:bg-gray-800 p-4 md:p-5 rounded-2xl shadow-sm border border-gray-200 border-t-8 border-t-orange-300 dark:border-gray-700 dark:border-t-orange-400 flex flex-col sm:flex-row items-start sm:items-center gap-3 md:gap-4 hover:shadow-md transition-all duration-300 overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-orange-50 dark:bg-orange-900/20 rounded-bl-full -mr-2 -mt-2 transition-transform group-hover:scale-110"></div>
+            <div class="relative z-10 w-10 h-10 md:w-12 md:h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center shrink-0 dark:bg-orange-900/30 dark:text-orange-400">
+                <i data-lucide="clock" class="w-5 h-5 md:w-6 md:h-6"></i>
             </div>
-            <div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">Jam Belajar</p>
-                <h3 class="text-2xl font-bold text-gray-800 dark:text-white">24h</h3>
-                <p class="text-xs text-green-500 flex items-center gap-1 mt-0.5"><i data-lucide="trending-up" class="w-3 h-3"></i> Konsisten!</p>
+            <div class="relative z-10">
+                <p class="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider">Jam Belajar</p>
+                <h3 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white mt-0.5">24h</h3>
+                <p class="text-[10px] md:text-xs text-green-500 flex items-center gap-0.5 mt-0.5 font-medium"><i data-lucide="trending-up" class="w-3 h-3"></i> Konsisten!</p>
             </div>
         </div>
     </div>
@@ -110,7 +114,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         
         <!-- Main Chart (Line) -->
-        <div class="lg:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col justify-between">
+        <div class="lg:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 border-t-8 border-t-blue-300 dark:border-gray-700 dark:border-t-blue-400 flex flex-col justify-between">
             <div class="flex items-center justify-between mb-6">
                 <h3 class="text-lg font-bold text-gray-800 dark:text-white flex items-center gap-2">
                     <i data-lucide="bar-chart-2" class="w-5 h-5 text-blue-500"></i> Statistik Perkembangan Nilai
@@ -126,27 +130,27 @@
             
             <!-- Stats Summary -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-gray-100 dark:border-gray-700">
-                <div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Skor Tertinggi</p>
-                    <p class="text-lg font-bold text-gray-800 dark:text-white">405</p>
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-xl">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1 font-medium flex items-center gap-1.5"><i data-lucide="trophy" class="w-3.5 h-3.5"></i> Skor Tertinggi</p>
+                    <p class="text-xl font-bold text-gray-800 dark:text-white">405</p>
                 </div>
-                <div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Skor Terendah</p>
-                    <p class="text-lg font-bold text-gray-800 dark:text-white">310</p>
+                <div class="bg-red-50 dark:bg-red-900/20 p-3 rounded-xl">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1 font-medium flex items-center gap-1.5"><i data-lucide="trending-down" class="w-3.5 h-3.5"></i> Skor Terendah</p>
+                    <p class="text-xl font-bold text-gray-800 dark:text-white">310</p>
                 </div>
-                <div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Rata-rata</p>
-                    <p class="text-lg font-bold text-gray-800 dark:text-white">355</p>
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-xl ">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1 font-medium flex items-center gap-1.5"><i data-lucide="calculator" class="w-3.5 h-3.5"></i> Rata-rata</p>
+                    <p class="text-xl font-bold text-gray-800 dark:text-white">355</p>
                 </div>
-                <div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Tren</p>
-                    <p class="text-lg font-bold text-green-500 flex items-center gap-1"><i data-lucide="trending-up" class="w-4 h-4"></i> +5.2%</p>
+                <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded-xl ">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1 font-medium flex items-center gap-1.5"><i data-lucide="activity" class="w-3.5 h-3.5"></i> Tren</p>
+                    <p class="text-xl font-bold text-green-500 flex items-center gap-1"><i data-lucide="trending-up" class="w-4 h-4"></i> +5.2%</p>
                 </div>
             </div>
         </div>
 
         <!-- Category Chart (Radar/Doughnut) -->
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 border-t-8 border-t-purple-300 dark:border-gray-700 dark:border-t-purple-400 flex flex-col">
             <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-2 flex items-center gap-2">
                 <i data-lucide="pie-chart" class="w-5 h-5 text-purple-500"></i> Analisis Kategori
             </h3>
@@ -158,33 +162,33 @@
 
             <div class="mt-4 space-y-4">
                 <!-- TWK -->
-                <div>
-                    <div class="flex justify-between items-end mb-1">
-                        <span class="text-xs font-semibold text-gray-600 dark:text-gray-300 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-blue-500"></span> TWK</span>
-                        <span class="text-xs font-bold text-gray-800 dark:text-white">85 <span class="text-gray-400 font-normal text-[10px]">/ 65 (PG)</span></span>
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-xl">
+                    <div class="flex justify-between items-end mb-2">
+                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200 flex items-center gap-2"><i data-lucide="flag" class="w-3.5 h-3.5"></i> TWK</span>
+                        <span class="text-xs font-bold text-blue-600 dark:text-blue-400">85 <span class="text-gray-400 font-normal text-[10px]">/ 65</span></span>
                     </div>
-                    <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
-                        <div class="bg-blue-500 h-1.5 rounded-full" style="width: 65%"></div>
+                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                        <div class="bg-blue-500 h-2 rounded-full" style="width: 65%"></div>
                     </div>
                 </div>
                 <!-- TIU -->
-                <div>
-                    <div class="flex justify-between items-end mb-1">
-                        <span class="text-xs font-semibold text-gray-600 dark:text-gray-300 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-sky-500"></span> TIU</span>
-                        <span class="text-xs font-bold text-gray-800 dark:text-white">110 <span class="text-gray-400 font-normal text-[10px]">/ 80 (PG)</span></span>
+                <div class="bg-sky-50 dark:bg-sky-900/20 p-3 rounded-xl">
+                    <div class="flex justify-between items-end mb-2">
+                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200 flex items-center gap-2"><i data-lucide="brain-circuit" class="w-3.5 h-3.5"></i> TIU</span>
+                        <span class="text-xs font-bold text-sky-600 dark:text-sky-400">110 <span class="text-gray-400 font-normal text-[10px]">/ 80</span></span>
                     </div>
-                    <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
-                        <div class="bg-sky-500 h-1.5 rounded-full" style="width: 75%"></div>
+                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                        <div class="bg-sky-500 h-2 rounded-full" style="width: 75%"></div>
                     </div>
                 </div>
                 <!-- TKP -->
-                <div>
-                    <div class="flex justify-between items-end mb-1">
-                        <span class="text-xs font-semibold text-gray-600 dark:text-gray-300 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-green-500"></span> TKP</span>
-                        <span class="text-xs font-bold text-gray-800 dark:text-white">190 <span class="text-gray-400 font-normal text-[10px]">/ 166 (PG)</span></span>
+                <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded-xl">
+                    <div class="flex justify-between items-end mb-2">
+                        <span class="text-xs font-bold text-gray-700 dark:text-gray-200 flex items-center gap-2"><i data-lucide="users" class="w-3.5 h-3.5"></i> TKP</span>
+                        <span class="text-xs font-bold text-green-600 dark:text-green-400">190 <span class="text-gray-400 font-normal text-[10px]">/ 166</span></span>
                     </div>
-                    <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
-                        <div class="bg-green-500 h-1.5 rounded-full" style="width: 85%"></div>
+                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
                     </div>
                 </div>
             </div>
@@ -195,14 +199,21 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
         <!-- Recent History -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
             <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
-                <h3 class="text-lg font-bold text-gray-800 dark:text-white">Riwayat Tryout Terakhir</h3>
-                <a href="riwayat-tes.html" class="text-sm text-blue-600 hover:text-blue-700 font-medium">Lihat Semua</a>
+                <h3 class="text-lg font-bold text-gray-800 dark:text-white flex items-center gap-2"><i data-lucide="history" class="w-5 h-5 text-blue-500"></i> Riwayat Tryout Terakhir</h3>
+                <a href="riwayat-tes.html" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1">Lihat Semua <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
             </div>
-            <div class="p-0">
+            <div class="p-0 flex-1 relative h-96 overflow-hidden">
                 <div id="recentActivityList" class="divide-y divide-gray-100 dark:divide-gray-700">
                     <!-- Item injected by JS -->
+                </div>
+                <!-- Fade overlay to suggest more content -->
+                <div class="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-gray-800 dark:via-gray-800/80 pointer-events-none z-10"></div>
+                <div class="absolute bottom-4 left-0 right-0 flex justify-center items-center z-20">
+                    <a href="riwayat-tes.html" class="text-xs font-medium text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors flex items-center gap-1">
+                        Lihat Riwayat Lainnya <i data-lucide="chevron-down" class="w-3 h-3"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -213,11 +224,18 @@
                 <h3 class="text-lg font-bold text-gray-800 dark:text-white flex items-center gap-2">
                     <i data-lucide="newspaper" class="w-5 h-5 text-orange-500"></i> Info CPNS Terkini
                 </h3>
-                <a href="#" class="text-sm text-blue-600 hover:text-blue-700 font-medium">Selengkapnya</a>
+                <a href="#" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1">Selengkapnya <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
             </div>
-            <div class="p-0 flex-1">
+            <div class="p-0 flex-1 relative h-96 overflow-hidden">
                 <div id="infoList" class="divide-y divide-gray-100 dark:divide-gray-700">
                     <!-- Item injected by JS -->
+                </div>
+                <!-- Fade overlay to suggest more content -->
+                <div class="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-gray-800 dark:via-gray-800/80 pointer-events-none z-10"></div>
+                <div class="absolute bottom-4 left-0 right-0 flex justify-center items-center z-20">
+                    <a href="#" class="text-xs font-medium text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors flex items-center gap-1">
+                        Lihat Info Lainnya <i data-lucide="chevron-down" class="w-3 h-3"></i>
+                    </a>
                 </div>
             </div>
         </div>

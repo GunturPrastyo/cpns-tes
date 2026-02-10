@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya - CPNS Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 overflow-x-hidden font-sans">
+
+<div id="main-content" class="pt-16 min-h-screen transition-all duration-300 md:ml-64">
+    <main class="p-4 md:p-6">
+        <!-- Breadcrumb -->
+        <nav class="flex mb-6" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse text-slate-700 dark:text-slate-300">
+                <li class="inline-flex items-center">
+                    <a href="dashboard.html" class="inline-flex items-center text-sm font-medium hover:text-blue-600 dark:hover:text-blue-400">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mx-1"></i>
+                        <span class="ms-1 text-sm font-medium text-gray-800 dark:text-gray-200 md:ms-2">Profil Saya</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Profile Header (Banner Style) -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+            <div class="h-32 md:h-40 bg-gradient-to-r from-blue-600 to-indigo-700 relative">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+            </div>
+            <div class="px-6 pb-6">
+                <div class="relative flex flex-col md:flex-row items-center md:items-end -mt-12 mb-6 gap-6 text-center md:text-left">
+                    <div class="relative shrink-0">
+                        <img src="https://i.pravatar.cc/150?img=11" alt="Profile" class="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-white dark:border-gray-800 shadow-md object-cover bg-white">
+                        <button class="absolute bottom-1 right-1 p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition shadow-sm border-2 border-white dark:border-gray-800" title="Ubah Foto">
+                            <i data-lucide="camera" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div class="flex-1 pb-2">
+                        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1">Budi Santoso</h1>
+                        <p class="text-base font-medium text-gray-700 dark:text-gray-300 flex flex-wrap items-center gap-3 md:gap-2">
+                            <span class="flex items-center gap-1.5"><i data-lucide="mail" class="w-4 h-4 text-gray-400"></i> budi.santoso@email.com</span>
+                            <span class="hidden md:inline text-gray-300">•</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="calendar" class="w-4 h-4 text-gray-400"></i> Bergabung sejak Jan 2025</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
+                    <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700 flex flex-col items-center md:items-start">
+                        <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide font-semibold mb-1 flex items-center gap-1.5"><i data-lucide="package" class="w-3.5 h-3.5"></i> Paket Dimiliki</p>
+                        <p class="text-lg md:text-xl font-bold text-gray-800 dark:text-white">3 Paket</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700 flex flex-col items-center md:items-start">
+                        <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide font-semibold mb-1 flex items-center gap-1.5"><i data-lucide="credit-card" class="w-3.5 h-3.5"></i> Total Transaksi</p>
+                        <p class="text-lg md:text-xl font-bold text-gray-800 dark:text-white">Rp 55.000</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700 flex flex-col items-center md:items-start">
+                        <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide font-semibold mb-1 flex items-center gap-1.5"><i data-lucide="bar-chart-4" class="w-3.5 h-3.5"></i> Rata-rata Skor</p>
+                        <p class="text-lg md:text-xl font-bold text-blue-600 dark:text-blue-400">385</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700 flex flex-col items-center md:items-start">
+                        <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide font-semibold mb-1 flex items-center gap-1.5"><i data-lucide="trophy" class="w-3.5 h-3.5"></i> Peringkat</p>
+                        <p class="text-lg md:text-xl font-bold text-green-600 dark:text-green-400">#142</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Left Sidebar (Profile & Nav) -->
+            <div class="lg:col-span-4 xl:col-span-3 space-y-6">
+                <!-- Navigation Menu -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
+                    <nav class="flex flex-col p-3 space-y-1">
+                        <button data-tab="personal" class="tab-btn w-full text-left flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300">
+                            <i data-lucide="user" class="w-5 h-5"></i> Informasi Pribadi
+                        </button>
+                        <button data-tab="packages" class="tab-btn w-full text-left flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-700/50">
+                            <i data-lucide="package" class="w-5 h-5"></i> Paket Saya
+                        </button>
+                        <button data-tab="transactions" class="tab-btn w-full text-left flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-700/50">
+                            <i data-lucide="receipt" class="w-5 h-5"></i> Riwayat Transaksi
+
+                        </button>
+                        <button data-tab="password" class="tab-btn w-full text-left flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-700/50">
+                            <i data-lucide="lock" class="w-5 h-5"></i> Keamanan
+                        </button>
+                        <div class="my-2 border-t border-gray-100 dark:border-gray-700"></div>
+                        <button class="w-full text-left flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20">
+                            <i data-lucide="log-out" class="w-5 h-5"></i> Keluar
+                        </button>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Right Content -->
+            <div class="lg:col-span-8 xl:col-span-9">
+                <!-- Tab Content: Personal -->
+                <div id="tab-personal" class="tab-content space-y-6">
+                    <!-- Header Section -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Informasi Pribadi</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Kelola data diri dan preferensi akun Anda.</p>
+                            </div>
+                            <button class="px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-600 flex items-center gap-2">
+                                <i data-lucide="pencil" class="w-4 h-4"></i> Edit Profil
+                            </button>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide flex items-center gap-1.5"><i data-lucide="user" class="w-3.5 h-3.5"></i> Nama Lengkap</label>
+                                <div class="p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-gray-200 font-medium">
+                                    Budi Santoso
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide flex items-center gap-1.5"><i data-lucide="mail" class="w-3.5 h-3.5"></i> Email</label>
+                                <div class="p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-gray-200 font-medium">
+                                    budi.santoso@email.com
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide flex items-center gap-1.5"><i data-lucide="phone" class="w-3.5 h-3.5"></i> Nomor Telepon</label>
+                                <div class="p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-gray-200 font-medium">
+                                    0812-3456-7890
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide flex items-center gap-1.5"><i data-lucide="building-2" class="w-3.5 h-3.5"></i> Target Instansi</label>
+                                <div class="p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-gray-200 font-medium">
+                                    Kemenkumham - Penjaga Tahanan
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Packages -->
+                <div id="tab-packages" class="tab-content hidden space-y-6">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
+                        <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Paket Saya</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Daftar paket soal yang Anda miliki.</p>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+                                <div class="flex items-center gap-2 overflow-x-auto max-w-full pb-2 sm:pb-0 no-scrollbar">
+                                    <button onclick="filterMyPackages('')" class="package-filter active px-3 py-1 text-xs font-semibold rounded-full border transition-all duration-200 text-gray-600 border-gray-300 bg-white hover:bg-gray-50 hover:border-gray-400 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700 [&.active]:bg-gray-800 [&.active]:text-white [&.active]:border-gray-800 [&.active]:shadow-sm dark:[&.active]:bg-white dark:[&.active]:text-gray-900 dark:[&.active]:border-white whitespace-nowrap flex items-center gap-1.5" data-filter=""><i data-lucide="grid" class="w-3 h-3"></i> Semua</button>
+                                    <button onclick="filterMyPackages('SKD')" class="package-filter px-3 py-1 text-xs font-semibold rounded-full border transition-all duration-200 text-purple-700 border-purple-200 bg-purple-50/50 hover:bg-purple-100 hover:border-purple-300 dark:text-purple-300 dark:border-purple-800 dark:bg-purple-900/20 dark:hover:bg-purple-900/40 [&.active]:bg-purple-600 [&.active]:text-white [&.active]:border-purple-600 [&.active]:shadow-sm [&.active]:shadow-purple-200 dark:[&.active]:shadow-none whitespace-nowrap flex items-center gap-1.5" data-filter="SKD"><i data-lucide="book-open" class="w-3 h-3"></i> SKD</button>
+                                    <button onclick="filterMyPackages('TWK')" class="package-filter px-3 py-1 text-xs font-semibold rounded-full border transition-all duration-200 text-blue-700 border-blue-200 bg-blue-50/50 hover:bg-blue-100 hover:border-blue-300 dark:text-blue-300 dark:border-blue-800 dark:bg-blue-900/20 dark:hover:bg-blue-900/40 [&.active]:bg-blue-600 [&.active]:text-white [&.active]:border-blue-600 [&.active]:shadow-sm [&.active]:shadow-blue-200 dark:[&.active]:shadow-none whitespace-nowrap flex items-center gap-1.5" data-filter="TWK"><i data-lucide="flag" class="w-3 h-3"></i> TWK</button>
+                                    <button onclick="filterMyPackages('TIU')" class="package-filter px-3 py-1 text-xs font-semibold rounded-full border transition-all duration-200 text-sky-700 border-sky-200 bg-sky-50/50 hover:bg-sky-100 hover:border-sky-300 dark:text-sky-300 dark:border-sky-800 dark:bg-sky-900/20 dark:hover:bg-sky-900/40 [&.active]:bg-sky-500 [&.active]:text-white [&.active]:border-sky-500 [&.active]:shadow-sm [&.active]:shadow-sky-200 dark:[&.active]:shadow-none whitespace-nowrap flex items-center gap-1.5" data-filter="TIU"><i data-lucide="brain-circuit" class="w-3 h-3"></i> TIU</button>
+                                    <button onclick="filterMyPackages('TKP')" class="package-filter px-3 py-1 text-xs font-semibold rounded-full border transition-all duration-200 text-green-700 border-green-200 bg-green-50/50 hover:bg-green-100 hover:border-green-300 dark:text-green-300 dark:border-green-800 dark:bg-green-900/20 dark:hover:bg-green-900/40 [&.active]:bg-green-600 [&.active]:text-white [&.active]:border-green-600 [&.active]:shadow-sm [&.active]:shadow-green-200 dark:[&.active]:shadow-none whitespace-nowrap flex items-center gap-1.5" data-filter="TKP"><i data-lucide="users" class="w-3 h-3"></i> TKP</button>
+                                </div>
+                                <div class="relative w-full sm:w-48">
+                                    <i data-lucide="search" class="absolute left-2.5 top-2.5 w-4 h-4 text-gray-400"></i>
+                                    <input type="text" id="packageSearch" placeholder="Cari paket..." class="pl-9 pr-4 py-2 w-full text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:ring-blue-500 focus:border-blue-500 text-gray-800 dark:text-gray-200">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="myPackagesList" class="p-6 space-y-4">
+                            <!-- Injected by JS -->
+                        </div>
+
+                        <div id="packagesPagination" class="p-4 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Transactions -->
+                <div id="tab-transactions" class="tab-content hidden space-y-6">
+                     <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
+                        <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-center gap-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Riwayat Transaksi</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Daftar pembelian paket soal Anda.</p>
+                            </div>
+                            <!-- Global Search & Limit -->
+                            <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+                                <div class="relative w-full sm:w-48">
+                                    <i data-lucide="search" class="absolute left-2.5 top-2.5 w-4 h-4 text-gray-400"></i>
+                                    <input type="text" id="transSearch" placeholder="Cari transaksi..." class="pl-9 pr-4 py-2 w-full text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:ring-blue-500 focus:border-blue-500 text-gray-800 dark:text-gray-200">
+                                </div>
+                                <select id="transLimit" class="py-2 px-3 text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:ring-blue-500 focus:border-blue-500 text-gray-800 dark:text-gray-200 cursor-pointer">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-left">
+                                <thead class="text-xs text-gray-500 uppercase bg-gray-50 dark:bg-gray-700/50 dark:text-gray-400">
+                                    <tr>
+                                        <th class="px-6 py-4 font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors select-none group" onclick="sortTransactions('id')">
+                                            <div class="flex items-center gap-1">ID Invoice <i data-lucide="arrow-up-down" class="w-3 h-3 text-gray-400 group-hover:text-gray-600 transition-colors" id="sort-icon-id"></i></div>
+                                        </th>
+                                        <th class="px-6 py-4 font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors select-none group" onclick="sortTransactions('item')">
+                                            <div class="flex items-center gap-1">Item <i data-lucide="arrow-up-down" class="w-3 h-3 text-gray-400 group-hover:text-gray-600 transition-colors" id="sort-icon-item"></i></div>
+                                        </th>
+                                        <th class="px-6 py-4 font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors select-none group" onclick="sortTransactions('date')">
+                                            <div class="flex items-center gap-1">Tanggal <i data-lucide="arrow-up-down" class="w-3 h-3 text-gray-400 group-hover:text-gray-600 transition-colors" id="sort-icon-date"></i></div>
+                                        </th>
+                                        <th class="px-6 py-4 font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors select-none group" onclick="sortTransactions('price')">
+                                            <div class="flex items-center gap-1">Total <i data-lucide="arrow-up-down" class="w-3 h-3 text-gray-400 group-hover:text-gray-600 transition-colors" id="sort-icon-price"></i></div>
+                                        </th>
+                                        <th class="px-6 py-4 font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors select-none group" onclick="sortTransactions('status')">
+                                            <div class="flex items-center gap-1">Status <i data-lucide="arrow-up-down" class="w-3 h-3 text-gray-400 group-hover:text-gray-600 transition-colors" id="sort-icon-status"></i></div>
+                                        </th>
+                                        <th class="px-6 py-4 text-right">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="transactionList" class="divide-y divide-gray-100 dark:divide-gray-700">
+                                    <!-- Injected by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="paginationContainer" class="p-4 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center">
+                            <!-- Injected by JS -->
+                        </div>
+                     </div>
+                </div>
+
+                <!-- Tab Content: Password -->
+                <div id="tab-password" class="tab-content hidden">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 max-w-full">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2"><i data-lucide="shield-check" class="w-5 h-5 text-blue-600"></i> Ubah Kata Sandi</h3>
+                        <form class="space-y-5">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Kata Sandi Saat Ini</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i data-lucide="lock" class="w-5 h-5 text-gray-400"></i>
+                                    </div>
+                                    <input type="password" class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700/50 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" placeholder="Masukkan kata sandi lama">
+                                    <i data-lucide="eye" class="absolute right-3 top-3 w-5 h-5 text-gray-400 cursor-pointer hover:text-gray-600"></i>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Kata Sandi Baru</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <i data-lucide="key" class="w-5 h-5 text-gray-400"></i>
+                                        </div>
+                                        <input type="password" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700/50 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" placeholder="Minimal 8 karakter">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Konfirmasi Kata Sandi</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <i data-lucide="check-circle" class="w-5 h-5 text-gray-400"></i>
+                                        </div>
+                                        <input type="password" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700/50 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" placeholder="Ulangi kata sandi baru">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-4 flex items-center gap-4">
+                                <button type="button" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg shadow-blue-200 dark:shadow-none transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                                    <i data-lucide="save" class="w-4 h-4"></i> Simpan Perubahan
+                                </button>
+                                <button type="button" class="px-6 py-2.5 bg-white border border-gray-200 text-gray-600 font-semibold rounded-xl hover:bg-gray-50 transition-colors dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600 flex items-center gap-2">
+                                    <i data-lucide="x" class="w-4 h-4"></i> Batal
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="js/layout.js"></script>
+<script src="js/profil.js"></script>
+<script>loadLayout('profil');</script>
+</body>
+</html>

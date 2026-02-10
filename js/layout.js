@@ -24,6 +24,10 @@ window.loadLayout = function(activePage) {
       <i data-lucide="history" class="w-5 h-5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0 ${activePage === 'riwayat' ? 'text-blue-600 dark:text-blue-400' : ''}"></i>
       <span class="font-medium sidebar-text transition-opacity duration-300 whitespace-nowrap">Riwayat Tryout</span>
     </a>
+    <a href="profil.html" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 group ${activePage === 'profil' ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400' : ''}" data-page="profil">
+      <i data-lucide="user" class="w-5 h-5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0 ${activePage === 'profil' ? 'text-blue-600 dark:text-blue-400' : ''}"></i>
+      <span class="font-medium sidebar-text transition-opacity duration-300 whitespace-nowrap">Profil Saya</span>
+    </a>
   </nav>
 </aside>
 `;
@@ -74,7 +78,7 @@ window.loadLayout = function(activePage) {
             <p class="text-sm font-semibold text-gray-800 dark:text-gray-200">Budi Santoso</p>
             <p class="text-xs text-gray-500 dark:text-gray-400 truncate">budi.santoso@email.com</p>
           </div>
-          <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="user" class="w-4 h-4"></i> Profil Saya</a>
+          <a href="profil.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="user" class="w-4 h-4"></i> Profil Saya</a>
           <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="log-out" class="w-4 h-4 text-red-500"></i> Keluar</a>
         </div>
       </div>

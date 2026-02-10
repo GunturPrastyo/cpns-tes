@@ -134,7 +134,14 @@ function render() {
               <div class="flex justify-between text-xs mb-1"><span class="text-gray-500">Progress</span><span class="font-semibold text-gray-700 dark:text-gray-300">${p.progress}%</span></div>
               <div class="w-full bg-gray-200 dark:bg-gray-700 h-2 rounded-full overflow-hidden"><div class="bg-blue-600 h-2 rounded-full transition-all duration-500" style="width:${p.progress}%"></div></div>
           </div>
-          <button ${(status === "Berjalan" || status === "Belum Mulai") ? "onclick=\"window.location.href='tes.html'\"" : ""} class="relative z-10 mt-auto w-full py-2.5 rounded-lg font-semibold text-sm text-white transition-colors shadow-sm ${status === "Terkunci" ? "bg-green-600 hover:bg-green-700" : "bg-blue-600 hover:bg-blue-700"}">${status === "Selesai" ? "Lihat Pembahasan" : status === "Berjalan" ? "Lanjutkan" : status === "Terkunci" ? "Beli Paket" : "Mulai Tryout"}</button>
+          ${status === "Selesai" ? 
+            `<div class="relative z-10 mt-auto flex gap-2">
+                <button onclick="window.location.href='hasil-tes.html'" class="flex-1 py-2.5 rounded-lg font-semibold text-sm text-blue-600 bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-300 dark:hover:bg-blue-900/30 transition-colors shadow-sm border border-blue-200 dark:border-blue-800">Lihat Detail</button>
+                <button onclick="window.location.href='pembahasan.html'" class="flex-1 py-2.5 rounded-lg font-semibold text-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-sm">Pembahasan</button>
+            </div>` 
+            : 
+            `<button ${(status === "Berjalan" || status === "Belum Mulai") ? "onclick=\"window.location.href='tes.html'\"" : ""} class="relative z-10 mt-auto w-full py-2.5 rounded-lg font-semibold text-sm text-white transition-colors shadow-sm ${status === "Terkunci" ? "bg-green-600 hover:bg-green-700" : "bg-blue-600 hover:bg-blue-700"}">${status === "Berjalan" ? "Lanjutkan" : status === "Terkunci" ? "Beli Paket" : "Mulai Tryout"}</button>`
+          }
       </div>
     `;
     container.appendChild(card);

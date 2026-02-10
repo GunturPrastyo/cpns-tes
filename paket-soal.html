@@ -37,7 +37,7 @@
               <span class="bg-white/20 text-xs font-bold px-2 py-1 rounded mb-2 inline-block backdrop-blur-sm">PROMO SPESIAL</span>
               <h2 class="text-2xl sm:text-4xl font-bold mb-2">Diskon 50% Pembelian Pertama!</h2>
               <p class="text-blue-100 text-sm sm:text-base mb-4">Gunakan kode: <span class="font-mono font-bold bg-white/20 px-2 rounded">BARUGABUNG</span></p>
-              <button class="bg-white text-blue-600 px-4 py-2 rounded-lg font-bold text-sm hover:bg-blue-50 transition shadow-lg">Klaim Sekarang</button>
+              <button class="bg-white text-blue-600 px-4 py-2 rounded-lg font-bold text-sm hover:bg-blue-50 transition shadow-lg flex items-center gap-2"><i data-lucide="ticket" class="w-4 h-4"></i> Klaim Sekarang</button>
            </div>
            <img src="https://cdn-icons-png.flaticon.com/512/2454/2454282.png" class="absolute right-4 bottom-4 w-32 h-32 opacity-20 sm:opacity-100 sm:w-48 sm:h-48 object-contain" />
         </div>
@@ -47,7 +47,7 @@
               <span class="bg-white/20 text-xs font-bold px-2 py-1 rounded mb-2 inline-block backdrop-blur-sm">HOT DEAL</span>
               <h2 class="text-2xl sm:text-4xl font-bold mb-2">Paket Lengkap SKD + SKB</h2>
               <p class="text-purple-100 text-sm sm:text-base mb-4">Persiapan maksimal dengan ribuan soal terupdate.</p>
-              <button class="bg-white text-purple-600 px-4 py-2 rounded-lg font-bold text-sm hover:bg-purple-50 transition shadow-lg">Lihat Paket</button>
+              <button class="bg-white text-purple-600 px-4 py-2 rounded-lg font-bold text-sm hover:bg-purple-50 transition shadow-lg flex items-center gap-2"><i data-lucide="package-search" class="w-4 h-4"></i> Lihat Paket</button>
            </div>
            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="absolute right-4 bottom-4 w-32 h-32 opacity-20 sm:opacity-100 sm:w-48 sm:h-48 object-contain" />
         </div>
@@ -57,7 +57,7 @@
               <span class="bg-white/20 text-xs font-bold px-2 py-1 rounded mb-2 inline-block backdrop-blur-sm">TRYOUT GRATIS</span>
               <h2 class="text-2xl sm:text-4xl font-bold mb-2">Coba Tryout Nasional</h2>
               <p class="text-emerald-100 text-sm sm:text-base mb-4">Ukur kemampuanmu bersaing dengan ribuan peserta lain.</p>
-              <button class="bg-white text-emerald-600 px-4 py-2 rounded-lg font-bold text-sm hover:bg-emerald-50 transition shadow-lg">Daftar Gratis</button>
+              <button class="bg-white text-emerald-600 px-4 py-2 rounded-lg font-bold text-sm hover:bg-emerald-50 transition shadow-lg flex items-center gap-2"><i data-lucide="pencil" class="w-4 h-4"></i> Daftar Gratis</button>
            </div>
            <img src="https://cdn-icons-png.flaticon.com/512/2997/2997255.png" class="absolute right-4 bottom-4 w-32 h-32 opacity-20 sm:opacity-100 sm:w-48 sm:h-48 object-contain" />
         </div>
@@ -86,20 +86,20 @@
       
       <!-- Filter Buttons -->
       <div class="flex items-center gap-2 flex-wrap order-2 md:order-1">
-        <button onclick="setFilter('')" class="filter active px-4 py-1.5 text-xs font-semibold rounded-full border transition-all duration-200 text-gray-600 border-gray-300 bg-white hover:bg-gray-50 hover:border-gray-400 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700 [&.active]:bg-gray-800 [&.active]:text-white [&.active]:border-gray-800 [&.active]:shadow-sm dark:[&.active]:bg-white dark:[&.active]:text-gray-900 dark:[&.active]:border-white">
-          Semua
+        <button onclick="setFilter('')" class="filter active px-4 py-1.5 text-xs font-semibold rounded-full border transition-all duration-200 text-gray-600 border-gray-300 bg-white hover:bg-gray-50 hover:border-gray-400 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700 [&.active]:bg-gray-800 [&.active]:text-white [&.active]:border-gray-800 [&.active]:shadow-sm dark:[&.active]:bg-white dark:[&.active]:text-gray-900 dark:[&.active]:border-white flex items-center gap-2">
+          <i data-lucide="grid" class="w-3 h-3"></i> Semua
         </button>
-        <button onclick="setFilter('SKD')" class="filter px-4 py-1.5 text-xs font-semibold rounded-full border transition-all duration-200 text-purple-700 border-purple-200 bg-purple-50/50 hover:bg-purple-100 hover:border-purple-300 dark:text-purple-300 dark:border-purple-800 dark:bg-purple-900/20 dark:hover:bg-purple-900/40 [&.active]:bg-purple-600 [&.active]:text-white [&.active]:border-purple-600 [&.active]:shadow-sm [&.active]:shadow-purple-200 dark:[&.active]:shadow-none">
-          Paket SKD
+        <button onclick="setFilter('SKD')" class="filter px-4 py-1.5 text-xs font-semibold rounded-full border transition-all duration-200 text-purple-700 border-purple-200 bg-purple-50/50 hover:bg-purple-100 hover:border-purple-300 dark:text-purple-300 dark:border-purple-800 dark:bg-purple-900/20 dark:hover:bg-purple-900/40 [&.active]:bg-purple-600 [&.active]:text-white [&.active]:border-purple-600 [&.active]:shadow-sm [&.active]:shadow-purple-200 dark:[&.active]:shadow-none flex items-center gap-2">
+          <i data-lucide="book-open" class="w-3 h-3"></i> Paket SKD
         </button>
-        <button onclick="setFilter('TWK')" class="filter px-4 py-1.5 text-xs font-semibold rounded-full border transition-all duration-200 text-blue-700 border-blue-200 bg-blue-50/50 hover:bg-blue-100 hover:border-blue-300 dark:text-blue-300 dark:border-blue-800 dark:bg-blue-900/20 dark:hover:bg-blue-900/40 [&.active]:bg-blue-600 [&.active]:text-white [&.active]:border-blue-600 [&.active]:shadow-sm [&.active]:shadow-blue-200 dark:[&.active]:shadow-none">
-          TWK
+        <button onclick="setFilter('TWK')" class="filter px-4 py-1.5 text-xs font-semibold rounded-full border transition-all duration-200 text-blue-700 border-blue-200 bg-blue-50/50 hover:bg-blue-100 hover:border-blue-300 dark:text-blue-300 dark:border-blue-800 dark:bg-blue-900/20 dark:hover:bg-blue-900/40 [&.active]:bg-blue-600 [&.active]:text-white [&.active]:border-blue-600 [&.active]:shadow-sm [&.active]:shadow-blue-200 dark:[&.active]:shadow-none flex items-center gap-2">
+          <i data-lucide="flag" class="w-3 h-3"></i> TWK
         </button>
-        <button onclick="setFilter('TIU')" class="filter px-4 py-1.5 text-xs font-semibold rounded-full border transition-all duration-200 text-sky-700 border-sky-200 bg-sky-50/50 hover:bg-sky-100 hover:border-sky-300 dark:text-sky-300 dark:border-sky-800 dark:bg-sky-900/20 dark:hover:bg-sky-900/40 [&.active]:bg-sky-500 [&.active]:text-white [&.active]:border-sky-500 [&.active]:shadow-sm [&.active]:shadow-sky-200 dark:[&.active]:shadow-none">
-          TIU
+        <button onclick="setFilter('TIU')" class="filter px-4 py-1.5 text-xs font-semibold rounded-full border transition-all duration-200 text-sky-700 border-sky-200 bg-sky-50/50 hover:bg-sky-100 hover:border-sky-300 dark:text-sky-300 dark:border-sky-800 dark:bg-sky-900/20 dark:hover:bg-sky-900/40 [&.active]:bg-sky-500 [&.active]:text-white [&.active]:border-sky-500 [&.active]:shadow-sm [&.active]:shadow-sky-200 dark:[&.active]:shadow-none flex items-center gap-2">
+          <i data-lucide="brain-circuit" class="w-3 h-3"></i> TIU
         </button>
-        <button onclick="setFilter('TKP')" class="filter px-4 py-1.5 text-xs font-semibold rounded-full border transition-all duration-200 text-green-700 border-green-200 bg-green-50/50 hover:bg-green-100 hover:border-green-300 dark:text-green-300 dark:border-green-800 dark:bg-green-900/20 dark:hover:bg-green-900/40 [&.active]:bg-green-600 [&.active]:text-white [&.active]:border-green-600 [&.active]:shadow-sm [&.active]:shadow-green-200 dark:[&.active]:shadow-none">
-          TKP
+        <button onclick="setFilter('TKP')" class="filter px-4 py-1.5 text-xs font-semibold rounded-full border transition-all duration-200 text-green-700 border-green-200 bg-green-50/50 hover:bg-green-100 hover:border-green-300 dark:text-green-300 dark:border-green-800 dark:bg-green-900/20 dark:hover:bg-green-900/40 [&.active]:bg-green-600 [&.active]:text-white [&.active]:border-green-600 [&.active]:shadow-sm [&.active]:shadow-green-200 dark:[&.active]:shadow-none flex items-center gap-2">
+          <i data-lucide="users" class="w-3 h-3"></i> TKP
         </button>
       </div>
 
