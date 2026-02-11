@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id" class="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor Soal - CPNS Learning</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <!-- Quill CSS -->
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Quill Toolbar Style for Dark Mode */
+    .dark .ql-toolbar {
+        background-color: #1f2937;
+        border-color: #374151;
+        color: #e5e7eb;
+    }
+    .dark .ql-container {
+        border-color: #374151;
+        background-color: #111827;
+        color: #e5e7eb;
+    }
+    .dark .ql-stroke {
+        stroke: #9ca3af !important;
+    }
+    .dark .ql-fill {
+        fill: #9ca3af !important;
+    }
+    .dark .ql-picker {
+        color: #9ca3af !important;
+    }
+    /* Editor Height */
+    .ql-editor {
+        min-height: 150px;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 overflow-x-hidden font-sans">
+
+<div id="main-content" class="pt-16 min-h-screen transition-all duration-300 md:ml-64">
+  <main class="p-4 md:p-6">
+    <div class="w-full mx-auto">
+        
+        <!-- Breadcrumb -->
+        <nav class="flex mb-6" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse text-slate-700 dark:text-slate-300">
+                <li class="inline-flex items-center">
+                    <a href="dashboard.html" class="inline-flex items-center text-sm font-medium hover:text-blue-600 dark:hover:text-blue-400">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mx-1"></i>
+                        <span class="ms-1 text-sm font-medium text-gray-800 dark:text-gray-200 md:ms-2">Komponen</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mx-1"></i>
+                        <span class="ms-1 text-sm font-medium text-gray-800 dark:text-gray-200 md:ms-2">Teks Editor</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Editor Bank Soal</h1>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Buat soal pilihan ganda dengan format rich text.</p>
+            </div>
+            <button onclick="saveQuestion()" class="w-auto flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-sm">
+                <i data-lucide="save" class="w-4 h-4"></i> Simpan Soal
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Left Column: Form Input -->
+            <div class="lg:col-span-2 space-y-6 order-last lg:order-first">
+                
+                <!-- Container Soal Dinamis -->
+                <div id="questions-list" class="space-y-8"></div>
+
+                <!-- Tombol Tambah Soal -->
+                <div class="flex justify-center py-2">
+                    <button type="button" id="btn-add-question" class="group flex items-center gap-3 px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-lg hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-300 transform hover:-translate-y-0.5">
+                        <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <i data-lucide="plus" class="w-5 h-5"></i>
+                        </div>
+                        <span class="font-medium text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Tambah Soal</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column: Preview & Settings -->
+            <div id="editor-sidebar" class="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] transition-transform duration-300 transform translate-y-[calc(100%-3.5rem)] lg:translate-y-0 lg:static lg:bg-transparent lg:border-none lg:shadow-none lg:space-y-6 lg:sticky lg:top-24 lg:h-fit lg:z-10">
+                
+                <!-- Mobile Toggle Header -->
+                <div class="lg:hidden flex items-center justify-between px-5 py-3 cursor-pointer bg-gray-50 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-700" onclick="toggleEditorSidebar()">
+                    <h4 class="font-bold text-gray-800 dark:text-white flex items-center gap-2 text-sm">
+                        <i data-lucide="layout" class="w-4 h-4"></i> Menu & Navigasi
+                    </h4>
+                    <i id="sidebar-chevron" data-lucide="chevron-up" class="w-4 h-4 text-gray-500 transition-transform duration-300"></i>
+                </div>
+
+                <div class="p-5 lg:p-0 space-y-6 max-h-[60vh] overflow-y-auto lg:max-h-none lg:overflow-visible">
+                    <!-- Navigation Panel -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5">
+                        <h4 class="font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+                            <i data-lucide="map" class="w-4 h-4"></i> Navigasi Soal
+                        </h4>
+                        <div id="question-nav-grid" class="grid grid-cols-10 lg:grid-cols-5 gap-2 max-h-[calc(100vh-200px)] overflow-y-auto pr-1">
+                            <!-- Nav items injected by JS -->
+                        </div>
+                    </div>
+                    
+                    <!-- Info Panel -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-xl p-5">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2 flex items-center gap-2">
+                            <i data-lucide="info" class="w-4 h-4"></i> Tips Editor
+                        </h4>
+                        <ul class="text-sm text-blue-700 dark:text-blue-200 space-y-2 list-disc list-inside">
+                            <li>Gunakan toolbar di atas editor untuk menebalkan, memiringkan, atau menggarisbawahi teks.</li>
+                            <li>Anda dapat menyisipkan gambar langsung ke dalam soal atau pembahasan.</li>
+                            <li>Pastikan memilih <strong>Kunci Jawaban</strong> yang benar pada opsi radio button.</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+  </main>
+  
+  <footer class="bg-white dark:bg-gray-800 p-4 text-center text-gray-600 dark:text-gray-400 text-sm mt-auto shadow-inner font-poppins">
+      <p>&copy; 2025 CPNS Learning. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- Scroll to Top Button -->
+<button id="btn-scroll-top" class="fixed bottom-6 right-6 z-50 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 opacity-0 invisible translate-y-10" title="Kembali ke atas">
+    <i data-lucide="arrow-up" class="w-6 h-6"></i>
+</button>
+
+<!-- Scripts -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://unpkg.com/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/komponen-editor.js"></script>
+
+<!-- Template Item Soal -->
+<template id="question-template">
+    <div class="question-item group relative transition-all duration-300 bg-gray-50 dark:bg-gray-800/40 p-4 sm:p-6 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm" data-id="">
+        <!-- Combined Card: Header & Soal -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 mb-6">
+            <!-- Header Row -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 border-b border-gray-100 dark:border-gray-700 pb-4">
+                 <div class="flex items-center gap-3">
+                    <span class="bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 text-xs font-bold px-2.5 py-1 rounded-lg">Soal <span class="q-number">1</span></span>
+                    <select class="category-select text-xs bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-1 focus:ring-blue-500 focus:border-blue-500">
+                        <option>TWK</option>
+                        <option>TIU</option>
+                        <option>TKP</option>
+                    </select>
+                 </div>
+                 <div class="flex items-center gap-1">
+                      <button type="button" class="btn-move-up p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-gray-500 dark:text-gray-400" title="Geser Keatas"><i data-lucide="arrow-up" class="w-4 h-4"></i></button>
+                      <button type="button" class="btn-move-down p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-gray-500 dark:text-gray-400" title="Geser Kebawah"><i data-lucide="arrow-down" class="w-4 h-4"></i></button>
+                      <div class="w-px h-4 bg-gray-300 dark:bg-gray-600 mx-1"></div>
+                      <button type="button" class="btn-duplicate p-1.5 hover:bg-blue-100 text-blue-600 dark:hover:bg-blue-900/30 dark:text-blue-400 rounded" title="Duplikat"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                      <button type="button" class="btn-delete p-1.5 hover:bg-red-100 text-red-600 dark:hover:bg-red-900/30 dark:text-red-400 rounded" title="Hapus"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                 </div>
+            </div>
+
+            <!-- Question Label & Editor -->
+            <label class="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-3">
+                <span class="flex items-center gap-2"><i data-lucide="help-circle" class="w-4 h-4 text-blue-500"></i> Pertanyaan</span>
+            </label>
+            <div class="editor-soal bg-white dark:bg-gray-900"></div>
+        </div>
+    
+        <!-- Card Options -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 mb-6">
+            <h3 class="text-sm font-bold text-gray-700 dark:text-gray-200 mb-4 flex items-center gap-2">
+                <i data-lucide="list" class="w-4 h-4 text-green-500"></i> Pilihan Jawaban
+            </h3>
+            <div class="options-container space-y-4"></div>
+        </div>
+    
+        <!-- Card Pembahasan -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5">
+            <label class="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-4">
+                <span class="flex items-center gap-2"><i data-lucide="book-open-check" class="w-4 h-4 text-indigo-500"></i> Pembahasan / Kunci Jawaban</span>
+            </label>
+            <div class="editor-pembahasan bg-white dark:bg-gray-900"></div>
+        </div>
+    </div>
+</template>
+</body>
+</html>

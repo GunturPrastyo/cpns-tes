@@ -68,7 +68,8 @@ function renderScoreChart() {
                     borderDash: [3, 3],
                     pointRadius: 0,
                     fill: false,
-                    tension: 0
+                    tension: 0,
+                    margin: 10
                 }
             ]
         },
@@ -82,7 +83,8 @@ function renderScoreChart() {
                     labels: {
                         padding: 20,
                         usePointStyle: true,
-                        boxWidth: 6,
+                        boxWidth: 12,
+                        boxPadding: 32,
                         font: { family: "'Poppins', sans-serif", size: 12 }
                     }
                 },

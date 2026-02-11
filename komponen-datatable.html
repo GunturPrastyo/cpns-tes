@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id" class="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datatable Transaksi - CPNS Learning</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 overflow-x-hidden font-sans">
+
+<div id="main-content" class="pt-16 min-h-screen transition-all duration-300 md:ml-64">
+  <main class="p-4 md:p-6">
+    <div class="w-full mx-auto">
+        
+        <!-- Breadcrumb -->
+        <nav class="flex mb-6" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse text-slate-700 dark:text-slate-300">
+                <li class="inline-flex items-center">
+                    <a href="dashboard.html" class="inline-flex items-center text-sm font-medium hover:text-blue-600 dark:hover:text-blue-400">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mx-1"></i>
+                        <span class="ms-1 text-sm font-medium text-gray-800 dark:text-gray-200 md:ms-2">Komponen</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 mx-1"></i>
+                        <span class="ms-1 text-sm font-medium text-gray-800 dark:text-gray-200 md:ms-2">Datatable</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Header -->
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Riwayat Transaksi</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Contoh implementasi datatable lengkap dengan filter dan pagination.</p>
+        </div>
+
+        <!-- Datatable Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+            
+            <!-- Toolbar: Show Entries & Global Search -->
+            <div class="p-5 border-b border-gray-100 dark:border-gray-700 flex flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                    <span>Show</span>
+                    <select id="rowsPerPage" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                   
+                </div>
+
+                <div class="relative flex-1 sm:flex-none sm:w-64">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i data-lucide="search" class="w-4 h-4 text-gray-500 dark:text-gray-400"></i>
+                    </div>
+                    <input type="text" id="globalSearch" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Cari di semua kolom...">
+                </div>
+            </div>
+
+            <!-- Table Container -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <!-- Header Row (Sortable) -->
+                        <tr id="table-headers">
+                            <!-- Injected by JS -->
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination Footer -->
+            <div class="p-5 border-t border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <span class="text-sm text-gray-700 dark:text-gray-400">
+                    Menampilkan <span class="font-semibold text-gray-900 dark:text-white" id="startRow">0</span> sampai <span class="font-semibold text-gray-900 dark:text-white" id="endRow">0</span> dari <span class="font-semibold text-gray-900 dark:text-white" id="totalRows">0</span> data
+                </span>
+                <div class="inline-flex -space-x-px text-sm" id="paginationControls">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+  </main>
+  
+  <footer class="bg-white dark:bg-gray-800 p-4 text-center text-gray-600 dark:text-gray-400 text-sm mt-auto shadow-inner font-poppins">
+      <p>&copy; 2025 CPNS Learning. All rights reserved.</p>
+  </footer>
+</div>
+
+<script src="js/layout.js"></script>
+<script src="js/komponen-datatable.js"></script>
+</body>
+</html>

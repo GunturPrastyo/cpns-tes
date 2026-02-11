@@ -313,8 +313,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (timeLeft <= 0) {
         clearInterval(interval);
-        alert('Waktu Habis! Jawaban akan dikirim secara otomatis.');
-        submitTest();
+        Swal.fire({
+          title: 'Waktu Habis!',
+          text: 'Jawaban akan dikirim secara otomatis.',
+          icon: 'warning',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#2563eb',
+          allowOutsideClick: false
+        }).then(() => {
+          submitTest();
+        });
       }
     }, 1000);
   }
@@ -479,16 +487,33 @@ document.addEventListener('DOMContentLoaded', () => {
         timestamp: new Date().toISOString()
       };
       localStorage.setItem('cpns_cat_progress', JSON.stringify(progressData));
-      alert('Progres jawaban berhasil disimpan!');
+      Swal.fire({
+        icon: 'success',
+        title: 'Tersimpan',
+        text: 'Progres jawaban berhasil disimpan!',
+        showConfirmButton: false,
+        timer: 1500
+      });
     });
   }
 
   if (submitBtn) {
     submitBtn.addEventListener('click', () => {
       const answeredCount = Object.keys(answers).length;
-      if (confirm(`Kamu sudah menjawab ${answeredCount} dari ${questions.length} soal. Yakin ingin mengakhiri ujian?`)) {
-        submitTest();
-      }
+      Swal.fire({
+        title: 'Akhiri Ujian?',
+        text: `Kamu sudah menjawab ${answeredCount} dari ${questions.length} soal. Yakin ingin mengakhiri ujian?`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#2563eb',
+        cancelButtonColor: '#d1d5db',
+        confirmButtonText: 'Ya, Selesai',
+        cancelButtonText: 'Batal'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          submitTest();
+        }
+      });
     });
   }
 

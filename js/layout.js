@@ -28,6 +28,29 @@ window.loadLayout = function(activePage) {
       <i data-lucide="user" class="w-5 h-5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0 ${activePage === 'profil' ? 'text-blue-600 dark:text-blue-400' : ''}"></i>
       <span class="font-medium sidebar-text transition-opacity duration-300 whitespace-nowrap">Profil Saya</span>
     </a>
+
+    <p class="sidebar-text text-xs font-semibold text-gray-400 mt-4 mb-2 px-3 uppercase tracking-wider transition-opacity duration-300 whitespace-nowrap">Komponen</p>
+    
+    <button type="button" id="btn-komponen" class="nav-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 group ${activePage.startsWith('komponen') ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400' : ''}">
+      <i data-lucide="layers" class="w-5 h-5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0 ${activePage.startsWith('komponen') ? 'text-blue-600 dark:text-blue-400' : ''}"></i>
+      <span class="font-medium sidebar-text transition-opacity duration-300 whitespace-nowrap flex-1 text-left">UI Komponen</span>
+      <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200 sidebar-text ${activePage.startsWith('komponen') ? 'rotate-180' : ''}"></i>
+    </button>
+    
+    <div id="submenu-komponen" class="${activePage.startsWith('komponen') ? '' : 'hidden'} pl-4 mt-1 space-y-1 overflow-hidden transition-all">
+        <a href="komponen-editor.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${activePage === 'komponen-editor' ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-gray-700/50 font-medium' : 'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700/50'}">
+            <span class="w-1.5 h-1.5 rounded-full ${activePage === 'komponen-editor' ? 'bg-blue-600' : 'bg-gray-400'}"></span>
+            Teks Editor
+        </a>
+        <a href="komponen-datatable.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${activePage === 'komponen-datatable' ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-gray-700/50 font-medium' : 'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700/50'}">
+            <span class="w-1.5 h-1.5 rounded-full ${activePage === 'komponen-datatable' ? 'bg-blue-600' : 'bg-gray-400'}"></span>
+            Datatable
+        </a>
+        <a href="komponen-ui-elements.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${activePage === 'komponen-ui-elements' ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-gray-700/50 font-medium' : 'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700/50'}">
+            <span class="w-1.5 h-1.5 rounded-full ${activePage === 'komponen-ui-elements' ? 'bg-blue-600' : 'bg-gray-400'}"></span>
+            UI Elements
+        </a>
+    </div>
   </nav>
 </aside>
 `;
@@ -181,6 +204,18 @@ window.loadLayout = function(activePage) {
          }
       }
     });
+  }
+
+  // --- Logic Submenu Komponen ---
+  const btnKomponen = document.getElementById('btn-komponen');
+  const submenuKomponen = document.getElementById('submenu-komponen');
+  
+  if (btnKomponen && submenuKomponen && !btnKomponen.hasAttribute('data-listener')) {
+      btnKomponen.setAttribute('data-listener', 'true');
+      btnKomponen.addEventListener('click', () => {
+          submenuKomponen.classList.toggle('hidden');
+          btnKomponen.querySelector('.lucide-chevron-down')?.classList.toggle('rotate-180');
+      });
   }
 
   // --- Logic Dark Mode ---
