@@ -233,24 +233,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         paginatedData.forEach((item, index) => {
             const itemEl = document.createElement('div');
-            itemEl.className = "relative pl-8 py-1 group";
+            itemEl.className = "relative pl-8 py-2 group";
             
             // Determine colors based on score
             let scoreColor = 'text-red-600 dark:text-red-400';
             let dotColor = 'bg-white border-red-500 text-red-500';
-            let borderColor = 'border-l-4 border-l-red-500 border-gray-200 dark:border-gray-700';
             let statusIcon = 'x';
+            let statusStripColor = 'bg-red-500';
 
             if (item.score >= 80) {
                 scoreColor = 'text-emerald-600 dark:text-emerald-400';
                 dotColor = 'bg-white border-emerald-500 text-emerald-500';
-                borderColor = 'border-l-4 border-l-emerald-500 border-gray-200 dark:border-gray-700';
                 statusIcon = 'trophy';
+                statusStripColor = 'bg-emerald-500';
             } else if (item.score >= 65) {
                 scoreColor = 'text-blue-600 dark:text-blue-400';
                 dotColor = 'bg-white border-blue-500 text-blue-500';
-                borderColor = 'border-l-4 border-l-blue-500 border-gray-200 dark:border-gray-700';
                 statusIcon = 'check';
+                statusStripColor = 'bg-blue-500';
             }
             
             // Timeline line logic
@@ -258,46 +258,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
             itemEl.innerHTML = `
                 <!-- Vertical Line -->
-                <div class="absolute left-3 top-0 w-0.5 bg-gray-200 dark:bg-gray-700 ${index === 0 ? 'top-1/2' : ''} ${isLast ? 'h-1/2' : 'h-full'} -z-10"></div>
+                <div class="absolute left-3 top-0 w-0.5 bg-gray-100 dark:bg-gray-700 ${index === 0 ? 'top-1/2' : ''} ${isLast ? 'h-1/2' : 'h-full'} -z-10"></div>
                 
                 <!-- Timeline Dot -->
-                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full ${dotColor} border-2 flex items-center justify-center shadow-sm z-10 bg-white dark:bg-gray-800">
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full ${dotColor} border-2 flex items-center justify-center shadow-sm z-10 bg-white dark:bg-gray-800 ring-4 ring-white dark:ring-gray-900">
                     <i data-lucide="${statusIcon}" class="w-3 h-3"></i>
                 </div>
                 
                 <!-- Content Box -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg p-3 border ${borderColor} shadow-sm hover:shadow-md transition-all duration-200 flex flex-col sm:flex-row gap-2 sm:items-center justify-between">
-                    
-                    <!-- Left Info -->
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center gap-2 mb-1.5">
-                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 uppercase tracking-wider">${item.category}</span>
-                            <span class="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
-                                <i data-lucide="calendar" class="w-3 h-3"></i> ${formatDate(item.date)}
-                            </span>
-                        </div>
-                        <h3 class="font-bold text-gray-800 dark:text-white text-base truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" title="${item.title}">${item.title}</h3>
-                        <div class="flex items-center gap-4 mt-1">
-                             <span class="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
-                                <i data-lucide="clock" class="w-3 h-3"></i> ${item.duration}
-                            </span>
-                        </div>
-                    </div>
+                <div class="group relative bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                    <!-- Status Strip -->
+                    <div class="absolute left-0 top-4 bottom-4 w-1 rounded-r-full ${statusStripColor}"></div>
 
-                    <!-- Right Stats & Action -->
-                    <div class="flex items-center justify-between sm:justify-end gap-4 border-t sm:border-t-0 border-gray-100 dark:border-gray-700 pt-3 sm:pt-0 mt-1 sm:mt-0">
-                        <div class="text-right px-2">
-                            <span class="block text-[10px] text-gray-400 uppercase font-bold">Skor</span>
-                            <span class="text-xl font-black ${scoreColor}">${item.score}</span>
-                        </div>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:items-center justify-between pl-3">
                         
-                        <div class="flex gap-2">
-                            <a href="hasil-tes.html" class="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors" title="Lihat Detail">
-                                <i data-lucide="file-text" class="w-5 h-5"></i>
-                            </a>
-                            <a href="pembahasan.html" class="px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded-lg hover:bg-blue-700 transition-colors shadow-sm shadow-blue-200 dark:shadow-none flex items-center gap-1">
-                                Pembahasan <i data-lucide="chevron-right" class="w-3 h-3"></i>
-                            </a>
+                        <!-- Left Info -->
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 uppercase tracking-wide border border-gray-200 dark:border-gray-600">${item.category}</span>
+                                <span class="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1">
+                                    <i data-lucide="calendar" class="w-3 h-3"></i> ${formatDate(item.date)}
+                                </span>
+                            </div>
+                            <h3 class="font-bold text-gray-900 dark:text-white text-lg truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-1" title="${item.title}">${item.title}</h3>
+                            <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                                 <span class="flex items-center gap-1.5">
+                                    <i data-lucide="clock" class="w-3.5 h-3.5"></i> ${item.duration}
+                                </span>
+                                <span class="flex items-center gap-1.5">
+                                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Selesai
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Right Stats & Action -->
+                        <div class="flex items-center gap-6 border-t sm:border-t-0 border-gray-50 dark:border-gray-700 pt-4 sm:pt-0 mt-2 sm:mt-0">
+                            <div class="text-right">
+                                <span class="block text-[10px] text-gray-400 uppercase font-bold tracking-wider mb-0.5">Total Skor</span>
+                                <div class="flex items-baseline justify-end gap-1">
+                                    <span class="text-2xl font-black ${scoreColor}">${item.score}</span>
+                                    <span class="text-xs text-gray-400 font-medium">/ 550</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-2">
+                                <a href="hasil-tes.html" class="p-2.5 text-gray-500 hover:text-blue-600 bg-gray-50 hover:bg-blue-50 dark:bg-gray-700/50 dark:hover:bg-blue-900/20 rounded-xl transition-all border border-gray-200 dark:border-gray-600 hover:border-blue-200 dark:hover:border-blue-800" title="Lihat Detail">
+                                    <i data-lucide="file-bar-chart-2" class="w-5 h-5"></i>
+                                </a>
+                                <a href="pembahasan.html" class="px-4 py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-xl hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-200 dark:hover:shadow-none transition-all flex items-center gap-2 group/btn">
+                                    Pembahasan <i data-lucide="arrow-right" class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

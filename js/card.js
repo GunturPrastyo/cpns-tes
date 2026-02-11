@@ -140,7 +140,11 @@ function render() {
                 <button onclick="window.location.href='pembahasan.html'" class="flex-1 py-2.5 rounded-lg font-semibold text-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-sm">Pembahasan</button>
             </div>` 
             : 
-            `<button ${(status === "Berjalan" || status === "Belum Mulai") ? "onclick=\"window.location.href='tes.html'\"" : ""} class="relative z-10 mt-auto w-full py-2.5 rounded-lg font-semibold text-sm text-white transition-colors shadow-sm ${status === "Terkunci" ? "bg-green-600 hover:bg-green-700" : "bg-blue-600 hover:bg-blue-700"}">${status === "Berjalan" ? "Lanjutkan" : status === "Terkunci" ? "Beli Paket" : "Mulai Tryout"}</button>`
+            `<button ${
+                (status === "Berjalan" || status === "Belum Mulai") 
+                ? "onclick=\"window.location.href='tes.html'\"" 
+                : `onclick="openPurchaseModal('${p.title}', ${p.price})"`
+            } class="relative z-10 mt-auto w-full py-2.5 rounded-lg font-semibold text-sm text-white transition-colors shadow-sm ${status === "Terkunci" ? "bg-green-600 hover:bg-green-700" : "bg-blue-600 hover:bg-blue-700"}">${status === "Berjalan" ? "Lanjutkan" : status === "Terkunci" ? "Beli Paket" : "Mulai Tryout"}</button>`
           }
       </div>
     `;
@@ -217,3 +221,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     render();
 });
+
+// ================= MODAL LOGIC =================
+window.openPurchaseModal = function(title, price) {
+    const modal = document.getElementById('purchaseModal');
+    if (!modal) return;
+    
+    const titleEl = document.getElementById('modal-pkg-name-header');
+    if (titleEl) titleEl.textContent = title;
+
+    const formattedPrice = "Rp " + price.toLocaleString('id-ID');
+    document.getElementById('modal-total').textContent = formattedPrice;
+    
+    modal.classList.remove('hidden');
+    // Re-init icons inside modal if needed
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+window.closePurchaseModal = function() {
+    const modal = document.getElementById('purchaseModal');
+    if (modal) modal.classList.add('hidden');
+}
+
+window.processPurchase = function() {
+    const btn = document.querySelector('#purchaseModal button.bg-blue-600');
+    const originalText = btn.textContent;
+    
+    // Simulate Loading
+    btn.textContent = 'Memproses...';
+    btn.disabled = true;
+    btn.classList.add('opacity-75', 'cursor-not-allowed');
+    
+    setTimeout(() => {
+        btn.textContent = originalText;
+        btn.disabled = false;
+        btn.classList.remove('opacity-75', 'cursor-not-allowed');
+        closePurchaseModal();
+        
+        Swal.fire({
+            title: 'Pembelian Berhasil!',
+            text: 'Paket soal telah aktif. Selamat belajar!',
+            icon: 'success',
+            confirmButtonColor: '#2563eb',
+            confirmButtonText: 'Mulai Belajar'
+        });
+    }, 1500);
+}

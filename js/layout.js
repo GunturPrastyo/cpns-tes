@@ -78,8 +78,82 @@ window.loadLayout = function(activePage) {
             <h3 class="font-semibold text-sm text-gray-800 dark:text-gray-200">Notifikasi</h3>
             <span class="text-[10px] bg-blue-100 text-blue-600 py-0.5 px-2 rounded-full font-medium">4 Baru</span>
           </div>
-          <div class="max-h-[300px] overflow-y-auto p-4 text-center text-gray-500 text-sm">
-             <p>Tidak ada notifikasi baru.</p>
+          <div class="max-h-[300px] overflow-y-auto">
+            <!-- Item 1: Success -->
+            <div class="relative group border-b border-gray-50 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+              <a href="#" class="block px-4 py-3 pr-8">
+                <div class="flex gap-3">
+                  <div class="mt-1 p-2 bg-green-100 text-green-600 rounded-full h-8 w-8 flex items-center justify-center shrink-0">
+                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-800 dark:text-gray-200">Pembayaran Berhasil</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Paket "Platinum SKD CPNS 2024" telah aktif. Selamat belajar!</p>
+                    <p class="text-[10px] text-gray-400 mt-1">2 menit yang lalu</p>
+                  </div>
+                </div>
+              </a>
+              <button class="absolute top-2 right-2 p-1 text-gray-400 hover:text-red-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 opacity-0 group-hover:opacity-100">
+                <i data-lucide="x" class="w-3 h-3"></i>
+              </button>
+            </div>
+            <!-- Item 2: Info/Result -->
+            <div class="relative group border-b border-gray-50 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+              <a href="#" class="block px-4 py-3 pr-8">
+                <div class="flex gap-3">
+                  <div class="mt-1 p-2 bg-blue-100 text-blue-600 rounded-full h-8 w-8 flex items-center justify-center shrink-0">
+                    <i data-lucide="award" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-800 dark:text-gray-200">Hasil Tryout Keluar</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Nilai TO SKD Nasional #12 sudah rilis. Cek peringkatmu!</p>
+                    <p class="text-[10px] text-gray-400 mt-1">1 jam yang lalu</p>
+                  </div>
+                </div>
+              </a>
+              <button class="absolute top-2 right-2 p-1 text-gray-400 hover:text-red-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 opacity-0 group-hover:opacity-100">
+                <i data-lucide="x" class="w-3 h-3"></i>
+              </button>
+            </div>
+            <!-- Item 3: Warning -->
+            <div class="relative group border-b border-gray-50 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+              <a href="#" class="block px-4 py-3 pr-8">
+                <div class="flex gap-3">
+                  <div class="mt-1 p-2 bg-yellow-100 text-yellow-600 rounded-full h-8 w-8 flex items-center justify-center shrink-0">
+                    <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-800 dark:text-gray-200">Maintenance Server</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Sistem akan update nanti malam pukul 23:00 WIB.</p>
+                    <p class="text-[10px] text-gray-400 mt-1">5 jam yang lalu</p>
+                  </div>
+                </div>
+              </a>
+              <button class="absolute top-2 right-2 p-1 text-gray-400 hover:text-red-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 opacity-0 group-hover:opacity-100">
+                <i data-lucide="x" class="w-3 h-3"></i>
+              </button>
+            </div>
+            <!-- Item 4: Error/Failed -->
+            <div class="relative group hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+              <a href="#" class="block px-4 py-3 pr-8">
+                <div class="flex gap-3">
+                  <div class="mt-1 p-2 bg-red-100 text-red-600 rounded-full h-8 w-8 flex items-center justify-center shrink-0">
+                    <i data-lucide="x-circle" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-800 dark:text-gray-200">Pembayaran Gagal</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Transaksi #INV-2024001 gagal diproses. Coba lagi.</p>
+                    <p class="text-[10px] text-gray-400 mt-1">1 hari yang lalu</p>
+                  </div>
+                </div>
+              </a>
+              <button class="absolute top-2 right-2 p-1 text-gray-400 hover:text-red-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 opacity-0 group-hover:opacity-100">
+                <i data-lucide="x" class="w-3 h-3"></i>
+              </button>
+            </div>
+          </div>
+          <div class="px-4 py-2 border-t border-gray-100 dark:border-gray-700 text-center">
+            <a href="#" class="text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400">Lihat Semua Notifikasi</a>
           </div>
         </div>
       </div>
