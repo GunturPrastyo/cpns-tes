@@ -73,7 +73,7 @@ window.loadLayout = function(activePage) {
           <i data-lucide="bell" class="w-5 h-5"></i>
           <span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] text-white border-2 border-white dark:border-gray-800">4</span>
         </button>
-        <div id="notif-dropdown" class="hidden absolute right-0 mt-3 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 py-2 z-50 transform origin-top-right transition-all">
+        <div id="notif-dropdown" class="hidden absolute -right-20 sm:right-0 mt-3 w-[75vw] sm:w-80 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 py-2 z-50 transform origin-top-right transition-all">
           <div class="px-4 py-2 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
             <h3 class="font-semibold text-sm text-gray-800 dark:text-gray-200">Notifikasi</h3>
             <span class="text-[10px] bg-blue-100 text-blue-600 py-0.5 px-2 rounded-full font-medium">4 Baru</span>
