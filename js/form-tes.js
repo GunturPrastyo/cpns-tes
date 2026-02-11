@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Dummy Data (20 Soal Manual) ---
+  // --- 1. Data Soal Dummy (20 Soal) ---
   const questions = [
-    // --- TWK (Tes Wawasan Kebangsaan) ---
+    // --- Kategori TWK ---
     {
       id: 1,
       category: 'TWK',
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
       , correctAnswer: 'C'
     },
-    // --- TIU (Tes Intelegensia Umum) ---
+    // --- Kategori TIU ---
     {
       id: 7,
       category: 'TIU',
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
       , correctAnswer: 'D'
     },
-    // --- TKP (Tes Karakteristik Pribadi) ---
+    // --- Kategori TKP ---
     {
       id: 14,
       category: 'TKP',
@@ -249,13 +249,13 @@ document.addEventListener('DOMContentLoaded', () => {
       , correctAnswer: 'C'
     }  ];
 
-  // --- State ---
+  // --- 2. State Aplikasi ---
   let currentIdx = 0;
   const answers = {}; // { questionId: selectedKey }
   const doubts = {};  // { questionId: boolean }
   let timeLeft = 90 * 60; // 90 menit dalam detik
 
-  // --- Elements ---
+  // --- 3. Elemen DOM ---
   const qTextEl = document.getElementById('q-text');
   const qOptionsEl = document.getElementById('q-options');
   const navGridEl = document.getElementById('navGrid');
@@ -269,10 +269,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const timerEl = document.getElementById('timer');
   const progressBar = document.getElementById('progressBar');
 
-  // --- Functions ---
+  // --- 4. Fungsi Utama ---
 
   function submitTest() {
-    // Calculate score
+    // Hitung Skor
     let correctCount = 0;
     questions.forEach(q => {
       if (answers[q.id] === q.correctAnswer) {
@@ -291,10 +291,10 @@ document.addEventListener('DOMContentLoaded', () => {
       timestamp: new Date().toISOString()
     };
 
-    // Save to localStorage
+    // Simpan ke localStorage
     localStorage.setItem('cpns_cat_result', JSON.stringify(resultData));
     
-    // Redirect to result page
+    // Redirect ke halaman hasil
     window.location.href = 'hasil-tes.html';
   }
 
@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderQuestion() {
     const q = questions[currentIdx];
     
-    // Update Header
+    // Update Header Soal
     if (headerNoEl) headerNoEl.textContent = q.id;
     if (catKategoriEl) {
       catKategoriEl.textContent = q.category;
@@ -340,10 +340,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update Progress Bar
     if (progressBar) progressBar.style.width = `${((currentIdx + 1) / questions.length) * 100}%`;
 
-    // Update Text
+    // Update Teks Soal
     qTextEl.innerHTML = q.text;
 
-    // Update Options
+    // Update Pilihan Jawaban
     qOptionsEl.innerHTML = '';
     q.options.forEach(opt => {
       const isSelected = answers[q.id] === opt.key;
@@ -372,17 +372,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       label.querySelector('input').addEventListener('change', () => {
         answers[q.id] = opt.key;
-        renderQuestion(); // Re-render to update styles
-        renderNav();      // Update nav grid
+        renderQuestion(); // Render ulang untuk update style
+        renderNav();      // Update grid navigasi
       });
 
       qOptionsEl.appendChild(label);
     });
 
-    // Update Doubt Checkbox
+    // Update Checkbox Ragu-ragu
     if (doubtCheckEl) doubtCheckEl.checked = !!doubts[q.id];
 
-    // Update Buttons
+    // Update Tombol Navigasi (Prev/Next/Submit)
     if (prevBtn) prevBtn.disabled = currentIdx === 0;
     if (currentIdx === questions.length - 1) {
       if (nextBtn) nextBtn.classList.add('hidden');
@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nextBtn.disabled = false;
     }
 
-    renderNav(); // Ensure nav highlight is correct
+    renderNav(); // Pastikan highlight navigasi benar
   }
   
   function getCategoryClass(category) {
@@ -413,11 +413,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const isDoubt = !!doubts[q.id];
       const isCurrent = idx === currentIdx;
 
-      // Base classes: Lebih tinggi (h-9), rounded-lg, shadow halus, flex center
+      // Kelas dasar tombol navigasi
       let classes = "h-9 w-full rounded-lg text-xs font-bold transition-all duration-200 border flex items-center justify-center shadow-sm ";
       
       if (isCurrent) {
-        // Active state: Ring lebih jelas, scale up sedikit
+        // State Aktif: Ring lebih jelas
         classes += "ring-2 ring-offset-2 ring-blue-500 dark:ring-offset-gray-800 z-10 transform scale-105 ";
       }
 
@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isDoubt) {
            classes += "bg-amber-100 text-amber-700 border-amber-300 hover:bg-amber-200";
         } else {
-           // Default state: Putih/Dark Gray, border halus
+           // State Default
            if (isCurrent) {
              classes += "bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 border-blue-500 dark:border-blue-400";
            } else {
@@ -451,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Event Listeners ---
+  // --- 5. Event Listeners ---
   if (prevBtn) {
     prevBtn.addEventListener('click', () => {
       if (currentIdx > 0) {
@@ -517,17 +517,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Init ---
+  // --- 6. Inisialisasi ---
   startTimer();
   renderQuestion();
   renderNav();
   
-  // Initialize layout (Sidebar, Navbar, Dark Mode, etc.)
+  // Load Layout Global
   if (typeof loadLayout === 'function') {
     loadLayout('tes');
   }
 
-  // Initialize Lucide icons if needed
+  // Inisialisasi Ikon
   if (window.lucide) {
     lucide.createIcons();
   }

@@ -1,3 +1,4 @@
+// --- 1. Data Paket Soal ---
 const paketSoal = [
   {
     title: "Paket SKD 1",
@@ -61,6 +62,7 @@ const paketSoal = [
   }
 ];
 
+// --- 2. Logika Filter & Pencarian ---
 let selectedFilter = "";
 let searchQuery = "";
 const container = document.getElementById("paketContainer");
@@ -82,6 +84,7 @@ function setFilter(filter) {
   render();
 }
 
+// Helper: Tentukan status paket
 function getStatus(p) {
   if (!p.purchased) return "Terkunci";
   if (p.progress === 100) return "Selesai";
@@ -89,6 +92,7 @@ function getStatus(p) {
   return "Belum Mulai";
 }
 
+// --- 3. Render Kartu Paket ---
 function render() {
   if (!container) return;
   container.innerHTML = "";
@@ -155,6 +159,7 @@ function render() {
   }
 }
 
+// Helper: Badge Kategori & Status
 function badgeCategory(p) {
   return `<div class="flex flex-wrap gap-1">` + p.types.map(type => {
     if (type === "TWK") return `<span class="text-xs font-semibold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300">TWK</span>`;
@@ -171,7 +176,7 @@ function badgeStatus(status, progress) {
   return `<span class="text-xs font-semibold px-2 py-0.5 rounded-md bg-yellow-100 text-yellow-800 dark:bg-amber-900/40 dark:text-amber-300">Mulai</span>`;
 }
 
-// ================= SLIDER LOGIC =================
+// --- 4. Logika Slider Banner ---
 let currentSlide = 0;
 const totalSlides = 3;
 const slider = document.getElementById('bannerSlider');
@@ -213,7 +218,7 @@ function resetInterval() {
   slideInterval = setInterval(nextSlide, 5000);
 }
 
-// Initialize
+// Inisialisasi
 document.addEventListener('DOMContentLoaded', () => {
     resetInterval();
     if (typeof loadLayout === 'function') {
@@ -222,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
     render();
 });
 
-// ================= MODAL LOGIC =================
+// --- 5. Logika Modal Pembelian ---
 window.openPurchaseModal = function(title, price) {
     const modal = document.getElementById('purchaseModal');
     if (!modal) return;
@@ -234,7 +239,7 @@ window.openPurchaseModal = function(title, price) {
     document.getElementById('modal-total').textContent = formattedPrice;
     
     modal.classList.remove('hidden');
-    // Re-init icons inside modal if needed
+    // Re-init ikon di dalam modal
     if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
@@ -247,7 +252,7 @@ window.processPurchase = function() {
     const btn = document.querySelector('#purchaseModal button.bg-blue-600');
     const originalText = btn.textContent;
     
-    // Simulate Loading
+    // Simulasi Loading Pembelian
     btn.textContent = 'Memproses...';
     btn.disabled = true;
     btn.classList.add('opacity-75', 'cursor-not-allowed');

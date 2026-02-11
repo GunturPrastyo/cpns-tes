@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize layout script
+  // Inisialisasi Layout
   if (typeof loadLayout === 'function') {
-    // Assuming 'riwayat' or similar is the page key for layout active state
     loadLayout('riwayat'); 
   }
 
@@ -10,10 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const reviewContainer = document.getElementById('review-content');
   const reviewTitle = document.querySelector('h2[id="review-title"]');
 
-  // Hide review section by default as requested
+  // Sembunyikan bagian review secara default
   if (reviewContainer) reviewContainer.style.display = 'none';
   if (reviewTitle) reviewTitle.style.display = 'none';
 
+  // Ambil data hasil dari LocalStorage
   const resultDataString = localStorage.getItem('cpns_cat_result');
 
   if (!resultDataString) {
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const { score, correctCount, totalQuestions, answers, questions } = resultData;
   const incorrectCount = totalQuestions - correctCount;
   
-  // --- Calculate category scores ---
+  // --- 1. Hitung Skor Per Kategori ---
   const categoryScores = {};
   if (questions && questions.length > 0) {
     questions.forEach(q => {
@@ -45,9 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- Render Summary ---
+  // --- 2. Render Ringkasan Hasil ---
   function renderSummary() {
-    const isPassed = score >= 65; // Example passing grade
+    const isPassed = score >= 65; // Contoh passing grade
     resultLoading.style.display = 'none';
     
     let categoryScoresHTML = '';
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ${categoryScoresHTML}
     `;
 
-    // --- Review Logic ---
+    // --- 3. Logika Review Pembahasan ---
     const toggleReviewBtn = document.getElementById('toggle-review-btn');
     
     function renderReview() {
@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Animate circle after rendering
+    // Animasi Lingkaran Skor
     setTimeout(() => {
         const circle = document.getElementById('score-circle');
         if (circle) {

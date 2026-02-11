@@ -1,5 +1,5 @@
 window.loadLayout = function(activePage) {
-  // --- 1. Inject Sidebar & Navbar HTML ---
+  // --- 1. Injeksi HTML Sidebar & Navbar (Komponen Global) ---
   const sidebarHTML = `
 <aside id="sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen bg-white dark:bg-gray-800 shadow-xl transition-all duration-300 transform -translate-x-full md:translate-x-0 border-r border-gray-200 dark:border-gray-700 overflow-hidden">
   <div class="h-16 flex items-center px-6 border-b border-gray-200 dark:border-gray-700 whitespace-nowrap">
@@ -12,7 +12,7 @@ window.loadLayout = function(activePage) {
   <nav class="p-4 space-y-2 text-sm overflow-y-auto h-[calc(100vh-4rem)]">
     <p class="sidebar-text text-xs font-semibold text-gray-400 mb-2 px-3 uppercase tracking-wider transition-opacity duration-300 whitespace-nowrap">Menu Utama</p>
     
-    <a href="dashboard.html" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 group ${activePage === 'dashboard' ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400' : ''}" data-page="dashboard">
+    <a href="index.html" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 group ${activePage === 'dashboard' ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400' : ''}" data-page="dashboard">
       <i data-lucide="layout-dashboard" class="w-5 h-5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0 ${activePage === 'dashboard' ? 'text-blue-600 dark:text-blue-400' : ''}"></i>
       <span class="font-medium sidebar-text transition-opacity duration-300 whitespace-nowrap">Dashboard</span>
     </a>
@@ -62,7 +62,7 @@ window.loadLayout = function(activePage) {
       <button id="sidebar-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors">
         <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
-      <h1 id="navbar-logo" class="font-bold text-lg text-blue-600 dark:text-blue-400 block md:hidden transition-opacity duration-300">
+      <h1 id="navbar-logo" class="font-bold text-lg text-blue-600 dark:text-blue-400 hidden transition-opacity duration-300">
         CPNS Learning
       </h1>
     </div>
@@ -172,11 +172,13 @@ window.loadLayout = function(activePage) {
         
         <div id="user-dropdown" class="hidden absolute right-0 mt-3 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 py-2 z-50 transform origin-top-right transition-all">
           <div class="px-4 py-3 border-b border-gray-100 dark:border-gray-700 mb-1">
-            <p class="text-sm font-semibold text-gray-800 dark:text-gray-200">Budi Santoso</p>
-            <p class="text-xs text-gray-500 dark:text-gray-400 truncate">budi.santoso@email.com</p>
+            <p class="text-sm font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i> Budi Santoso</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400 truncate flex items-center gap-2 mt-1"><i data-lucide="mail" class="w-3 h-3"></i> budi.santoso@email.com</p>
           </div>
-          <a href="profil.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="user" class="w-4 h-4"></i> Profil Saya</a>
-          <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="log-out" class="w-4 h-4 text-red-500"></i> Keluar</a>
+          <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="phone" class="w-4 h-4"></i> Call Center</a>
+          <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="help-circle" class="w-4 h-4"></i> Pusat Bantuan</a>
+          <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="settings" class="w-4 h-4"></i> Pengaturan</a>
+          <a href="login.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="log-out" class="w-4 h-4 text-red-500"></i> Keluar</a>
         </div>
       </div>
     </div>
@@ -184,8 +186,7 @@ window.loadLayout = function(activePage) {
 </header>
 `;
 
-  // Inject Navbar first (so it's top of body but Sidebar is usually first in DOM structure in templates)
-  // Actually, let's just prepend them.
+  // Masukkan Navbar dan Sidebar ke dalam DOM jika belum ada
   if (!document.getElementById('navbar')) {
       document.body.insertAdjacentHTML('afterbegin', navbarHTML);
   }
@@ -193,8 +194,8 @@ window.loadLayout = function(activePage) {
       document.body.insertAdjacentHTML('afterbegin', sidebarHTML);
   }
 
-  if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
-    lucide.createIcons(); // Render Icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons(); // Inisialisasi Ikon Lucide
   }
 
   const sidebar = document.getElementById('sidebar');
@@ -204,8 +205,7 @@ window.loadLayout = function(activePage) {
   const toggleBtn = document.getElementById('sidebar-toggle');
   const sidebarTexts = document.querySelectorAll('.sidebar-text');
 
-  // Logic Toggle Sidebar
-  // Pastikan listener tidak dipasang ganda dengan mengecek atribut khusus
+  // --- 2. Logika Toggle Sidebar (Desktop & Mobile) ---
   if (toggleBtn && sidebar && navbar && !toggleBtn.hasAttribute('data-sidebar-listener')) {
     toggleBtn.setAttribute('data-sidebar-listener', 'true');
 
@@ -214,7 +214,7 @@ window.loadLayout = function(activePage) {
       const isDesktop = window.innerWidth >= 768;
       
       if (isDesktop) {
-        // Desktop: Collapse/Expand
+        // Desktop: Mode Collapse/Expand (Kecil/Besar)
         const isCollapsed = sidebar.classList.contains('w-20');
         
         if (isCollapsed) {
@@ -257,7 +257,7 @@ window.loadLayout = function(activePage) {
           sidebarTexts.forEach(t => t.classList.add('hidden')); // Sembunyikan teks
         }
       } else {
-        // Mobile: Off-canvas Toggle
+        // Mobile: Mode Off-canvas (Buka/Tutup)
         const isClosed = sidebar.classList.contains('-translate-x-full');
         if (isClosed) {
           sidebar.classList.remove('-translate-x-full');
@@ -280,7 +280,7 @@ window.loadLayout = function(activePage) {
     });
   }
 
-  // --- Logic Submenu Komponen ---
+  // --- 3. Logika Submenu (Dropdown di Sidebar) ---
   const btnKomponen = document.getElementById('btn-komponen');
   const submenuKomponen = document.getElementById('submenu-komponen');
   
@@ -292,12 +292,12 @@ window.loadLayout = function(activePage) {
       });
   }
 
-  // --- Logic Dark Mode ---
+  // --- 4. Logika Dark Mode (Tema Gelap/Terang) ---
   const themeToggleBtn = document.getElementById('theme-toggle');
   const darkIcon = document.getElementById('theme-toggle-dark-icon');
   const lightIcon = document.getElementById('theme-toggle-light-icon');
 
-  // Set initial state based on localStorage or system preference
+  // Cek preferensi awal dari localStorage atau sistem
   if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark');
       darkIcon?.classList.add('hidden');
@@ -308,7 +308,7 @@ window.loadLayout = function(activePage) {
       lightIcon?.classList.add('hidden');
   }
 
-  // Pastikan event listener tidak dipasang ganda
+  // Event listener untuk tombol ganti tema
   if (themeToggleBtn && !themeToggleBtn.hasAttribute('data-listener-attached')) {
       themeToggleBtn.setAttribute('data-listener-attached', 'true');
       
@@ -336,7 +336,7 @@ window.loadLayout = function(activePage) {
       });
   }
 
-  // --- Logic Dropdowns (User & Notification) ---
+  // --- 5. Logika Dropdown (Profil User & Notifikasi) ---
   const setupDropdown = (btnId, dropdownId) => {
       const btn = document.getElementById(btnId);
       const dropdown = document.getElementById(dropdownId);
@@ -369,7 +369,7 @@ window.loadLayout = function(activePage) {
   setupDropdown('user-menu-toggle', 'user-dropdown');
   setupDropdown('notif-toggle', 'notif-dropdown');
 
-  // --- Logic Dismiss Notification ---
+  // --- 6. Logika Menghapus Notifikasi ---
   const notifDropdown = document.getElementById('notif-dropdown');
   // Cegah duplikasi listener pada notifikasi juga
   if (notifDropdown && !notifDropdown.hasAttribute('data-dismiss-listener')) {

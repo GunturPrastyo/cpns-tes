@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof loadLayout === 'function') {
-        loadLayout('info-terkini');
+        loadLayout('info-terkini'); // Load layout utama
     }
 
+    // --- 1. Data Berita Dummy ---
     const newsData = [
         {
             id: 1,
@@ -67,13 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const popularNewsList = document.getElementById('popularNewsList');
     const filterBtns = document.querySelectorAll('.filter-btn');
 
-    // State
+    // --- 2. State Aplikasi ---
     let currentPage = 1;
     const itemsPerPage = 4; // Tampilkan 4 berita per halaman
     let currentCategory = 'all';
     let searchQuery = '';
 
-    function renderNews() {
+    // --- 3. Fungsi Render Berita (Grid) ---
+    function renderNews() { 
         if (!newsGrid) return;
         
         // Filter Data
@@ -84,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return matchesCategory && matchesSearch;
         });
 
-        // Pagination Logic
+        // Logika Pagination
         const totalPages = Math.ceil(filteredNews.length / itemsPerPage);
         if (currentPage > totalPages) currentPage = totalPages || 1;
         
@@ -92,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const end = start + itemsPerPage;
         const paginatedNews = filteredNews.slice(start, end);
 
-        // Render Grid
+        // Render HTML Grid
         newsGrid.innerHTML = paginatedNews.map(item => `
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full">
                 <div class="h-48 overflow-hidden relative">
@@ -134,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
 
-        // Render Pagination Controls
+        // Render Kontrol Pagination
         renderPagination(totalPages);
 
         if (typeof lucide !== 'undefined') {
@@ -142,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- 4. Fungsi Render Pagination ---
     function renderPagination(totalPages) {
         if (!newsPagination) return;
         
@@ -152,21 +155,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let html = '';
         
-        // Prev Button
+        // Tombol Sebelumnya
         html += `
             <button onclick="changeNewsPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''} class="px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all">
                 Sebelumnya
             </button>
         `;
         
-        // Page Numbers
+        // Angka Halaman
         html += `<div class="flex items-center gap-1">`;
         for (let i = 1; i <= totalPages; i++) {
             html += `<button onclick="changeNewsPage(${i})" class="w-8 h-8 flex items-center justify-center rounded-lg text-sm font-medium transition-colors ${i === currentPage ? 'bg-blue-50 text-blue-600 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800' : 'text-gray-500 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800'}">${i}</button>`;
         }
         html += `</div>`;
 
-        // Next Button
+        // Tombol Selanjutnya
         html += `
             <button onclick="changeNewsPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''} class="px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all">
                 Selanjutnya
@@ -179,10 +182,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- 5. Render Berita Populer (Sidebar) ---
     function renderPopularNews() {
         if (!popularNewsList) return;
 
-        // Sort by views (parse 'k' if needed)
+        // Urutkan berdasarkan views (parsing 'k' jika ada)
         const sortedNews = [...newsData].sort((a, b) => {
             const viewA = a.views.includes('k') ? parseFloat(a.views) * 1000 : parseFloat(a.views);
             const viewB = b.views.includes('k') ? parseFloat(b.views) * 1000 : parseFloat(b.views);
@@ -214,21 +218,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof lucide !== 'undefined') lucide.createIcons();
     }
 
-    // Global Page Change Function
+    // Fungsi Ganti Halaman (Global)
     window.changeNewsPage = (page) => {
         currentPage = page;
         renderNews();
     };
 
+    // Event Listener Filter Kategori
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active class from all
+            // Reset kelas aktif
             filterBtns.forEach(b => {
                 b.classList.remove('bg-blue-600', 'bg-green-600', 'bg-red-600', 'text-white', 'shadow-md');
                 b.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-300', 'border', 'border-gray-200', 'dark:border-gray-700');
             });
             
-            // Add active class to clicked
+            // Set kelas aktif pada tombol yang diklik
             btn.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-300', 'border', 'border-gray-200', 'dark:border-gray-700');
 
             currentCategory = btn.getAttribute('data-category');
@@ -238,20 +243,21 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentCategory === 'Penting') activeColor = 'bg-red-600';
             
             btn.classList.add(activeColor, 'text-white', 'shadow-md');
-            currentPage = 1; // Reset page on filter change
+            currentPage = 1; // Reset halaman
             renderNews();
         });
     });
 
+    // Event Listener Pencarian
     if (newsSearchInput) {
         newsSearchInput.addEventListener('input', (e) => {
             searchQuery = e.target.value;
-            currentPage = 1; // Reset page on search
+            currentPage = 1; // Reset halaman
             renderNews();
         });
     }
 
-    // --- Slider Logic ---
+    // --- 6. Logika Slider Banner ---
     let currentSlide = 0;
     const totalSlides = 3;
     const slider = document.getElementById('infoSlider');
@@ -296,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
         slideInterval = setInterval(window.nextInfoSlide, 6000); // 6 seconds auto slide
     }
 
-    // Initial render
+    // Inisialisasi Awal
     renderNews();
     renderPopularNews();
     resetInterval(); // Start slider

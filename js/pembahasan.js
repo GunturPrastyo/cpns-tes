@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize layout
+    // Inisialisasi Layout
     if (typeof loadLayout === 'function') {
         loadLayout('riwayat');
     }
@@ -28,17 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultData = JSON.parse(resultDataString);
     const { questions, answers } = resultData;
 
-    // --- Pagination State ---
+    // --- 1. State Pagination ---
     let currentPage = 1;
     let itemsPerPage = window.innerWidth < 640 ? 5 : 10; // 5 for mobile, 10 for desktop
     let activeQuestionIdx = 0;
     let observer;
 
-    // --- Render Questions (Paginated) ---
+    // --- 2. Render Daftar Soal (Paginated) ---
     function renderQuestions() {
         const totalPages = Math.ceil(questions.length / itemsPerPage);
         
-        // Validate currentPage
+        // Validasi Halaman
         if (currentPage < 1) currentPage = 1;
         if (currentPage > totalPages) currentPage = totalPages;
 
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         });
 
-        // Add Pagination Controls at the bottom of content
+        // Tambahkan Kontrol Pagination di Bawah
         html += `
             <div class="flex justify-between items-center gap-4 mt-8 pt-4 border-t border-gray-200 dark:border-gray-700">
                 <button id="content-prev-btn" class="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm flex items-center gap-2" ${currentPage === 1 ? 'disabled' : ''}>
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = html;
         lucide.createIcons();
 
-        // Setup IntersectionObserver to track active question on scroll
+        // Setup IntersectionObserver untuk melacak soal aktif saat scroll
         if (observer) observer.disconnect();
         
         observer = new IntersectionObserver((entries) => {
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         container.querySelectorAll('[id^="soal-"]').forEach(el => observer.observe(el));
 
-        // Attach listeners
+        // Event Listener Tombol Pagination
         document.getElementById('content-prev-btn')?.addEventListener('click', () => {
             if (currentPage > 1) {
                 currentPage--;
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Render Sidebar Navigation (All Items) ---
+    // --- 3. Render Navigasi Sidebar (Semua Nomor) ---
     function renderNavGrid() {
         if (!navContainer) return;
         
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navContainer.innerHTML = navHtml;
     }
 
-    // --- Jump Function ---
+    // --- 4. Fungsi Lompat ke Soal ---
     window.jumpToQuestion = (index) => {
         activeQuestionIdx = index;
         renderNavGrid();
@@ -237,18 +237,18 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             renderQuestions();
         }
-        // Wait for render to finish then scroll
+        // Tunggu render selesai lalu scroll
         setTimeout(() => {
             const el = document.getElementById(`soal-${index}`);
             if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 50);
     };
 
-    // Initial Render
+    // Inisialisasi Render
     renderQuestions();
     renderNavGrid();
 
-    // Resize Listener to update items per page
+    // Listener Resize untuk update item per halaman
     window.addEventListener('resize', () => {
         const newItemsPerPage = window.innerWidth < 640 ? 5 : 10;
         if (newItemsPerPage !== navItemsPerPage) {

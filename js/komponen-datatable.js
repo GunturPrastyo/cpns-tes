@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Load Layout (Sidebar & Navbar)
+    // Load Layout Global
     if (typeof loadLayout === 'function') {
         loadLayout('komponen-datatable');
     }
 
-    // --- 1. Dummy Data (Static) ---
+    // --- 1. Data Dummy Transaksi ---
     const transactions = [
         { id: 'INV-2025001', customer: 'Budi Santoso', item: 'Paket SKD Platinum', date: '2025-01-10', amount: 50000, status: 'Lunas' },
         { id: 'INV-2025002', customer: 'Siti Aminah', item: 'Paket SKD Gold', date: '2025-01-11', amount: 45000, status: 'Pending' },
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'INV-2025015', customer: 'Hendra Gunawan', item: 'Tryout Nasional #1', date: '2025-01-24', amount: 25000, status: 'Dibatalkan' }
     ];
 
-    // --- 2. State Management ---
+    // --- 2. Manajemen State ---
     const state = {
         rawData: transactions,
         filteredData: [],
@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
         globalSearch: ''
     };
 
-    // Initialize filteredData
+    // Inisialisasi data terfilter
     state.filteredData = [...state.rawData];
 
-    // --- 3. Column Configuration ---
+    // --- 3. Konfigurasi Kolom Tabel ---
     const columns = [
         { key: 'id', label: 'ID Invoice', type: 'text', sortable: true },
         { key: 'customer', label: 'Pelanggan', type: 'text', sortable: true },
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { key: 'action', label: 'Aksi', type: 'none', sortable: false }
     ];
 
-    // --- 4. DOM Elements ---
+    // --- 4. Elemen DOM ---
     const tableHeaders = document.getElementById('table-headers');
     const tableBody = document.getElementById('table-body');
     const paginationControls = document.getElementById('paginationControls');
@@ -58,9 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const rowsPerPageSelect = document.getElementById('rowsPerPage');
     const globalSearchInput = document.getElementById('globalSearch');
 
-    // --- 5. Render Functions ---
+    // --- 5. Fungsi Render ---
 
-    // Render Headers & Filters (Run Once)
+    // Render Header Tabel
     const initTableStructure = () => {
         if (!tableHeaders) return;
 
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof lucide !== 'undefined') lucide.createIcons();
     };
 
-    // Render Table Body
+    // Render Isi Tabel (Body)
     const renderTable = () => {
         if (!tableBody) return;
 
@@ -95,14 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         } else {
             tableBody.innerHTML = pageData.map(row => {
-                // Status Styling
+                // Styling Status
                 let statusClass = '';
                 if (row.status === 'Lunas') statusClass = 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300';
                 else if (row.status === 'Pending') statusClass = 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300';
                 else if (row.status === 'Gagal') statusClass = 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300';
                 else statusClass = 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300';
 
-                // Format Currency
+                // Format Mata Uang
                 const formattedAmount = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(row.amount);
 
                 return `
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }).join('');
         }
 
-        // Update Info Text
+        // Update Teks Info Pagination
         const total = state.filteredData.length;
         if (startRowEl) startRowEl.textContent = total === 0 ? 0 : start + 1;
         if (endRowEl) endRowEl.textContent = Math.min(end, total);
@@ -135,21 +135,21 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSortIcons();
     };
 
-    // Render Pagination Controls
+    // Render Kontrol Pagination
     const renderPagination = (total) => {
         if (!paginationControls) return;
 
         const totalPages = Math.ceil(total / state.rowsPerPage);
         let html = '';
 
-        // Prev Button
+        // Tombol Previous
         html += `
             <button onclick="changePage(${state.currentPage - 1})" ${state.currentPage === 1 ? 'disabled' : ''} class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed">
                 <i data-lucide="chevron-left" class="w-4 h-4"></i>
             </button>
         `;
 
-        // Page Numbers Logic
+        // Logika Nomor Halaman
         let startPage = Math.max(1, state.currentPage - 2);
         let endPage = Math.min(totalPages, startPage + 4);
         
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }
 
-        // Next Button
+        // Tombol Next
         html += `
             <button onclick="changePage(${state.currentPage + 1})" ${state.currentPage === totalPages || totalPages === 0 ? 'disabled' : ''} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed">
                 <i data-lucide="chevron-right" class="w-4 h-4"></i>
@@ -177,13 +177,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof lucide !== 'undefined') lucide.createIcons();
     };
 
-    // --- 6. Logic Functions ---
+    // --- 6. Fungsi Logika ---
 
-    // Process Data (Filter & Sort)
+    // Proses Data (Filter & Sort)
     const processData = () => {
         let result = [...state.rawData];
 
-        // 1. Global Search
+        // 1. Pencarian Global
         if (state.globalSearch) {
             const term = state.globalSearch.toLowerCase();
             result = result.filter(row => 
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         state.filteredData = result;
         
-        // Reset to page 1 if current page is out of bounds
+        // Reset ke halaman 1 jika out of bounds
         const totalPages = Math.ceil(state.filteredData.length / state.rowsPerPage);
         if (state.currentPage > totalPages) state.currentPage = 1;
         if (state.currentPage < 1) state.currentPage = 1;
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTable();
     };
 
-    // Update Sort Icons UI
+    // Update UI Ikon Sort
     const updateSortIcons = () => {
         document.querySelectorAll('.sort-icon').forEach(icon => {
             icon.setAttribute('data-lucide', 'arrow-up-down');
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof lucide !== 'undefined') lucide.createIcons();
     };
 
-    // --- 7. Event Handlers (Exposed to Window) ---
+    // --- 7. Event Handler Global ---
 
     window.handleSort = (column) => {
         if (state.sortColumn === column) {
@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 8. Event Listeners ---
 
-    // Global Search
+    // Pencarian Global
     if (globalSearchInput) {
         globalSearchInput.addEventListener('input', (e) => {
             state.globalSearch = e.target.value;
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Rows Per Page
+    // Baris Per Halaman
     if (rowsPerPageSelect) {
         rowsPerPageSelect.addEventListener('change', (e) => {
             state.rowsPerPage = parseInt(e.target.value);
@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 9. Init ---
+    // --- 9. Inisialisasi ---
     initTableStructure();
-    processData(); // Initial render
+    processData();
 });

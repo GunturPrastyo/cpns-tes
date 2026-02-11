@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Load Layout (Sidebar & Navbar)
+    // Load Layout Global
     if (typeof loadLayout === 'function') {
         loadLayout('komponen-editor');
     }
@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentNavPage = 1;
     const navPageSize = 20; // Tampilkan 20 nomor per halaman
     
-    // Store Quill instances: { id: { soal: quill, pembahasan: quill } }
+    // Penyimpanan Instance Quill: { id: { soal: quill, pembahasan: quill } }
     const quillRegistry = {};
 
-    // Toolbar Config
+    // Konfigurasi Toolbar Editor
     const toolbarOptions = [
         ['bold', 'italic', 'underline', 'strike'],
         ['blockquote', 'code-block'],
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ['link', 'image']
     ];
 
-    // --- Core Function: Add Question ---
+    // --- 1. Fungsi Utama: Tambah Soal ---
     function addQuestion(data = null, insertAfterElement = null) {
         const uniqueId = 'q-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
         const clone = template.content.cloneNode(true);
@@ -38,16 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
         
         item.setAttribute('data-id', uniqueId);
         
-        // Setup Containers for Quill
+        // Setup Container untuk Quill
         const soalContainer = item.querySelector('.editor-soal');
         const pembahasanContainer = item.querySelector('.editor-pembahasan');
         const optionsContainer = item.querySelector('.options-container');
         
-        // Generate unique IDs for Quill initialization
+        // Generate ID unik untuk inisialisasi Quill
         soalContainer.id = `soal-${uniqueId}`;
         pembahasanContainer.id = `pembahasan-${uniqueId}`;
 
-        // Render Options (A-E)
+        // Render Pilihan Jawaban (A-E)
         const labels = ['A', 'B', 'C', 'D', 'E'];
         optionsContainer.innerHTML = labels.map((label) => `
             <div class="flex gap-3 items-start">
@@ -63,14 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
 
-        // Insert into DOM
+        // Masukkan ke DOM
         if (insertAfterElement) {
             insertAfterElement.after(item);
         } else {
             questionsList.appendChild(item);
         }
 
-        // Initialize Quill
+        // Inisialisasi Quill Editor
         const quillSoal = new Quill(`#${soalContainer.id}`, {
             theme: 'snow',
             modules: { toolbar: toolbarOptions, imageResize: { displaySize: true } },
@@ -83,10 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
             placeholder: 'Tulis pembahasan lengkap di sini...'
         });
 
-        // Register Instances
+        // Registrasi Instance
         quillRegistry[uniqueId] = { soal: quillSoal, pembahasan: quillPembahasan };
 
-        // Fill Data if Duplicate
+        // Isi Data jika Duplikasi
         if (data) {
             quillSoal.root.innerHTML = data.soal;
             quillPembahasan.root.innerHTML = data.pembahasan;
@@ -104,10 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Setup Event Listeners for Buttons
+        // Setup Event Listener Tombol (Hapus, Pindah, Duplikat)
         setupItemEvents(item, uniqueId);
         
-        // Re-index numbers
+        // Update Nomor Urut
         updateQuestionNumbers();
 
         // Auto-switch ke halaman navigasi terakhir saat tambah soal baru
@@ -118,17 +118,17 @@ document.addEventListener('DOMContentLoaded', () => {
             renderNavigation(); // Render ulang navigasi di halaman baru
         }
         
-        // Initialize Icons
+        // Inisialisasi Ikon
         if (typeof lucide !== 'undefined') lucide.createIcons();
 
-        // Scroll to new item if added manually (not initial load)
+        // Scroll ke item baru
         if (questionsList.children.length > 1) {
             item.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }
 
     function setupItemEvents(item, uniqueId) {
-        // Move Up
+        // Pindah Atas
         item.querySelector('.btn-move-up').addEventListener('click', () => {
             if (item.previousElementSibling) {
                 item.previousElementSibling.before(item);
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Move Down
+        // Pindah Bawah
         item.querySelector('.btn-move-down').addEventListener('click', () => {
             if (item.nextElementSibling) {
                 item.nextElementSibling.after(item);
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Delete
+        // Hapus Soal
         item.querySelector('.btn-delete').addEventListener('click', () => {
             Swal.fire({
                 title: 'Hapus Soal?',
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Duplicate
+        // Duplikat Soal
         item.querySelector('.btn-duplicate').addEventListener('click', () => {
             const data = getQuestionData(item, uniqueId);
             addQuestion(data, item);
@@ -186,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
+    // --- 2. Render Navigasi Soal (Sidebar Kanan) ---
     function renderNavigation() {
         if (!navGrid) return;
         navGrid.innerHTML = '';
@@ -260,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
         items.forEach((item, index) => {
             item.querySelector('.q-number').textContent = index + 1;
             
-            // Disable Move Up for first item
+            // Disable tombol pindah atas untuk item pertama
             const btnUp = item.querySelector('.btn-move-up');
             if (btnUp) {
                 btnUp.disabled = index === 0;
@@ -268,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 else btnUp.classList.remove('opacity-50', 'cursor-not-allowed');
             }
 
-            // Disable Move Down for last item
+            // Disable tombol pindah bawah untuk item terakhir
             const btnDown = item.querySelector('.btn-move-down');
             if (btnDown) {
                 btnDown.disabled = index === items.length - 1;
@@ -279,12 +280,12 @@ document.addEventListener('DOMContentLoaded', () => {
         renderNavigation();
     }
 
-    // --- Event Listeners ---
+    // --- 3. Event Listeners ---
     if (btnAdd) {
         btnAdd.addEventListener('click', () => addQuestion());
     }
 
-    // --- Save All ---
+    // --- 4. Fungsi Simpan Semua ---
     window.saveQuestion = () => {
         const allData = [];
         const items = questionsList.querySelectorAll('.question-item');
@@ -294,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const id = item.getAttribute('data-id');
             const data = getQuestionData(item, id);
             
-            // Simple Validation
+            // Validasi Sederhana
             if (quillRegistry[id].soal.getText().trim().length === 0) isValid = false;
             if (!data.correct) isValid = false;
 
@@ -315,11 +316,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- Init ---
-    // Add first empty question
+    // --- 5. Inisialisasi ---
+    // Tambah satu soal kosong di awal
     addQuestion();
 
-    // --- Scroll to Top Logic ---
+    // Logika Scroll to Top
     const btnScrollTop = document.getElementById('btn-scroll-top');
     if (btnScrollTop) {
         window.addEventListener('scroll', () => {
@@ -335,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Mobile Sidebar Toggle ---
+    // Toggle Sidebar Mobile
     window.toggleEditorSidebar = () => {
         const sidebar = document.getElementById('editor-sidebar');
         const chevron = document.getElementById('sidebar-chevron');

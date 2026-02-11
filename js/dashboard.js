@@ -1,21 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Lucide Icons
+    // Inisialisasi Ikon Lucide
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
 
-    // --- 1. Render Charts ---
+    // --- 1. Render Grafik (Chart.js) ---
     renderScoreChart();
     renderCategoryChart();
 
-    // --- 2. Render Recent Activity ---
+    // --- 2. Render Aktivitas Terbaru ---
     renderRecentActivity();
 
-    // --- 3. Render Info Updates ---
+    // --- 3. Render Info Terkini ---
     renderInfoList();
 });
 
-// --- Chart: Statistik Perkembangan Nilai (Line Chart) ---
+// --- Grafik: Statistik Perkembangan Nilai (Line Chart) ---
 function renderScoreChart() {
     const canvas = document.getElementById('scoreChart');
     if (!canvas) return;
@@ -25,7 +25,7 @@ function renderScoreChart() {
     gradient.addColorStop(0, 'rgba(37, 99, 235, 0.25)'); // Blue-600 fade
     gradient.addColorStop(1, 'rgba(37, 99, 235, 0.0)');
 
-    // Dummy Data: Simulasi perkembangan skor 5 tryout terakhir
+    // Data Dummy: Simulasi skor 5 tryout terakhir
     const labels = ['TO-1', 'TO-2', 'TO-3', 'TO-4', 'TO-5'];
     const dataScores = [310, 345, 330, 385, 405];
     const targetScore = 450; // Target Aman
@@ -140,7 +140,7 @@ function renderScoreChart() {
     });
 }
 
-// --- Chart: Analisis Kategori (Radar Chart) ---
+// --- Grafik: Analisis Kategori (Radar Chart) ---
 function renderCategoryChart() {
     const ctx = document.getElementById('categoryChart');
     if (!ctx) return;
@@ -245,12 +245,12 @@ function renderCategoryChart() {
     });
 }
 
-// --- Render Recent Activity List ---
+// --- Render Daftar Aktivitas Terbaru ---
 function renderRecentActivity() {
     const container = document.getElementById('recentActivityList');
     if (!container) return;
 
-    // Dummy Data: Ditambah agar mengisi ruang kosong (match height with news card)
+    // Data Dummy Aktivitas
     const activities = [
         { 
             title: 'Tryout SKD Nasional #5', 
@@ -340,7 +340,7 @@ function renderRecentActivity() {
     }
 }
 
-// --- Render Info / News List ---
+// --- Render Daftar Info / Berita ---
 function renderInfoList() {
     const container = document.getElementById('infoList');
     if (!container) return;

@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof loadLayout === 'function') {
-        loadLayout('info-terkini'); // Highlight menu Info Terkini
+        loadLayout('info-terkini'); // Memuat layout utama dan highlight menu
     }
 
-    // --- Dummy Data (Expanded with Content) ---
+    // --- 1. Data Dummy Berita (Konten Statis) ---
     const newsData = [
         {
             id: 1,
@@ -111,17 +111,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    // --- Logic ---
+    // --- 2. Logika Pencarian Berita Berdasarkan ID URL ---
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id')) || 1;
 
-    // Find article or default to first one
+    // Cari artikel di data dummy
     let article = newsData.find(n => n.id === id);
     
-    // Fallback if ID not found in dummy data (since we only expanded 2 items fully)
+    // Fallback: Jika ID tidak ditemukan (karena data dummy terbatas), buat konten default
     if (!article) {
-        // Create a generic article based on the ID if not found in detailed list
-        // This handles the items from info-terkini.js that aren't fully defined here
         article = {
             id: id,
             title: 'Detail Berita Belum Tersedia (Dummy)',
@@ -134,20 +132,20 @@ document.addEventListener('DOMContentLoaded', () => {
             author: 'Admin',
             content: '<p>Maaf, konten lengkap untuk berita ini belum tersedia dalam data dummy. Silakan coba berita "Jadwal Resmi Seleksi CPNS" atau "Tips & Trik TKP".</p>'
         };
-        // Try to find basic info from info-terkini data if possible (simulated)
-        const basicInfo = newsData.find(n => n.id === 1); // Just borrowing styling
+        // Pinjam styling warna dari data pertama jika ada
+        const basicInfo = newsData.find(n => n.id === 1); 
         if(basicInfo) {
              article.color = basicInfo.color;
         }
     }
 
-    // Render Breadcrumb
+    // --- 3. Render Navigasi Breadcrumb ---
     const breadcrumbContainer = document.getElementById('breadcrumb-container');
     if (breadcrumbContainer) {
         breadcrumbContainer.innerHTML = `
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                 <li class="inline-flex items-center">
-                    <a href="dashboard.html" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">
+                    <a href="index.html" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">
                         <i data-lucide="layout-dashboard" class="w-4 h-4 mr-2"></i>
                         Dashboard
                     </a>
@@ -168,10 +166,10 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // Render Content
+    // --- 4. Render Konten Utama Berita ---
     const contentContainer = document.getElementById('article-content');
     if (contentContainer) {
-        // Prepare Gallery Images
+        // Siapkan gambar untuk slider (jika ada array images, pakai itu. Jika tidak, pakai single image)
         const galleryImages = article.images || [article.image];
 
         contentContainer.innerHTML = `
@@ -259,12 +257,12 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // Render Related News (Simple Random/Filter)
+    // --- 5. Render Berita Terkait (Sidebar) ---
     const relatedContainer = document.getElementById('relatedNewsList');
     const relatedFooter = document.getElementById('relatedNewsFooter');
     
     if (relatedContainer) {
-        const related = newsData.filter(n => n.id !== id).slice(0, 5); // Take up to 5 other news
+        const related = newsData.filter(n => n.id !== id).slice(0, 5); // Ambil 5 berita lain
         
         let html = related.map(item => `
             <a href="detail-berita.html?id=${item.id}" class="block p-3 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
@@ -297,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (typeof lucide !== 'undefined') lucide.createIcons();
 
-    // --- Slider Logic ---
+    // --- 6. Logika Slider Gambar Artikel ---
     let currentSlide = 0;
     const totalSlides = article.images ? article.images.length : 1;
     

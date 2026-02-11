@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- 1. Dummy Data Generator (Simulasi Database) ---
+    // --- 1. Generator Data Dummy (Simulasi Database) ---
     const generateDummyData = () => {
-        // Data statis manual agar pasti muncul
+        // Data statis manual
         const data = [
             {
                 id: 1,
@@ -103,11 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        // Sort default by date descending
+        // Urutkan default berdasarkan tanggal terbaru
         return data.sort((a, b) => new Date(b.date) - new Date(a.date));
     };
 
-    // --- 2. State Management ---
+    // --- 2. Manajemen State (Penyimpanan Status Aplikasi) ---
     let allData = generateDummyData();
     let state = {
         data: [...allData],
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sortDirection: 'desc' // 'asc' or 'desc'
     };
 
-    // --- 3. DOM Elements ---
+    // --- 3. Referensi Elemen DOM ---
     const timelineList = document.getElementById('timelineList');
     const searchInput = document.getElementById('searchInput');
     const rowsPerPageSelect = document.getElementById('rowsPerPage');
@@ -132,9 +132,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const avgTwkEl = document.getElementById('avg-twk');
     const avgTkpEl = document.getElementById('avg-tkp');
 
-    // --- 4. Core Functions ---
+    // --- 4. Fungsi Utama ---
 
-    // Helper: Format Date Indonesia
+    // Helper: Format Tanggal Indonesia
     const formatDate = (isoString) => {
         const date = new Date(isoString);
         return new Intl.DateTimeFormat('id-ID', {
@@ -143,14 +143,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }).format(date);
     };
 
-    // Helper: Get Score Color
+    // Helper: Warna Skor (Hijau/Biru/Merah)
     const getScoreColor = (score) => {
         if (score >= 80) return 'text-emerald-600 dark:text-emerald-400 font-bold';
         if (score >= 65) return 'text-blue-600 dark:text-blue-400 font-semibold';
         return 'text-red-500 dark:text-red-400';
     };
 
-    // Filter Data
+    // Fungsi Filter & Sorting Data
     const filterData = () => {
         const query = state.searchQuery.toLowerCase();
         let filtered = allData.filter(item => 
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
             item.category.toLowerCase().includes(query)
         );
 
-        // Sort Data
+        // Logika Sorting
         filtered.sort((a, b) => {
             let valA = a[state.sortColumn];
             let valB = b[state.sortColumn];
@@ -174,12 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         state.data = filtered;
-        state.currentPage = 1; // Reset to page 1 on filter/sort
+        state.currentPage = 1; // Reset ke halaman 1 saat filter berubah
         updateStats();
         renderTimeline();
     };
 
-    // Update Summary Stats
+    // Update Statistik Ringkasan (Rata-rata Nilai)
     const updateStats = () => {
         const stats = {
             'Lengkap': { total: 0, count: 0 },
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (avgTkpEl) avgTkpEl.textContent = stats['TKP'].count ? Math.round(stats['TKP'].total / stats['TKP'].count) : 0;
     };
 
-    // Render Timeline
+    // Render Tampilan Timeline (Daftar Riwayat)
     const renderTimeline = () => {
         const start = (state.currentPage - 1) * state.rowsPerPage;
         const end = start + state.rowsPerPage;
@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const itemEl = document.createElement('div');
             itemEl.className = "relative pl-8 py-2 group";
             
-            // Determine colors based on score
+            // Tentukan warna dan ikon berdasarkan skor
             let scoreColor = 'text-red-600 dark:text-red-400';
             let dotColor = 'bg-white border-red-500 text-red-500';
             let statusIcon = 'x';
@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 statusStripColor = 'bg-blue-500';
             }
             
-            // Timeline line logic
+            // Logika garis timeline (putus di item terakhir)
             const isLast = index === paginatedData.length - 1;
 
             itemEl.innerHTML = `
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderPaginationControls();
     };
 
-    // Update Pagination Info Text
+    // Update Teks Info Pagination
     const updatePaginationInfo = (totalItems) => {
         const start = totalItems === 0 ? 0 : (state.currentPage - 1) * state.rowsPerPage + 1;
         const end = Math.min(start + state.rowsPerPage - 1, totalItems);
@@ -331,12 +331,12 @@ document.addEventListener('DOMContentLoaded', () => {
         totalRowsEl.textContent = totalItems;
     };
 
-    // Render Pagination Buttons
+    // Render Tombol Pagination
     const renderPaginationControls = () => {
         const totalPages = Math.ceil(state.data.length / state.rowsPerPage);
         paginationControls.innerHTML = '';
 
-        // Previous Button
+        // Tombol Previous
         const prevBtn = document.createElement('button');
         prevBtn.className = `flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${state.currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`;
         prevBtn.innerHTML = '<i data-lucide="chevron-left" class="w-4 h-4"></i>';
@@ -349,9 +349,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         paginationControls.appendChild(prevBtn);
 
-        // Page Numbers (Simplified: show all for now, or max 5)
+        // Tombol Angka Halaman
         for (let i = 1; i <= totalPages; i++) {
-            // Logic to show limited pages can be added here (e.g., 1, 2, ..., 10)
             if (i === 1 || i === totalPages || (i >= state.currentPage - 1 && i <= state.currentPage + 1)) {
                 const pageBtn = document.createElement('button');
                 const isActive = i === state.currentPage;
@@ -373,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Next Button
+        // Tombol Next
         const nextBtn = document.createElement('button');
         nextBtn.className = `flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${state.currentPage === totalPages || totalPages === 0 ? 'opacity-50 cursor-not-allowed' : ''}`;
         nextBtn.innerHTML = '<i data-lucide="chevron-right" class="w-4 h-4"></i>';
@@ -388,22 +387,22 @@ document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
     };
 
-    // --- 5. Event Listeners ---
+    // --- 5. Event Listeners (Interaksi User) ---
 
-    // Search
+    // Pencarian
     searchInput.addEventListener('input', (e) => {
         state.searchQuery = e.target.value;
         filterData();
     });
 
-    // Rows Per Page
+    // Ubah Jumlah Baris per Halaman
     rowsPerPageSelect.addEventListener('change', (e) => {
         state.rowsPerPage = parseInt(e.target.value);
         state.currentPage = 1;
         renderTimeline();
     });
 
-    // Sorting Dropdown
+    // Dropdown Sorting
     sortSelect.addEventListener('change', (e) => {
         const value = e.target.value;
         const [column, direction] = value.split('-');
@@ -412,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
         filterData();
     });
 
-    // --- 6. Init ---
+    // --- 6. Inisialisasi Awal ---
     if (typeof loadLayout === 'function') {
         loadLayout('riwayat');
     }

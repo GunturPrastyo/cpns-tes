@@ -1,29 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- 1. Tab Switching Logic ---
+    // --- 1. Logika Pindah Tab (Paket Saya / Riwayat) ---
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
     function switchTab(tabId) {
-        // Hide all contents
+        // Sembunyikan semua konten
         tabContents.forEach(content => {
             content.classList.add('hidden');
         });
 
-        // Reset all buttons to inactive state
+        // Reset semua tombol ke state tidak aktif
         tabBtns.forEach(btn => {
-            // Remove active classes
+            // Hapus kelas aktif
             btn.classList.remove('bg-blue-50', 'dark:bg-blue-900/20', 'text-blue-700', 'dark:text-blue-300', 'font-medium');
-            // Add inactive classes
+            // Tambah kelas tidak aktif
             btn.classList.add('text-gray-600', 'dark:text-gray-400', 'hover:bg-gray-50', 'dark:hover:bg-gray-700/50');
         });
 
-        // Show target content
+        // Tampilkan konten target
         const targetContent = document.getElementById(`tab-${tabId}`);
         if (targetContent) {
             targetContent.classList.remove('hidden');
         }
 
-        // Set active button
+        // Set tombol aktif
         const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
         if (activeBtn) {
             activeBtn.classList.remove('text-gray-600', 'dark:text-gray-400', 'hover:bg-gray-50', 'dark:hover:bg-gray-700/50');
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Attach Event Listeners
+    // Pasang Event Listener pada Tab
     tabBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -40,19 +40,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 2. Render "Paket Saya" ---
+    // --- 2. Render Bagian "Paket Saya" ---
     renderMyPackages();
 
-    // --- 3. Render "Riwayat Transaksi" ---
+    // --- 3. Render Bagian "Riwayat Transaksi" ---
     renderTransactions();
 
-    // Initialize Icons
+    // Inisialisasi Ikon
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
 });
 
-// Global state for packages
+// State Global untuk Paket
 let packagesState = {
     data: [],
     filteredData: [],
@@ -63,7 +63,7 @@ let packagesState = {
 };
 
 function renderMyPackages() {
-    // Initialize Data if empty
+    // Inisialisasi Data Dummy jika kosong
     if (packagesState.data.length === 0) {
         packagesState.data = [
             {
@@ -141,7 +141,7 @@ function setupPackageListeners() {
 window.filterMyPackages = function(filter) {
     packagesState.filter = filter;
     
-    // Update UI Active State
+    // Update UI Filter Aktif
     document.querySelectorAll('.package-filter').forEach(btn => {
         if (btn.getAttribute('data-filter') === filter) {
             btn.classList.add('active');
@@ -230,7 +230,7 @@ function updatePackageList() {
         `}).join('');
     }
 
-    // Render Pagination
+    // Render Pagination Paket
     if (paginationContainer) {
         const totalItems = packagesState.filteredData.length;
         const totalPages = Math.ceil(totalItems / packagesState.limit);
@@ -262,7 +262,7 @@ window.changePackagePage = function(page) {
     updatePackageList();
 };
 
-// Global state for transactions
+// State Global untuk Transaksi
 let transState = {
     data: [],
     filteredData: [],
@@ -274,7 +274,7 @@ let transState = {
 };
 
 function renderTransactions() {
-    // Initialize data
+    // Inisialisasi Data Dummy Transaksi
     const baseData = [
         { id: '#INV-2025001', item: 'Paket SKD 1', date: '10 Jan 2025', price: 'Rp 25.000', status: 'Lunas' },
         { id: '#INV-2025002', item: 'Paket TKP', date: '12 Jan 2025', price: 'Rp 15.000', status: 'Lunas' },
@@ -314,7 +314,7 @@ window.sortTransactions = function(key) {
 function processTransactions() {
     let result = [...transState.data];
 
-    // 1. Search
+    // 1. Logika Pencarian
     if (transState.search) {
         const lower = transState.search.toLowerCase();
         result = result.filter(t => 
@@ -326,7 +326,7 @@ function processTransactions() {
         );
     }
 
-    // 2. Sort
+    // 2. Logika Sorting
     if (transState.sortKey) {
         result.sort((a, b) => {
             let valA = a[transState.sortKey];
@@ -357,7 +357,7 @@ function processTransactions() {
 }
 
 function updateSortIcons() {
-    // Reset all icons
+    // Reset semua ikon sort
     const icons = document.querySelectorAll('[id^="sort-icon-"]');
     icons.forEach(icon => {
         icon.setAttribute('data-lucide', 'arrow-up-down');
@@ -365,7 +365,7 @@ function updateSortIcons() {
         icon.classList.add('text-gray-400');
     });
 
-    // Set active icon
+    // Set ikon aktif
     if (transState.sortKey) {
         const activeIcon = document.getElementById(`sort-icon-${transState.sortKey}`);
         if (activeIcon) {
@@ -416,7 +416,7 @@ function updateTransactionTable() {
         `}).join('');
     }
 
-    // Render Pagination
+    // Render Pagination Transaksi
     if (paginationContainer) {
         const totalItems = transState.filteredData.length;
         const totalPages = Math.ceil(totalItems / transState.limit);
@@ -442,7 +442,7 @@ function updateTransactionTable() {
     }
 }
 
-// Expose change page function globally
+// Fungsi ganti halaman transaksi (Global)
 window.changeTransPage = function(page) {
     if (page < 1 || page > Math.ceil(transState.filteredData.length / transState.limit)) return;
     transState.currentPage = page;
