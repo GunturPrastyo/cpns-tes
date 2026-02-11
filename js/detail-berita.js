@@ -65,49 +65,93 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 3,
             title: 'Perubahan Passing Grade SKD Tahun Ini',
             excerpt: 'Kemenpan RB menetapkan nilai ambang batas baru.',
-            content: '<p>Konten berita...</p>',
+            content: `
+                <p>Kementerian Pendayagunaan Aparatur Negara dan Reformasi Birokrasi (PANRB) telah menetapkan nilai ambang batas atau passing grade untuk Seleksi Kompetensi Dasar (SKD) CPNS tahun ini. Keputusan ini tertuang dalam Keputusan Menteri PANRB Nomor 1023 Tahun 2025.</p>
+                <h2>Rincian Passing Grade</h2>
+                <ul>
+                    <li><strong>Tes Wawasan Kebangsaan (TWK):</strong> 65</li>
+                    <li><strong>Tes Intelegensia Umum (TIU):</strong> 80</li>
+                    <li><strong>Tes Karakteristik Pribadi (TKP):</strong> 166</li>
+                </ul>
+                <p>Perubahan signifikan terjadi pada materi soal TKP yang kini lebih menekankan pada aspek anti-radikalisme dan pelayanan publik digital. Peserta diharapkan tidak hanya mengejar nilai tinggi, tetapi juga memenuhi ambang batas di setiap sub-tes agar dapat melaju ke tahap Seleksi Kompetensi Bidang (SKB).</p>
+            `,
             date: '3 Hari yang lalu',
             views: '3.2k',
             category: 'Penting',
             color: 'red',
             image: 'https://images.unsplash.com/photo-1584208124888-3a20b9c799e2?q=80&w=1200&auto=format&fit=crop',
-            author: 'Admin'
+            author: 'Admin',
+            images: ['https://images.unsplash.com/photo-1584208124888-3a20b9c799e2?q=80&w=1200&auto=format&fit=crop']
         },
         {
             id: 4,
             title: 'Formasi CPNS 2025 untuk Lulusan SMA/SMK',
             excerpt: 'Pemerintah membuka ribuan formasi untuk lulusan SMA.',
-            content: '<p>Konten berita...</p>',
+            content: `
+                <p>Kabar gembira bagi lulusan SMA/SMK sederajat. Pada seleksi CPNS 2025, pemerintah membuka lebih dari 5.000 formasi yang dapat dilamar oleh kualifikasi pendidikan SMA/SMK.</p>
+                <h2>Instansi dengan Formasi Terbanyak</h2>
+                <p>Beberapa instansi pusat yang membuka formasi besar-besaran antara lain:</p>
+                <ol>
+                    <li><strong>Kementerian Hukum dan HAM:</strong> Penjaga Tahanan dan Pemeriksa Keimigrasian.</li>
+                    <li><strong>Kejaksaan Agung:</strong> Penjaga Tahanan.</li>
+                    <li><strong>Kementerian Perhubungan:</strong> Petugas Aviasi.</li>
+                </ol>
+                <p>Persiapkan ijazah, transkrip nilai, dan dokumen pendukung lainnya. Pastikan rata-rata nilai ijazah memenuhi syarat minimal yang ditetapkan masing-masing instansi.</p>
+            `,
             date: '4 Hari yang lalu',
             views: '5.1k',
             category: 'Pengumuman',
             color: 'blue',
             image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop',
-            author: 'Admin'
+            author: 'Admin',
+            images: ['https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop']
         },
         {
             id: 5,
             title: 'Cara Mengatasi Gagal Login di Portal SSCASN',
             excerpt: 'Solusi jika Anda mengalami kendala login.',
-            content: '<p>Konten berita...</p>',
+            content: `
+                <p>Banyak pelamar mengeluhkan kendala saat mencoba login ke portal SSCASN, terutama pada jam-jam sibuk. Berikut adalah beberapa langkah yang dapat Anda lakukan jika mengalami gagal login:</p>
+                <h2>Langkah Pemecahan Masalah</h2>
+                <ul>
+                    <li><strong>Cek Koneksi Internet:</strong> Pastikan koneksi stabil.</li>
+                    <li><strong>Bersihkan Cache Browser:</strong> Hapus history dan cache browser Anda, atau coba gunakan mode Incognito/Private.</li>
+                    <li><strong>Reset Password:</strong> Jika lupa password, gunakan fitur "Lupa Password" dan ikuti instruksi yang dikirim ke email.</li>
+                    <li><strong>Hubungi Helpdesk:</strong> Jika masalah berlanjut, segera hubungi layanan Helpdesk BKN melalui menu yang tersedia di portal.</li>
+                </ul>
+                <p>Hindari melakukan pendaftaran di menit-menit terakhir penutupan untuk menghindari server down.</p>
+            `,
             date: '5 Hari yang lalu',
             views: '950',
             category: 'Tips',
             color: 'green',
             image: 'https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=1200&auto=format&fit=crop',
-            author: 'Helpdesk'
+            author: 'Helpdesk',
+            images: ['https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=1200&auto=format&fit=crop']
         },
         {
             id: 6,
             title: 'Dokumen Wajib yang Sering Terlewat',
             excerpt: 'Cek checklist dokumen wajib berikut ini.',
-            content: '<p>Konten berita...</p>',
+            content: `
+                <p>Kegagalan dalam seleksi administrasi seringkali disebabkan oleh hal sepele, seperti dokumen yang tidak lengkap atau format yang salah. Berikut adalah checklist dokumen yang wajib Anda perhatikan:</p>
+                <h2>Checklist Dokumen</h2>
+                <ul>
+                    <li><strong>KTP Asli:</strong> Scan berwarna, pastikan terbaca jelas.</li>
+                    <li><strong>Pas Foto:</strong> Latar belakang merah, pakaian formal.</li>
+                    <li><strong>Surat Lamaran:</strong> Sesuai format instansi, ditandatangani di atas materai.</li>
+                    <li><strong>Surat Pernyataan:</strong> Sesuai format instansi, bermaterai.</li>
+                    <li><strong>Ijazah & Transkrip:</strong> Scan asli, bukan fotokopi legalisir (kecuali diminta khusus).</li>
+                </ul>
+                <p>Selalu baca pengumuman instansi dengan teliti sebelum mengunggah dokumen.</p>
+            `,
             date: '1 Minggu yang lalu',
             views: '1.5k',
             category: 'Penting',
             color: 'red',
             image: 'https://images.unsplash.com/photo-1618044733300-9472054094ee?q=80&w=1200&auto=format&fit=crop',
-            author: 'Admin'
+            author: 'Admin',
+            images: ['https://images.unsplash.com/photo-1618044733300-9472054094ee?q=80&w=1200&auto=format&fit=crop']
         }
     ];
 

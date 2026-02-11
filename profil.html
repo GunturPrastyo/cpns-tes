@@ -121,12 +121,12 @@
                 <div id="tab-personal" class="tab-content space-y-6">
                     <!-- Header Section -->
                     <div class="space-y-6">
-                        <div class="flex justify-between items-center mb-6">
-                            <div>
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
+                            <div class="w-full sm:w-auto">
                                 <h3 class="text-lg font-bold text-gray-900 dark:text-white">Informasi Pribadi</h3>
                                 <p class="text-sm text-gray-500 dark:text-gray-400">Kelola data diri dan preferensi akun Anda.</p>
                             </div>
-                            <button class="px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-600 flex items-center gap-2">
+                            <button class="self-end sm:self-auto px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-600 flex items-center gap-2">
                                 <i data-lucide="pencil" class="w-4 h-4"></i> Edit Profil
                             </button>
                         </div>
@@ -195,15 +195,15 @@
 
                 <!-- Tab Content: Transactions -->
                 <div id="tab-transactions" class="tab-content hidden space-y-6">
-                     <div class="space-y-6">
-                        <div class="flex flex-col sm:flex-row justify-between items-center gap-4 border-b border-gray-100 dark:border-gray-700 pb-6">
+                     <div class="space-y-4">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-100 dark:border-gray-700 pb-6">
                             <div>
                                 <h3 class="text-lg font-bold text-gray-900 dark:text-white">Riwayat Transaksi</h3>
                                 <p class="text-sm text-gray-500 dark:text-gray-400">Daftar pembelian paket soal Anda.</p>
                             </div>
                             <!-- Global Search & Limit -->
-                            <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
-                                <div class="relative w-full sm:w-48">
+                            <div class="flex items-center gap-3 w-full sm:w-auto">
+                                <div class="relative flex-1 sm:w-48 sm:flex-none">
                                     <i data-lucide="search" class="absolute left-2.5 top-2.5 w-4 h-4 text-gray-400"></i>
                                     <input type="text" id="transSearch" placeholder="Cari transaksi..." class="pl-9 pr-4 py-2 w-full text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:ring-blue-500 focus:border-blue-500 text-gray-800 dark:text-gray-200">
                                 </div>

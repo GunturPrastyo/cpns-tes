@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=400&auto=format&fit=crop'
         },
         {
+            id: 2,
             title: 'Tips & Trik Mengerjakan Soal TKP dengan Cepat & Tepat',
             excerpt: 'Bingung dengan soal TKP yang jawabannya mirip semua? Simak strategi memilih jawaban dengan poin 5 dalam waktu singkat agar skor maksimal.',
             date: '1 Hari yang lalu',
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=400&auto=format&fit=crop'
         },
         {
+            id: 3,
             title: 'Perubahan Passing Grade SKD Tahun Ini yang Wajib Diketahui',
             excerpt: 'Kemenpan RB menetapkan nilai ambang batas baru untuk SKD tahun ini. Pastikan kamu tahu target skor minimal agar lolos ke tahap SKB.',
             date: '3 Hari yang lalu',
@@ -34,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             image: 'https://images.unsplash.com/photo-1584208124888-3a20b9c799e2?q=80&w=400&auto=format&fit=crop'
         },
         {
+            id: 4,
             title: 'Formasi CPNS 2025 untuk Lulusan SMA/SMK',
             excerpt: 'Pemerintah membuka ribuan formasi untuk lulusan SMA/SMK sederajat pada seleksi CPNS tahun ini. Cek rincian formasinya di sini.',
             date: '4 Hari yang lalu',
@@ -43,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=400&auto=format&fit=crop'
         },
         {
+            id: 5,
             title: 'Cara Mengatasi Gagal Login di Portal SSCASN',
             excerpt: 'Mengalami kendala saat login ke portal SSCASN? Jangan panik, ikuti langkah-langkah berikut untuk memulihkan akses akun Anda.',
             date: '5 Hari yang lalu',
@@ -52,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             image: 'https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=400&auto=format&fit=crop'
         },
         {
+            id: 6,
             title: 'Dokumen Wajib yang Sering Terlewat Saat Pendaftaran',
             excerpt: 'Banyak pelamar gugur di seleksi administrasi karena dokumen tidak lengkap. Cek checklist dokumen wajib berikut ini.',
             date: '1 Minggu yang lalu',
@@ -230,11 +235,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Reset kelas aktif
             filterBtns.forEach(b => {
                 b.classList.remove('bg-blue-600', 'bg-green-600', 'bg-red-600', 'text-white', 'shadow-md');
-                b.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-300', 'border', 'border-gray-200', 'dark:border-gray-700');
+                b.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-300', 'border', 'border-gray-200', 'dark:border-gray-700', 'hover:bg-gray-50', 'dark:hover:bg-gray-700');
             });
             
             // Set kelas aktif pada tombol yang diklik
-            btn.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-300', 'border', 'border-gray-200', 'dark:border-gray-700');
+            btn.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-300', 'border', 'border-gray-200', 'dark:border-gray-700', 'hover:bg-gray-50', 'dark:hover:bg-gray-700');
 
             currentCategory = btn.getAttribute('data-category');
             
