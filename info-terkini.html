@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id" class="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Info Terkini - CPNS Learning</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 overflow-x-hidden font-sans">
+
+<div id="main-content" class="pt-16 min-h-screen transition-all duration-300 md:ml-64">
+  <main class="p-4 md:p-6">
+    <div class="w-full mx-auto">
+        
+        <!-- Breadcrumb -->
+        <nav class="flex mb-6 mt-4" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                <li class="inline-flex items-center">
+                    <a href="dashboard.html" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">
+                        <i data-lucide="layout-dashboard" class="w-4 h-4 mr-2"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i data-lucide="chevrons-right" class="w-4 h-4 text-gray-400 mx-1"></i>
+                        <span class="ms-1 text-sm font-medium text-blue-600 dark:text-blue-400 md:ms-2">Info Terkini</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Hero Slider -->
+        <div class="relative w-full h-56 sm:h-72 rounded-2xl overflow-hidden mb-8 shadow-xl group">
+            <!-- Slides Container -->
+            <div id="infoSlider" class="flex transition-transform duration-700 ease-out h-full">
+                <!-- Slide 1: Intro -->
+                <div class="min-w-full h-full relative flex items-center px-6 sm:px-16 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1200&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Study">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/60 to-transparent z-0"></div>
+                    <div class="text-white max-w-2xl relative z-10">
+                        <span class="bg-blue-600/80 text-xs font-bold px-2.5 py-1 rounded-md mb-3 inline-block backdrop-blur-md border border-white/10">PUSAT INFORMASI</span>
+                        <h2 class="text-2xl sm:text-4xl font-bold mb-3 leading-tight">Update Resmi & Terpercaya CPNS 2025</h2>
+                        <p class="text-blue-100 text-sm sm:text-base mb-6 leading-relaxed max-w-lg">Dapatkan jadwal seleksi, rincian formasi, dan pengumuman penting langsung dari BKN dan instansi terkait.</p>
+                    </div>
+                </div>
+                <!-- Slide 2: Popular News Highlight -->
+                <div class="min-w-full h-full relative flex items-center px-6 sm:px-16 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="News">
+                    <div class="absolute inset-0 bg-gradient-to-r from-emerald-900/90 via-emerald-900/60 to-transparent z-0"></div>
+                    <div class="text-white max-w-2xl relative z-10">
+                        <span class="bg-emerald-600/80 text-xs font-bold px-2.5 py-1 rounded-md mb-3 inline-block backdrop-blur-md border border-white/10 flex items-center gap-2 w-fit"><i data-lucide="trending-up" class="w-3 h-3"></i> SEDANG HANGAT</span>
+                        <h2 class="text-2xl sm:text-4xl font-bold mb-3 leading-tight">Formasi CPNS Lulusan SMA/SMK</h2>
+                        <p class="text-emerald-100 text-sm sm:text-base mb-6 leading-relaxed max-w-lg">Ribuan kuota dibuka untuk jabatan Penjaga Tahanan dan Pemeriksa Keimigrasian. Cek syarat lengkapnya.</p>
+                    </div>
+                </div>
+                <!-- Slide 3: Tips Strategy -->
+                <div class="min-w-full h-full relative flex items-center px-6 sm:px-16 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1584208124888-3a20b9c799e2?q=80&w=1200&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Strategy">
+                    <div class="absolute inset-0 bg-gradient-to-r from-orange-900/90 via-orange-900/60 to-transparent z-0"></div>
+                    <div class="text-white max-w-2xl relative z-10">
+                        <span class="bg-orange-600/80 text-xs font-bold px-2.5 py-1 rounded-md mb-3 inline-block backdrop-blur-md border border-white/10">TIPS & TRIK</span>
+                        <h2 class="text-2xl sm:text-4xl font-bold mb-3 leading-tight">Rahasia Tembus Passing Grade SKD</h2>
+                        <p class="text-orange-100 text-sm sm:text-base mb-6 leading-relaxed max-w-lg">Pelajari manajemen waktu dan cara cepat menjawab soal TIU hitungan tanpa rumus rumit.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slider Controls -->
+            <div class="absolute bottom-5 left-6 sm:left-16 flex gap-2 z-20">
+                <button class="slider-dot w-8 h-1.5 rounded-full bg-white transition-all duration-300" onclick="goToInfoSlide(0)"></button>
+                <button class="slider-dot w-2 h-1.5 rounded-full bg-white/40 hover:bg-white transition-all duration-300" onclick="goToInfoSlide(1)"></button>
+                <button class="slider-dot w-2 h-1.5 rounded-full bg-white/40 hover:bg-white transition-all duration-300" onclick="goToInfoSlide(2)"></button>
+            </div>
+            
+            <button onclick="prevInfoSlide()" class="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/10 hover:bg-black/30 text-white backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+            <button onclick="nextInfoSlide()" class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/10 hover:bg-black/30 text-white backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100">
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Filters -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+            <div class="flex flex-wrap gap-2" id="categoryFilters">
+                <button class="filter-btn active px-4 py-2 rounded-full text-sm font-medium bg-blue-600 text-white shadow-md transition-all" data-category="all">Semua</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all" data-category="Pengumuman">Pengumuman</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all" data-category="Tips">Tips</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all" data-category="Penting">Penting</button>
+            </div>
+            <div class="relative w-full md:w-80 lg:w-96">
+                <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"></i>
+                <input type="text" id="newsSearch" placeholder="Cari berita..." class="w-full pl-9 pr-4 py-2 rounded-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-700 dark:text-gray-200">
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content (News Grid) -->
+            <div class="lg:col-span-2">
+                <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- News items injected by JS -->
+                </div>
+                
+                <!-- Pagination -->
+                <div id="newsPagination" class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center"></div>
+            </div>
+
+            <!-- Sidebar (Popular News) -->
+            <div class="lg:col-span-1 space-y-6">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 sticky top-24">
+                    <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-5 flex items-center gap-2 border-b border-gray-100 dark:border-gray-700 pb-3">
+                        <i data-lucide="trending-up" class="w-5 h-5 text-blue-500"></i> Terpopuler
+                    </h3>
+                    <div id="popularNewsList" class="space-y-5">
+                        <!-- Popular items injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+  </main>
+  
+  <footer class="bg-white dark:bg-gray-800 p-4 text-center text-gray-600 dark:text-gray-400 text-sm mt-auto shadow-inner font-poppins">
+      <p>&copy; 2025 CPNS Learning. All rights reserved.</p>
+  </footer>
+</div>
+
+<script src="js/layout.js"></script>
+<script src="js/info-terkini.js"></script>
+</body>
+</html>

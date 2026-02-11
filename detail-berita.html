@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id" class="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Berita - CPNS Learning</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+          typography: (theme) => ({
+            DEFAULT: {
+              css: {
+                color: theme('colors.gray.700'),
+                a: {
+                  color: theme('colors.blue.600'),
+                  '&:hover': {
+                    color: theme('colors.blue.700'),
+                  },
+                },
+              },
+            },
+          }),
+        }
+      }
+    }
+  </script>
+  <!-- Typography Plugin for Tailwind (Simulated via CDN or custom CSS if not available, using basic styling here) -->
+  <style>
+      .prose p { margin-bottom: 1.25em; line-height: 1.75; }
+      .prose h2 { font-size: 1.5em; font-weight: 700; margin-top: 1.5em; margin-bottom: 0.75em; }
+      .prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1.25em; }
+      .prose li { margin-bottom: 0.5em; }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 overflow-x-hidden font-sans">
+
+<div id="main-content" class="pt-16 min-h-screen transition-all duration-300 md:ml-64">
+  <main class="p-4 md:p-6">
+    <div class="w-full mx-auto max-w-7xl">
+        
+        <!-- Breadcrumb -->
+        <nav class="flex mb-6 mt-4" aria-label="Breadcrumb" id="breadcrumb-container">
+            <!-- Injected by JS -->
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Main Article Content -->
+            <div id="article-content" class="lg:col-span-8">
+                <!-- Injected by JS -->
+            </div>
+
+            <!-- Sidebar (Related News) -->
+            <div class="lg:col-span-4 space-y-6">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 sticky top-24 overflow-hidden flex flex-col">
+                    <div class="p-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                        <div class="flex items-center gap-3 mb-1">
+                            <div class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-white shrink-0 backdrop-blur-sm">
+                                <i data-lucide="newspaper" class="w-4 h-4"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white leading-none">Berita Terkini</h3>
+                        </div>
+                        <p class="text-xs text-blue-100 mt-1.5 leading-relaxed">Informasi terbaru dan terhangat seputar seleksi CPNS.</p>
+                    </div>
+                    <div class="relative h-[500px] overflow-hidden">
+                        <div id="relatedNewsList" class="divide-y divide-gray-100 dark:divide-gray-700">
+                            <!-- Injected by JS -->
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-gray-800 dark:via-gray-800/80 pointer-events-none z-10"></div>
+                        <div id="relatedNewsFooter" class="absolute bottom-4 left-0 right-0 flex justify-center items-center z-20">
+                            <!-- Button Injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+  </main>
+  
+  <footer class="bg-white dark:bg-gray-800 p-4 text-center text-gray-600 dark:text-gray-400 text-sm mt-auto shadow-inner font-poppins">
+      <p>&copy; 2025 CPNS Learning. All rights reserved.</p>
+  </footer>
+</div>
+
+<script src="js/layout.js"></script>
+<script src="js/detail-berita.js"></script>
+</body>
+</html>

@@ -24,6 +24,10 @@ window.loadLayout = function(activePage) {
       <i data-lucide="history" class="w-5 h-5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0 ${activePage === 'riwayat' ? 'text-blue-600 dark:text-blue-400' : ''}"></i>
       <span class="font-medium sidebar-text transition-opacity duration-300 whitespace-nowrap">Riwayat Tryout</span>
     </a>
+    <a href="info-terkini.html" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 group ${activePage === 'info-terkini' ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400' : ''}" data-page="info-terkini">
+      <i data-lucide="newspaper" class="w-5 h-5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0 ${activePage === 'info-terkini' ? 'text-blue-600 dark:text-blue-400' : ''}"></i>
+      <span class="font-medium sidebar-text transition-opacity duration-300 whitespace-nowrap">Info Terkini</span>
+    </a>
     <a href="profil.html" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 group ${activePage === 'profil' ? 'bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400' : ''}" data-page="profil">
       <i data-lucide="user" class="w-5 h-5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0 ${activePage === 'profil' ? 'text-blue-600 dark:text-blue-400' : ''}"></i>
       <span class="font-medium sidebar-text transition-opacity duration-300 whitespace-nowrap">Profil Saya</span>
@@ -45,10 +49,6 @@ window.loadLayout = function(activePage) {
         <a href="komponen-datatable.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${activePage === 'komponen-datatable' ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-gray-700/50 font-medium' : 'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700/50'}">
             <span class="w-1.5 h-1.5 rounded-full ${activePage === 'komponen-datatable' ? 'bg-blue-600' : 'bg-gray-400'}"></span>
             Datatable
-        </a>
-        <a href="komponen-ui-elements.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${activePage === 'komponen-ui-elements' ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-gray-700/50 font-medium' : 'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700/50'}">
-            <span class="w-1.5 h-1.5 rounded-full ${activePage === 'komponen-ui-elements' ? 'bg-blue-600' : 'bg-gray-400'}"></span>
-            UI Elements
         </a>
     </div>
   </nav>
