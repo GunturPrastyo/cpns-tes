@@ -448,3 +448,131 @@ window.changeTransPage = function(page) {
     transState.currentPage = page;
     updateTransactionTable();
 };
+
+// --- 4. Logika Modal Foto Profil ---
+let cropper = null;
+
+window.openPhotoModal = () => {
+    const modal = document.getElementById('photoModal');
+    const currentImg = document.getElementById('mainProfileImage');
+    const currentPreview = document.getElementById('currentPhotoPreview');
+    const initialView = document.getElementById('initialView');
+    const cropperContainer = document.getElementById('cropperContainer');
+    const controls = document.getElementById('cropperControls');
+    const btnSave = document.getElementById('btnSavePhoto');
+    
+    if (modal) {
+        // Reset State
+        if (currentImg && currentPreview) {
+            currentPreview.src = currentImg.src;
+        }
+        
+        // Tampilkan Initial View, Sembunyikan Cropper
+        if (initialView) initialView.classList.remove('hidden');
+        if (cropperContainer) cropperContainer.classList.add('hidden');
+        if (controls) controls.classList.add('hidden');
+        if (btnSave) btnSave.disabled = true;
+
+        // Reset Input File
+        const input = document.getElementById('photoInput');
+        if (input) input.value = '';
+
+        // Hapus instance cropper lama jika ada
+        if (cropper) {
+            cropper.destroy();
+            cropper = null;
+        }
+
+        modal.classList.remove('hidden');
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+};
+
+window.closePhotoModal = () => {
+    const modal = document.getElementById('photoModal');
+    if (modal) modal.classList.add('hidden');
+    
+    // Cleanup Cropper saat tutup
+    if (cropper) {
+        cropper.destroy();
+        cropper = null;
+    }
+};
+
+window.triggerFileInput = () => {
+    document.getElementById('photoInput').click();
+};
+
+window.handleFileSelect = (input) => {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const image = document.getElementById('cropperImage');
+            const initialView = document.getElementById('initialView');
+            const cropperContainer = document.getElementById('cropperContainer');
+            const controls = document.getElementById('cropperControls');
+            const btnSave = document.getElementById('btnSavePhoto');
+
+            // Update Source Gambar
+            image.src = e.target.result;
+
+            // Switch View
+            initialView.classList.add('hidden');
+            cropperContainer.classList.remove('hidden');
+            controls.classList.remove('hidden');
+            btnSave.disabled = false;
+
+            // Init Cropper
+            if (cropper) cropper.destroy();
+            
+            cropper = new Cropper(image, {
+                aspectRatio: 1, // Foto profil biasanya persegi
+                viewMode: 1,
+                dragMode: 'move',
+                autoCropArea: 1,
+                restore: false,
+                guides: true,
+                center: true,
+                highlight: false,
+                cropBoxMovable: true,
+                cropBoxResizable: true,
+                toggleDragModeOnDblclick: false,
+            });
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+};
+
+// Helper Functions untuk Kontrol Cropper
+window.rotateImage = (deg) => { if (cropper) cropper.rotate(deg); };
+window.zoomImage = (ratio) => { if (cropper) cropper.zoom(ratio); };
+window.resetCropper = () => { if (cropper) cropper.reset(); };
+
+window.saveCroppedPhoto = () => {
+    if (!cropper) return;
+
+    // Ambil hasil crop sebagai Data URL (Canvas)
+    const canvas = cropper.getCroppedCanvas({
+        width: 300,
+        height: 300,
+        fillColor: '#fff',
+        imageSmoothingEnabled: true,
+        imageSmoothingQuality: 'high',
+    });
+
+    const croppedImage = canvas.toDataURL('image/jpeg');
+    const mainImg = document.getElementById('mainProfileImage');
+    
+    // Update Foto Profil Utama
+    if (mainImg) mainImg.src = croppedImage;
+    
+    closePhotoModal();
+    
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: 'Foto profil telah diperbarui.',
+        timer: 1500,
+        showConfirmButton: false
+    });
+};
