@@ -175,7 +175,7 @@ window.loadLayout = function(activePage) {
             <p class="text-sm font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i> Budi Santoso</p>
             <p class="text-xs text-gray-500 dark:text-gray-400 truncate flex items-center gap-2 mt-1"><i data-lucide="mail" class="w-3 h-3"></i> budi.santoso@email.com</p>
           </div>
-          <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="phone" class="w-4 h-4"></i> Call Center</a>
+          <button onclick="openCallCenterModal()" class="w-full text-left flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="phone" class="w-4 h-4"></i> Call Center</button>
           <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="help-circle" class="w-4 h-4"></i> Pusat Bantuan</a>
           <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="settings" class="w-4 h-4"></i> Pengaturan</a>
           <a href="login.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="log-out" class="w-4 h-4 text-red-500"></i> Keluar</a>
@@ -184,6 +184,76 @@ window.loadLayout = function(activePage) {
     </div>
   </div>
 </header>
+
+<!-- Call Center Modal (Injected) -->
+<div id="callCenterModal" class="fixed inset-0 z-[60] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+        <div class="fixed inset-0 bg-gray-900/60 transition-opacity backdrop-blur-sm" aria-hidden="true" onclick="closeCallCenterModal()"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        
+        <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm w-full border border-gray-100 dark:border-gray-700 relative">
+            
+            <!-- Close Button -->
+            <button onclick="closeCallCenterModal()" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 z-10">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="p-8">
+                <!-- Header -->
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm ring-4 ring-blue-50/50 dark:ring-blue-900/10">
+                        <i data-lucide="headset" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Pusat Bantuan</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Kami siap membantu kendala Anda.</p>
+                </div>
+
+                <!-- Contact Options -->
+                <div class="space-y-3">
+                    <a href="https://wa.me/6281234567890" target="_blank" class="flex items-center gap-4 p-3 rounded-xl bg-gray-50 dark:bg-gray-700/30 hover:bg-green-50 dark:hover:bg-green-900/20 border border-transparent hover:border-green-200 dark:hover:border-green-800 transition-all group">
+                        <div class="w-10 h-10 rounded-lg bg-white dark:bg-gray-800 text-green-600 shadow-sm flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="font-semibold text-sm text-gray-900 dark:text-white group-hover:text-green-700 dark:group-hover:text-green-400 transition-colors">WhatsApp</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 truncate">Chat CS (08:00 - 20:00)</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:text-green-600 transition-colors"></i>
+                    </a>
+
+                    <a href="tel:+62211234567" class="flex items-center gap-4 p-3 rounded-xl bg-gray-50 dark:bg-gray-700/30 hover:bg-blue-50 dark:hover:bg-blue-900/20 border border-transparent hover:border-blue-200 dark:hover:border-blue-800 transition-all group">
+                        <div class="w-10 h-10 rounded-lg bg-white dark:bg-gray-800 text-blue-600 shadow-sm flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="phone" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="font-semibold text-sm text-gray-900 dark:text-white group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">Telepon</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 truncate">+62 21 1234 567</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors"></i>
+                    </a>
+
+                    <a href="mailto:support@cpnslearning.id" class="flex items-center gap-4 p-3 rounded-xl bg-gray-50 dark:bg-gray-700/30 hover:bg-purple-50 dark:hover:bg-purple-900/20 border border-transparent hover:border-purple-200 dark:hover:border-purple-800 transition-all group">
+                        <div class="w-10 h-10 rounded-lg bg-white dark:bg-gray-800 text-purple-600 shadow-sm flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="font-semibold text-sm text-gray-900 dark:text-white group-hover:text-purple-700 dark:group-hover:text-purple-400 transition-colors">Email</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 truncate">support@cpnslearning.id</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:text-purple-600 transition-colors"></i>
+                    </a>
+                </div>
+
+                <!-- Footer -->
+                <div class="mt-8 text-center">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-[10px] font-medium text-gray-500 dark:text-gray-400">
+                        <i data-lucide="clock" class="w-3 h-3"></i> Senin - Jumat (08:00 - 17:00 WIB)
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 `;
 
   // Masukkan Navbar dan Sidebar ke dalam DOM jika belum ada
@@ -409,4 +479,18 @@ window.loadLayout = function(activePage) {
           }
       });
   }
+
+  // --- 7. Logika Modal Call Center ---
+  window.openCallCenterModal = () => {
+      const modal = document.getElementById('callCenterModal');
+      if (modal) {
+          modal.classList.remove('hidden');
+          if (typeof lucide !== 'undefined') lucide.createIcons();
+      }
+  };
+
+  window.closeCallCenterModal = () => {
+      const modal = document.getElementById('callCenterModal');
+      if (modal) modal.classList.add('hidden');
+  };
 }
