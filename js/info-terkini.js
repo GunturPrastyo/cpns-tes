@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Render HTML Grid
         newsGrid.innerHTML = paginatedNews.map(item => `
-            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full">
+            <div onclick="window.location.href='detail-berita.html?id=${item.id}'" class="cursor-pointer bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full">
                 <div class="h-48 overflow-hidden relative">
                     <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
                             <span class="flex items-center gap-1.5"><i data-lucide="eye" class="w-3.5 h-3.5"></i> ${item.views}</span>
                         </div>
-                        <button class="text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" title="Bagikan">
+                        <button onclick="event.stopPropagation(); openShareModal('${item.id}', '${item.title.replace(/'/g, "\\'")}')" class="text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" title="Bagikan">
                             <i data-lucide="external-link" class="w-4 h-4"></i>
                         </button>
                     </div>
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }).slice(0, 5); // Top 5
 
         popularNewsList.innerHTML = sortedNews.map((item, index) => `
-            <div class="flex gap-4 group cursor-pointer items-start">
+            <div onclick="window.location.href='detail-berita.html?id=${item.id}'" class="flex gap-4 group cursor-pointer items-start">
                 <div class="w-20 h-20 rounded-lg overflow-hidden shrink-0 relative bg-gray-200 dark:bg-gray-700">
                     <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute top-0 left-0 bg-blue-600/90 backdrop-blur-[2px] text-white text-[10px] font-bold px-2 py-0.5 rounded-br-lg shadow-sm">
@@ -227,6 +227,55 @@ document.addEventListener('DOMContentLoaded', () => {
     window.changeNewsPage = (page) => {
         currentPage = page;
         renderNews();
+    };
+
+    // --- 7. Logika Modal Share ---
+    window.openShareModal = (id, title) => {
+        const modal = document.getElementById('shareModal');
+        const titleEl = document.getElementById('shareTitle');
+        const inputEl = document.getElementById('shareInput');
+        const waBtn = document.getElementById('shareWA');
+        const fbBtn = document.getElementById('shareFB');
+        const twBtn = document.getElementById('shareTwitter');
+
+        if (!modal) return;
+
+        // Simulasi URL detail berita
+        const url = window.location.origin + window.location.pathname.replace('info-terkini.html', 'detail-berita.html') + '?id=' + id;
+        const text = `Cek berita ini: ${title}`;
+
+        if (titleEl) titleEl.textContent = title;
+        if (inputEl) inputEl.value = url;
+
+        // Set Social Links
+        if (waBtn) waBtn.href = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
+        if (fbBtn) fbBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+        if (twBtn) twBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+
+        modal.classList.remove('hidden');
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+    };
+
+    window.closeShareModal = () => {
+        const modal = document.getElementById('shareModal');
+        if (modal) modal.classList.add('hidden');
+    };
+
+    window.copyShareLink = () => {
+        const inputEl = document.getElementById('shareInput');
+        if (inputEl) {
+            inputEl.select();
+            inputEl.setSelectionRange(0, 99999); // Mobile support
+            navigator.clipboard.writeText(inputEl.value).then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Link Disalin!',
+                    text: 'Tautan berita berhasil disalin ke clipboard.',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            });
+        }
     };
 
     // Event Listener Filter Kategori
