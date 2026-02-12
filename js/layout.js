@@ -176,8 +176,7 @@ window.loadLayout = function(activePage) {
             <p class="text-xs text-gray-500 dark:text-gray-400 truncate flex items-center gap-2 mt-1"><i data-lucide="mail" class="w-3 h-3"></i> budi.santoso@email.com</p>
           </div>
           <button onclick="openCallCenterModal()" class="w-full text-left flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="phone" class="w-4 h-4"></i> Call Center</button>
-          <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="help-circle" class="w-4 h-4"></i> Pusat Bantuan</a>
-          <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="settings" class="w-4 h-4"></i> Pengaturan</a>
+          <button onclick="openHelpCenterModal()" class="w-full text-left flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="help-circle" class="w-4 h-4"></i> Pusat Bantuan</button>
           <a href="login.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><i data-lucide="log-out" class="w-4 h-4 text-red-500"></i> Keluar</a>
         </div>
       </div>
@@ -250,6 +249,111 @@ window.loadLayout = function(activePage) {
                         <i data-lucide="clock" class="w-3 h-3"></i> Senin - Jumat (08:00 - 17:00 WIB)
                     </span>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Help Center Modal (FAQ) -->
+<div id="helpCenterModal" class="fixed inset-0 z-[60] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+        <div class="fixed inset-0 bg-gray-900/40 transition-opacity backdrop-blur-sm" aria-hidden="true" onclick="closeHelpCenterModal()"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        
+        <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full border border-gray-100 dark:border-gray-700 relative flex flex-col max-h-[85vh]">
+            
+            <!-- Header -->
+            <div class="px-6 py-5 flex justify-between items-center border-b border-gray-100 dark:border-gray-700">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Pusat Bantuan</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Temukan jawaban atas kendala Anda</p>
+                </div>
+                <button onclick="closeHelpCenterModal()" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 overflow-y-auto custom-scrollbar">
+                <!-- Search -->
+                <div class="p-6 pb-2">
+                    <div class="relative group">
+                        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors"></i>
+                        <input type="text" id="faqSearch" placeholder="Cari topik (misal: password, pembayaran)..." class="w-full pl-12 pr-4 py-3.5 rounded-xl bg-gray-50 dark:bg-gray-700/50 border-transparent focus:bg-white dark:focus:bg-gray-700 border focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all text-sm text-gray-800 dark:text-white placeholder-gray-400">
+                    </div>
+                </div>
+
+                <!-- Quick Categories -->
+                <div class="px-6 py-4 grid grid-cols-3 gap-3">
+                    <button onclick="filterFaq('akun')" class="flex flex-col items-center gap-2 p-3 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-800 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all group">
+                        <i data-lucide="user-circle" class="w-6 h-6 text-gray-400 group-hover:text-blue-600 dark:text-gray-500 dark:group-hover:text-blue-400 transition-colors"></i>
+                        <span class="text-xs font-medium text-gray-600 dark:text-gray-300 group-hover:text-blue-700 dark:group-hover:text-blue-300">Akun</span>
+                    </button>
+                    <button onclick="filterFaq('pembayaran')" class="flex flex-col items-center gap-2 p-3 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-green-200 dark:hover:border-green-800 hover:bg-green-50 dark:hover:bg-green-900/20 transition-all group">
+                        <i data-lucide="credit-card" class="w-6 h-6 text-gray-400 group-hover:text-green-600 dark:text-gray-500 dark:group-hover:text-green-400 transition-colors"></i>
+                        <span class="text-xs font-medium text-gray-600 dark:text-gray-300 group-hover:text-green-700 dark:group-hover:text-green-300">Pembayaran</span>
+                    </button>
+                    <button onclick="filterFaq('teknis')" class="flex flex-col items-center gap-2 p-3 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-purple-200 dark:hover:border-purple-800 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all group">
+                        <i data-lucide="wrench" class="w-6 h-6 text-gray-400 group-hover:text-purple-600 dark:text-gray-500 dark:group-hover:text-purple-400 transition-colors"></i>
+                        <span class="text-xs font-medium text-gray-600 dark:text-gray-300 group-hover:text-purple-700 dark:group-hover:text-purple-300">Teknis</span>
+                    </button>
+                </div>
+
+                <!-- FAQ List -->
+                <div class="px-6 pb-6">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Pertanyaan Populer</h4>
+                    <div class="space-y-2" id="faqList">
+                        <!-- Item 1 -->
+                        <div class="faq-item group border border-gray-100 dark:border-gray-700 rounded-xl overflow-hidden transition-all hover:shadow-sm" data-category="akun">
+                        <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-4 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                            <span class="font-medium text-sm text-gray-700 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Lupa password akun?</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 transition-transform duration-200"></i>
+                        </button>
+                        <div class="hidden px-4 pb-4 pt-0 text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 leading-relaxed border-t border-gray-50 dark:border-gray-700/50 mt-1">
+                            Anda dapat mereset password melalui halaman login dengan mengklik "Lupa Password", atau melalui menu <strong>Profil > Keamanan</strong> jika Anda sudah login.
+                        </div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="faq-item group border border-gray-100 dark:border-gray-700 rounded-xl overflow-hidden transition-all hover:shadow-sm" data-category="pembayaran">
+                        <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-4 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                            <span class="font-medium text-sm text-gray-700 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Metode pembayaran tersedia?</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 transition-transform duration-200"></i>
+                        </button>
+                        <div class="hidden px-4 pb-4 pt-0 text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 leading-relaxed border-t border-gray-50 dark:border-gray-700/50 mt-1">
+                            Kami menerima pembayaran melalui Transfer Bank (BCA, Mandiri, BNI, BRI), E-Wallet (GoPay, OVO, Dana), dan QRIS. Konfirmasi pembayaran otomatis dalam 5-10 menit.
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="faq-item group border border-gray-100 dark:border-gray-700 rounded-xl overflow-hidden transition-all hover:shadow-sm" data-category="teknis">
+                        <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-4 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                            <span class="font-medium text-sm text-gray-700 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Soal tryout bisa diulang?</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 transition-transform duration-200"></i>
+                        </button>
+                        <div class="hidden px-4 pb-4 pt-0 text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 leading-relaxed border-t border-gray-50 dark:border-gray-700/50 mt-1">
+                            Ya, Anda dapat mengerjakan ulang paket soal yang sudah dibeli kapan saja tanpa batasan waktu (Lifetime Access). Nilai yang tersimpan di grafik adalah nilai percobaan terakhir.
+                        </div>
+                    </div>
+
+                     <!-- Item 4 -->
+                    <div class="faq-item group border border-gray-100 dark:border-gray-700 rounded-xl overflow-hidden transition-all hover:shadow-sm" data-category="teknis">
+                        <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-4 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                            <span class="font-medium text-sm text-gray-700 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Sistem penilaian SKD?</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 transition-transform duration-200"></i>
+                        </button>
+                        <div class="hidden px-4 pb-4 pt-0 text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 leading-relaxed border-t border-gray-50 dark:border-gray-700/50 mt-1">
+                            TWK (Benar 5, Salah 0), TIU (Benar 5, Salah 0), TKP (Skala 1-5, Kosong 0). Passing grade sesuai aturan Kemenpan RB terbaru.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="p-4 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+                <button onclick="closeHelpCenterModal(); openCallCenterModal()" class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200 text-sm font-semibold rounded-xl hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-blue-600 dark:hover:text-blue-400 transition-all shadow-sm">
+                    <i data-lucide="headset" class="w-4 h-4"></i> Hubungi Customer Service
+                </button>
             </div>
         </div>
     </div>
@@ -492,5 +596,53 @@ window.loadLayout = function(activePage) {
   window.closeCallCenterModal = () => {
       const modal = document.getElementById('callCenterModal');
       if (modal) modal.classList.add('hidden');
+  };
+
+  // --- 8. Logika Modal Pusat Bantuan (FAQ) ---
+  window.openHelpCenterModal = () => {
+      const modal = document.getElementById('helpCenterModal');
+      if (modal) {
+          modal.classList.remove('hidden');
+          if (typeof lucide !== 'undefined') lucide.createIcons();
+          
+          // Setup Search Listener (Lazy Init)
+          const searchInput = document.getElementById('faqSearch');
+          if (searchInput && !searchInput.hasAttribute('data-search-init')) {
+              searchInput.setAttribute('data-search-init', 'true');
+              searchInput.addEventListener('input', (e) => {
+                  const val = e.target.value.toLowerCase();
+                  const items = document.querySelectorAll('.faq-item');
+                  items.forEach(item => {
+                      const text = item.innerText.toLowerCase();
+                      item.style.display = text.includes(val) ? 'block' : 'none';
+                  });
+              });
+          }
+      }
+  };
+
+  window.closeHelpCenterModal = () => {
+      const modal = document.getElementById('helpCenterModal');
+      if (modal) modal.classList.add('hidden');
+  };
+
+  window.toggleFaq = (btn) => {
+      const content = btn.nextElementSibling;
+      const icon = btn.querySelector('i'); // chevron-down
+      content.classList.toggle('hidden');
+      icon.classList.toggle('rotate-90');
+  };
+
+  window.filterFaq = (category) => {
+      const items = document.querySelectorAll('.faq-item');
+      items.forEach(item => {
+          if (category === 'all' || item.getAttribute('data-category') === category) {
+              item.style.display = 'block';
+          } else {
+              item.style.display = 'none';
+          }
+      });
+      const searchInput = document.getElementById('faqSearch');
+      if(searchInput) searchInput.value = '';
   };
 }
