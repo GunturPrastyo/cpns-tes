@@ -439,5 +439,5 @@ document.addEventListener('DOMContentLoaded', () => {
         loadLayout('riwayat');
     }
     updateStats();
-    filterData(); // Initial render
+    filterData(); 
 });

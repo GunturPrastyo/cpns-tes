@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             renderQuestions();
         }
-        // Tunggu render selesai lalu scroll
+        
         setTimeout(() => {
             const el = document.getElementById(`soal-${index}`);
             if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const newItemsPerPage = window.innerWidth < 640 ? 5 : 10;
         if (newItemsPerPage !== navItemsPerPage) {
             navItemsPerPage = newItemsPerPage;
-            currentPage = 1; // Reset to page 1 to avoid index issues
+            currentPage = 1; 
             renderQuestions();
         }
     });

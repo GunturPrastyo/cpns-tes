@@ -113,37 +113,6 @@
 <script src="js/layout.js"></script>
 <script src="js/hasil-tes.js"></script>
 <script>loadLayout('riwayat');</script>
-<script>
-    // Script untuk menyeragamkan warna hasil tes (Override JS injection)
-    const resultContainer = document.getElementById('result-container');
-    if (resultContainer) {
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.addedNodes.length) {
-                    const elements = resultContainer.querySelectorAll('*');
-                    elements.forEach(el => {
-                        const classes = Array.from(el.classList);
-                        classes.forEach(cls => {
-                            // Ubah text color menjadi biru/neutral
-                            if (cls.match(/text-(red|green|yellow|purple|pink|emerald|sky|indigo|cyan|teal|amber|orange)-[0-9]+/)) {
-                                el.classList.remove(cls);
-                                el.classList.add('text-blue-600', 'dark:text-blue-400');
-                            }
-                            // Ubah bg color menjadi biru muda
-                            if (cls.match(/bg-(red|green|yellow|purple|pink|emerald|sky|indigo|cyan|teal|amber|orange)-[0-9]+/)) {
-                                el.classList.remove(cls);
-                                el.classList.add('bg-blue-50', 'dark:bg-blue-900/20');
-                            }
-                        });
-                    });
-                }
-            });
-        });
-        observer.observe(resultContainer, { childList: true, subtree: true });
-    }
 
-    // Initialize Lucide icons
-    lucide.createIcons();
-</script>
 </body>
 </html>
